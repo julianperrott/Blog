@@ -1,0 +1,43 @@
+<!-- Start of Articles -->
+<div class="row articles">
+	{{ range $index, $element := .Data.Pages }}
+
+	<!-- Article -->
+	<article class="col-xs-6 article wow animated {{ if eq ( mod $index 2) 0 }}fadeInLeft{{ else }}fadeInRight{{ end }}">
+		<a href="{{ .Permalink }}" class="c borderedHover">
+			<div class="wrap">
+				<div class="info">
+					<div class="info-wrap">
+						<i class="fa fa-plus"></i>
+						<div class="more">Read more</div>
+					</div>
+				</div>
+				<img src="tmp/600x350.jpg" alt="#" width="600" height="350" class="img-responsive">
+			</div>
+		</a>
+		<div class="row">
+			<div class="col-lg-2 visible-lg asideArticleInfo">
+				<div class="date">
+					<div class="day">{{ .Date.Day }}</div>
+					<div class="month">{{ .Date.Format "Jan 2006" }}</div>
+				</div>
+				<div class="comments">
+					<i class="fa fa-comments"></i> 25
+				</div>
+			</div>
+			<div class="col-lg-10">
+				<h3><a href="{{ .Permalink }}" title="#">{{ .Title }}</a></h3>
+				<div class="articleInfo clearfix">
+					<div class="i">Categories: <a href="{{ .Permalink }}"><strong>country</strong></a>, <a href="{{ .Permalink }}"><strong>heaven</strong></a></div>
+				</div>
+				<p>
+					{{.Description}}
+					<a href="{{ .Permalink }}" title=" #">Read more...</a>
+				</p>
+			</div>
+		</div>
+	</article>
+
+	{{ end }}
+
+</div>

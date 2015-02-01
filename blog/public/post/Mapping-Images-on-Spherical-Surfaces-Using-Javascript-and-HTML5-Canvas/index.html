@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+
+
+
+
+<html class="no-js">
+ 
+<head>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pulse</title>
+    <meta name="description" content="...">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+
+    
+    <script src="/js/modernizr-2.6.2.min.js"></script>
+    
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+    <script>
+		var mainColor = 'blue';
+    </script>
+</head>
+
+<body>
+    
+    <div id="wrapper">
+        <section id="blog" class="subpage detail">
+
+            
+            <header class="font-white striped-image" style="background-image: url(/img/bg_blog-detail.jpg);">
+                <div class="container">
+    <div class="row">
+        <a href="#contact" class="logo wow bounceInDown" data-wow-duration="1s" data-wow-delay=".5s">
+            <div class="wrap" style="border: 0;padding-bottom:0;margin-bottom:0">
+                <img src="/img/logo.png" width="100" />
+            </div>
+        </a>
+        <div class="col-sm-8 col-sm-offset-2 wow fadeInDown">
+            <h1>codesin.net</h1>
+            <div class="dotted-break"></div>
+            <h2>A blog about coding - by Julian Perrott</h2>
+
+            <blockquote>
+                <p title="We have to experience something ourselves in order to really understand it. If we are hearing something it might be interesting. If we are seeing something it might be beautiful. But only if we have it happening to ourselves - actively doing it - we can really know how it is."
+                   data-toggle="tooltip" data-placement="top">
+                    "I hear and I forget. I see and I remember. I do and I understand." - Confucius
+                </p>
+            </blockquote>
+        </div>
+    </div>
+</div>
+            </header>
+
+            <div class="container">
+                
+                <div class="row articles">
+
+                    
+                    <article class="col-xs-12 article">
+                        <div class="row">
+                            <div class="col-lg-2 visible-lg asideArticleInfo">
+                                <div class="date">
+                                    <div class="day">1</div>
+                                    <div class="month">Mar 2014</div>
+                                </div>
+                                <div class="comments">
+                                    <i class="fa fa-comments"></i> 25
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <h2 class="title">Mapping Images on Spherical Surfaces Using Javascript and HTML5 Canvas</h2>
+                                    <div class="articleInfo clearfix">
+                                        <div class="i hidden-lg">Post date: <strong>Sat, Mar 1, 2014</strong></div>
+                                        <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                    </div>
+                                    <p><a href="/post/img/Earth.png"><img title="Earth" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Earth" src="/post/img/Earth.png" width="155" height="154"></a></p> <p><a title="andalmeida" href="http://www.codeproject.com/Members/andalmeida">andalmeida</a> posted on codeproject.com showing how to map images onto spherical surfaces using C#. I have taken his code and converted it to work with javascript and an HTML5 Canvas.</p> <p>Original article: <a href="http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C">http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C</a></p>
+<h2>Demo:</h2><iframe height="260" src="/post/content/ImageWrapDemo/wrapspheredemo.html" width="600"></iframe><br>
+<h2>Source Code</h2><a href="/post/content/ImageWrapDemo/ImageWrapDemo.zip">Download source code</a>&nbsp;&nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  <h2>Html:</h2>Contains a canvas 'myCanvas' which will be drawn to. <pre class="prettyprint">&lt;img src="images/worldmap.gif" id="myImage" /&gt;
+&lt;canvas id="myCanvas" width="150" height="150" style="background-color: #000000"&gt;&lt;/canvas&gt;
+&lt;br /&gt;
+&lt;input type="range" id="rangeInput" min="-31" max="31"&gt;&amp; Drag to Rotate
+&lt;script src="./js/WrapSphereDemo.js"&gt;&lt;/script&gt;
+</pre>
+<h2>Javascript:</h2>Loads the image to wrap, then calls a library to wrap it around a sphere, then writes the result onto the canvas. <pre class="prettyprint">var WrapSphereDemo;
+(function (WrapSphereDemo) {
+    var image;
+    var context;
+    var myImg = new Image();
+    window.onload = function () {
+        // hook up range change and image onload to render
+        document.getElementById("rangeInput").onchange = Render;
+        myImg.onload = Render;
+		
+	// load image
+        myImg.src = "./images/worldmap.gif";
+    };
+    function Render() {
+        GenerateImage(myImg);
+    }
+    function GenerateImage(myImg) {
+        var canvasToDrawOn = document.getElementById("myCanvas");
+        var canvasToDrawOnContext = canvasToDrawOn.getContext("2d");
+        // Copy the image into a canvas
+        var offscreenCanvas = document.createElement("canvas");
+        offscreenCanvas.width = myImg.width;
+        offscreenCanvas.height = myImg.height;
+        var offscreenContext = offscreenCanvas.getContext("2d");
+        offscreenContext.drawImage(myImg, 0, 0);
+		
+	// get the image data from the hidden canvas
+        var fromImage = offscreenContext.getImageData(0, 0, myImg.width, myImg.height);
+        // Create a new image with the source image wrapped around a sphere
+        var yRotate = (parseInt(document.getElementById("rangeInput").value) - 31) / 10;
+        var xRotate = Math.PI / 2;
+        var toImage = canvasToDrawOnContext.getImageData(0, 0, 50 * 2, 50 * 2);
+        var image = SphereImageLib.WrapSphere(fromImage, toImage, xRotate, yRotate, 50);
+		
+	// copy the image to the canvas
+        canvasToDrawOnContext.putImageData(image, 25, 25);
+    }
+})(WrapSphereDemo || (WrapSphereDemo = {}));
+</pre><br>
+<h2>Javascript Lib:</h2>Javascript which maps each pixel in the image onto a sphere, then copies the pixel onto the destination image. Refactored from: <a href="http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C">http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C</a> <pre class="prettyprint">var SphereImageLib;
+(function (SphereImageLib) {
+    function WrapSphere(fromImage, toImage, xRotate, yRotate, radius) {
+        var coordinates = new SphereMapper(fromImage.width, fromImage.height, xRotate, yRotate, radius);
+        for (var i = 0; i &lt; toImage.data.length; i++) {
+            toImage.data[i] = 0;
+        }
+        for (var i = 0; i &lt; fromImage.width; i++) {
+            for (var j = 0; j &lt; fromImage.height; j++) {
+                coordinates.Map(i, j);
+                if (coordinates.z &gt; 0) {
+                    var fromPixel = new Pixel(fromImage, i, j);
+                    var toPixel = new Pixel(toImage, coordinates.x + coordinates.radius, coordinates.y + coordinates.radius);
+                    toPixel.Copy(fromPixel);
+                }
+            }
+        }
+        return toImage;
+    }
+    SphereImageLib.WrapSphere = WrapSphere;
+    var RotateResult = (function () {
+        function RotateResult() {
+        }
+        return RotateResult;
+    })();
+    SphereImageLib.RotateResult = RotateResult;
+    var SphereMapper = (function () {
+        function SphereMapper(width, height, xRotate, yRotate, radius) {
+            this.theta0 = 0.0;
+            this.theta1 = 2.0 * Math.PI;
+            this.phi0 = 0.0;
+            this.phi1 = Math.PI;
+            this.width = width;
+            this.height = height;
+            this.xRotate = xRotate;
+            this.yRotate = yRotate;
+            this.radius = radius;
+        }
+        //// map a pixel to a position on the sphere
+        SphereMapper.prototype.Map = function (i, j) {
+            var theta = this.MapCoordinate(0.0, this.width - 1, this.theta1, this.theta0, i);
+            var phi = this.MapCoordinate(0.0, this.height - 1, this.phi0, this.phi1, j);
+            this.x = this.radius * Math.sin(phi) * Math.cos(theta);
+            this.y = this.radius * Math.sin(phi) * Math.sin(theta);
+            this.z = this.radius * Math.cos(phi);
+            var result;
+            result = this.Rotate(this.xRotate, this.y, this.z);
+            this.y = result.r1;
+            this.z = result.r2;
+            result = this.Rotate(this.yRotate, this.x, this.z);
+            this.x = result.r1;
+            this.z = result.r2;
+        };
+        SphereMapper.prototype.MapCoordinate = function (i1, i2, w1, w2, p) {
+            return ((p - i1) / (i2 - i1)) * (w2 - w1) + w1;
+        };
+        SphereMapper.prototype.Rotate = function (angle, axisA, axisB) {
+            return {
+                r1: axisA * Math.cos(angle) - axisB * Math.sin(angle),
+                r2: axisA * Math.sin(angle) + axisB * Math.cos(angle)
+            };
+        };
+        return SphereMapper;
+    })();
+    SphereImageLib.SphereMapper = SphereMapper;
+    var Pixel = (function () {
+        function Pixel(image, x, y) {
+            this.image = image;
+            this.index = (Math.floor(x) + Math.floor(y) * this.image.width) * 4;
+        }
+        Pixel.prototype.Copy = function (from) {
+            for (var i = 0; i &lt; 3; i++) {
+                this.image.data[this.index + i] = from.image.data[from.index + i];
+            }
+            this.image.data[this.index + 3] = 255; // Alpha not opaque
+        };
+        return Pixel;
+    })();
+    SphereImageLib.Pixel = Pixel;
+})(SphereImageLib || (SphereImageLib = {}));
+</pre>
+
+                            </div>
+                        </div>
+                    </article>
+
+                    
+                    <div class="col-xs-12 articleComments">
+                        <div class="row">
+
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+        </section>
+
+
+        
+<section id="contact">
+    <div class="container">
+        
+        <header class="font-white">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 wow fadeInDown">
+                    <h1>Contact me</h1>
+                    <div class="dotted-break"></div>
+                    <h2>Say Hello !</h2>
+                </div>
+            </div>
+        </header>
+        
+        <div class="row">
+            <div class="col-xs-12 info" style="font-size: 20px;">
+                <span class="wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-location-arrow icon"></i> I Live in Milton Keynes, United Kingdom</span>
+                <span class="wow fadeInRight" data-wow-delay="0.4s"><i class="fa fa-envelope-o icon"></i>
+               <a href="mailto:julian.perrott@gmail.com?Subject=Hello, Julian">julian.perrott@gmail.com</a></span>
+            </div>
+        </div>
+
+        <div id="contactfooter">
+
+            
+            <div class="social">
+                <a href="http://uk.linkedin.com/in/julianperrott1" data-toggle="tooltip" data-placement="bottom" title="linked In" class="icon"><i class="fa fa-3x fa-linkedin"></i></a>
+                <a href="https://github.com/julianperrott" data-toggle="tooltip" data-placement="bottom" title="GitHub" class="icon"><i class="fa fa-3x fa-github"></i></a>
+                <a href="https://www.facebook.com/julianperrott" data-toggle="tooltip" data-placement="bottom" title="Facebook" class="icon"><i class="fa fa-3x fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+        
+<div class="googleMapWrap">
+    <div id="googleMap" class="wow flipInX" data-lat="52.040622" data-lng="-0.759417"></div>
+</div>
+
+
+        <footer id="footer">
+            <div>Bootstrap Theme Designed by: <a href="http://jurajmolnar.com" title="#" target="_blank">Juraj Molnár</a></div>
+            <div><a href="http://gohugo.io/" target="_blank">Hugo</a> theme created by: Julian Perrott</div>
+        </footer>
+
+    </div>
+    
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/parsley.min.js"></script>
+<script src="/js/jquery.shuffle.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.easypiechart.min.js"></script>
+<script src="/js/jquery.countTo.js"></script>
+<script src="/js/waypoints.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+
+
+<script src="/js/portfolio.js"></script>
+<script src="/js/script.js"></script>
+
+
+    <link rel="stylesheet" href="/css/options.css">
+
+    <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-59171735-1', 'auto');
+          ga('send', 'pageview');
+</script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

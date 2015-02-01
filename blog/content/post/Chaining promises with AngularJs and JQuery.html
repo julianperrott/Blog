@@ -1,0 +1,159 @@
+{
+"date": "2014-07-08",
+"title": "Chaining promises with AngularJs and JQuery",
+"description": "Promises allow for consistent handling of the results of a task. If you must have more than one step then promises can be chained.",
+"slug": "Chaining-promises-with-AngularJs-and-JQuery",
+"draft": true
+}
+
+<p>Promises allow for consistent handling of the results of a task (Usually asynchronous). A promise is returned from a function call with a deferred result. <br>The promise result is either success (promise.resolve) or failure (promise.reject).</p> <p>The basic usage pattern looks like this: </p> <p><!-- HTML generated using hilite.me --></p> <div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff() <span style="color: #008000">// returns a promise</span>
+   .then(<span style="color: #0000ff">function</span>(data) { <span style="color: #008000">/* handle success */</span>  }, <span style="color: #0000ff">function</span>(data) { <span style="color: #008000">/* handle rejection */</span> }); 
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div><br>
+If you must have more than one step then promises can be chained. Each step in the chain should return another promise. If any of the steps get rejected then the next steps are skipped and the next rejection handler is called.
+<br>&nbsp;<br>
+<!-- HTML generated using hilite.me -->
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// should return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff2(); <span style="color: #008000">/* should return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff3(); <span style="color: #008000">/* should return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* all were resolved */</span> }, <span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* handle rejection from any of the above*/</span> }); 
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><strong><font size="4"></font></strong>&nbsp;</p>
+<p><strong><font size="4">AngularJs</font></strong><br>&nbsp;&nbsp;&nbsp; <br>Use 'catch' to make it more obvious when the failure handling is.<br>'finally' indicates a step which always runs.<br>&nbsp;&nbsp;&nbsp; <br></p><!-- HTML generated using hilite.me -->
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4
+5
+6</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// must return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff2(); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff3(); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* all steps were resolved */</span> });
+    .<span style="color: #0000ff">catch</span>(<span style="color: #0000ff">function</span> () { <span style="color: #008000">/* at least one step was rejected */</span> })
+    .<span style="color: #0000ff">finally</span>(<span style="color: #0000ff">function</span> () { <span style="color: #008000">/* I always run */</span> })
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><br><strong><font size="4">JQuery</font></strong></p>
+<p>Use 'done' to execute code when no rejections occur.<br>Use 'fail' to make it obvious when the failure handling is.<br>'always' indicates a step which always runs.</p>
+<p><!-- HTML generated using hilite.me --></p>
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4
+5
+6</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1()
+    .then(<span style="color: #0000ff">function</span> () { <span style="color: #0000ff">return</span> doStuff2(); })
+    .then(<span style="color: #0000ff">function</span> () { <span style="color: #0000ff">return</span> doStuff3(); })
+    .done(<span style="color: #0000ff">function</span> () { alert(<span style="color: #a31515">'all worked'</span>); })
+    .fail(<span style="color: #0000ff">function</span> () { alert(<span style="color: #a31515">'at least one failed'</span>); })
+    .always(<span style="color: #0000ff">function</span> () { alert(<span style="color: #a31515">'I always run'</span>); });
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><br>&nbsp;&nbsp;&nbsp; <br><strong><font size="4">Avoiding easy mistakes:</font></strong>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; <br><strong>1. Forgetting to include the return keyword.</strong> <!-- HTML generated using hilite.me --></p>
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// must return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { doStuff2(); <span style="color: #008000">/* must return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { doStuff3(); <span style="color: #008000">/* must return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* all were resolved */</span> }, <span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* handle rejection from any of the above*/</span> });
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>In this case when doStuff1() is resolved doStuff2() will be called. <br>Because it does not return a promise then doStuff3() will be called irrespective to the result of doStuff2() <br>unless it throws an exception.</p>
+<p>i.e. A step must return a promise or throw an exception otherwise the next 'resolved' step will be called.</p>
+<p>&nbsp;</p>
+<p><strong>2. In AngularJs handling failure on every chained step rather than once at the end.</strong></p>
+
+<p><!-- HTML generated using hilite.me --></p>
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// must return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff2(); }, <span style="color: #0000ff">function</span>(data) { alert(<span style="color: #a31515">'step 1 was rejected'</span>); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff3(); }, <span style="color: #0000ff">function</span> (data) { alert(<span style="color: #a31515">'step 2 was rejected'</span>); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* handle resolved from dostuff3 */</span> }, <span style="color: #0000ff">function</span> (data) { alert(<span style="color: #a31515">'step 3 was rejected'</span>); });
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><br>&nbsp;&nbsp;&nbsp; <br>If a step should only execute if the previous step was resolved then rejection should be handled after the last step.
+<br>The problem with handling it in each 'then' is that if the rejection function does not either return a promise which is rejected or throw an exception then the next chained resolved step will be executed. </p>
+<p>e.g. if doStuff1() is rejected then 'alert('step 1 was rejected');' will be executed. Because this does not return a promise the next 'then' statement resolved step will run and 'doStuff3()' will be called.
+<br>&nbsp;<br>Note: this is different to the way JQuery works. It will pass the rejected promise to the next '.then' causing each rejection handler to be called.</p>
+<p>JQuery Chained Promise Example: <a title="http://jsfiddle.net/2DQwx/" href="http://jsfiddle.net/2DQwx/">http://jsfiddle.net/2DQwx/</a>
+</p>

@@ -1,0 +1,77 @@
+﻿{{ partial "head.html" . }}
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="wrapper">
+        <section id="blog" class="subpage detail">
+
+            <!-- Header -->
+            <header class="font-white striped-image" style="background-image: url(/img/bg_blog-detail.jpg);">
+                {{ partial "banner.html" . }}
+            </header>
+
+            <div class="container">
+                <!-- Content -->
+                <div class="row articles">
+
+                    <!-- Article detail -->
+                    <article class="col-xs-12 article">
+                        <div class="row">
+                            <div class="col-lg-2 visible-lg asideArticleInfo">
+                                <div class="date">
+                                    <div class="day">{{ .Date.Day }}</div>
+                                    <div class="month">{{ .Date.Format "Jan 2006" }}</div>
+                                </div>
+                                <div class="comments">
+                                    <i class="fa fa-comments"></i> 25
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <h2 class="title">{{ .Title }}</h2>
+                                    <div class="articleInfo clearfix">
+                                        <div class="i hidden-lg">Post date: <strong>{{ .Date.Format "Mon, Jan 2, 2006" }}</strong></div>
+                                        <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                    </div>
+                                    {{ .Content }}
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article comments -->
+                    <div class="col-xs-12 articleComments">
+                        <div class="row">
+
+                        </div>
+                    </div>
+
+                    <!-- Comment form -->
+
+                </div>
+            </div>
+        </section>
+
+
+        {{ partial "contact.html" . }}
+        {{ partial "googlemap.html" . }}
+
+        <footer id="footer">
+            <div>Bootstrap Theme Designed by: <a href="http://jurajmolnar.com" title="#" target="_blank">Juraj Molnár</a></div>
+            <div><a href="http://gohugo.io/" target="_blank">Hugo</a> theme created by: Julian Perrott</div>
+        </footer>
+
+    </div>
+    {{ partial "scripts.html" . }}
+
+    <link rel="stylesheet" href="/css/options.css">
+
+    {{ partial "googleAnalytics.html" . }}
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+</body>
+</html>

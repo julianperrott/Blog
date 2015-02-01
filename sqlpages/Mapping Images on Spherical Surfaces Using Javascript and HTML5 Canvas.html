@@ -1,0 +1,150 @@
+{
+"date": "2014-03-01",
+"title": "Mapping Images on Spherical Surfaces Using Javascript and HTML5 Canvas",
+"description": "Demo of an image being wrapped around a sphere",
+"slug": "Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas",
+"draft": true
+}
+
+<p><a href="http://www.codesin.net/blogengine/image.axd?picture=Earth.png"><img title="Earth" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Earth" src="http://www.codesin.net/blogengine/image.axd?picture=Earth_thumb.png" width="155" height="154"></a></p> <p><a title="andalmeida" href="http://www.codeproject.com/Members/andalmeida">andalmeida</a> posted on codeproject.com showing how to map images onto spherical surfaces using C#. I have taken his code and converted it to work with javascript and an HTML5 Canvas.</p> <p>Original article: <a href="http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C">http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C</a></p> <h2>Demo:</h2><iframe height="260" src="http://www.codesin.net/html/ImageWrapDemo/wrapspheredemo.html" width="600"></iframe><br> <h2>Source Code</h2><a href="http://www.codesin.net/html/ImageWrapDemo/ImageWrapDemo.zip">Download source code</a>&nbsp;&nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  <h2>Html:</h2>Contains a canvas 'myCanvas' which will be drawn to. <pre class="prettyprint">&lt;img src="images/worldmap.gif" id="myImage" /&gt;
+&lt;canvas id="myCanvas" width="150" height="150" style="background-color: #000000"&gt;&lt;/canvas&gt;
+&lt;br /&gt;
+&lt;input type="range" id="rangeInput" min="-31" max="31"&gt;&amp; Drag to Rotate
+&lt;script src="./js/WrapSphereDemo.js"&gt;&lt;/script&gt;
+</pre>
+<h2>Javascript:</h2>Loads the image to wrap, then calls a library to wrap it around a sphere, then writes the result onto the canvas. <pre class="prettyprint">var WrapSphereDemo;
+(function (WrapSphereDemo) {
+    var image;
+    var context;
+    var myImg = new Image();
+
+    window.onload = function () {
+        // hook up range change and image onload to render
+        document.getElementById("rangeInput").onchange = Render;
+        myImg.onload = Render;
+		
+	// load image
+        myImg.src = "./images/worldmap.gif";
+    };
+
+    function Render() {
+        GenerateImage(myImg);
+    }
+
+    function GenerateImage(myImg) {
+        var canvasToDrawOn = document.getElementById("myCanvas");
+        var canvasToDrawOnContext = canvasToDrawOn.getContext("2d");
+
+        // Copy the image into a canvas
+        var offscreenCanvas = document.createElement("canvas");
+        offscreenCanvas.width = myImg.width;
+        offscreenCanvas.height = myImg.height;
+        var offscreenContext = offscreenCanvas.getContext("2d");
+        offscreenContext.drawImage(myImg, 0, 0);
+		
+	// get the image data from the hidden canvas
+        var fromImage = offscreenContext.getImageData(0, 0, myImg.width, myImg.height);
+
+        // Create a new image with the source image wrapped around a sphere
+        var yRotate = (parseInt(document.getElementById("rangeInput").value) - 31) / 10;
+        var xRotate = Math.PI / 2;
+        var toImage = canvasToDrawOnContext.getImageData(0, 0, 50 * 2, 50 * 2);
+        var image = SphereImageLib.WrapSphere(fromImage, toImage, xRotate, yRotate, 50);
+		
+	// copy the image to the canvas
+        canvasToDrawOnContext.putImageData(image, 25, 25);
+    }
+})(WrapSphereDemo || (WrapSphereDemo = {}));
+</pre><br>
+<h2>Javascript Lib:</h2>Javascript which maps each pixel in the image onto a sphere, then copies the pixel onto the destination image. Refactored from: <a href="http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C">http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C</a> <pre class="prettyprint">var SphereImageLib;
+(function (SphereImageLib) {
+    function WrapSphere(fromImage, toImage, xRotate, yRotate, radius) {
+        var coordinates = new SphereMapper(fromImage.width, fromImage.height, xRotate, yRotate, radius);
+
+        for (var i = 0; i &lt; toImage.data.length; i++) {
+            toImage.data[i] = 0;
+        }
+
+        for (var i = 0; i &lt; fromImage.width; i++) {
+            for (var j = 0; j &lt; fromImage.height; j++) {
+                coordinates.Map(i, j);
+
+                if (coordinates.z &gt; 0) {
+                    var fromPixel = new Pixel(fromImage, i, j);
+                    var toPixel = new Pixel(toImage, coordinates.x + coordinates.radius, coordinates.y + coordinates.radius);
+                    toPixel.Copy(fromPixel);
+                }
+            }
+        }
+        return toImage;
+    }
+    SphereImageLib.WrapSphere = WrapSphere;
+
+    var RotateResult = (function () {
+        function RotateResult() {
+        }
+        return RotateResult;
+    })();
+    SphereImageLib.RotateResult = RotateResult;
+
+    var SphereMapper = (function () {
+        function SphereMapper(width, height, xRotate, yRotate, radius) {
+            this.theta0 = 0.0;
+            this.theta1 = 2.0 * Math.PI;
+            this.phi0 = 0.0;
+            this.phi1 = Math.PI;
+            this.width = width;
+            this.height = height;
+            this.xRotate = xRotate;
+            this.yRotate = yRotate;
+            this.radius = radius;
+        }
+        //// map a pixel to a position on the sphere
+        SphereMapper.prototype.Map = function (i, j) {
+            var theta = this.MapCoordinate(0.0, this.width - 1, this.theta1, this.theta0, i);
+            var phi = this.MapCoordinate(0.0, this.height - 1, this.phi0, this.phi1, j);
+
+            this.x = this.radius * Math.sin(phi) * Math.cos(theta);
+            this.y = this.radius * Math.sin(phi) * Math.sin(theta);
+            this.z = this.radius * Math.cos(phi);
+
+            var result;
+            result = this.Rotate(this.xRotate, this.y, this.z);
+            this.y = result.r1;
+            this.z = result.r2;
+
+            result = this.Rotate(this.yRotate, this.x, this.z);
+            this.x = result.r1;
+            this.z = result.r2;
+        };
+
+        SphereMapper.prototype.MapCoordinate = function (i1, i2, w1, w2, p) {
+            return ((p - i1) / (i2 - i1)) * (w2 - w1) + w1;
+        };
+
+        SphereMapper.prototype.Rotate = function (angle, axisA, axisB) {
+            return {
+                r1: axisA * Math.cos(angle) - axisB * Math.sin(angle),
+                r2: axisA * Math.sin(angle) + axisB * Math.cos(angle)
+            };
+        };
+        return SphereMapper;
+    })();
+    SphereImageLib.SphereMapper = SphereMapper;
+
+    var Pixel = (function () {
+        function Pixel(image, x, y) {
+            this.image = image;
+            this.index = (Math.floor(x) + Math.floor(y) * this.image.width) * 4;
+        }
+        Pixel.prototype.Copy = function (from) {
+            for (var i = 0; i &lt; 3; i++) {
+                this.image.data[this.index + i] = from.image.data[from.index + i];
+            }
+            this.image.data[this.index + 3] = 255; // Alpha not opaque
+        };
+        return Pixel;
+    })();
+    SphereImageLib.Pixel = Pixel;
+})(SphereImageLib || (SphereImageLib = {}));
+</pre>

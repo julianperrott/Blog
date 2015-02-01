@@ -1,0 +1,84 @@
+{
+"date": "2014-06-16",
+"title": "Giving feedback during a long running task",
+"description": "When transaction take a more than a few seconds, then feedback can be given using client refresh / client pull or server push.",
+"slug": "Giving-feedback-during-a-long-running-task",
+"draft": true
+}
+
+<p>Some tasks take a long time, there is no avoiding it. <br>Some factors are under your control and can be optimised, such as your data caching. Others are not, for example external services.</p> <p>When considering what if any feedback to give to the users, you need to consider the following: </p>
+<ul>
+    <li>What is the most time the user should go without any feedback?
+    <li>What happens if the user is left without feedback for too long and tries to refresh the page?
+    <li>Can the task be broken down into discrete steps?
+    <li>Can the steps run in parallel or do they need to execute in a sequence?
+    <li>Do all steps need to complete?</li>
+</ul> <p>
+    <strong>Short transactions</strong><br>A lot of web transactions are simple one step transactions. The user posts data to the web server, it performs a simple operation then redirects the user to another page which shows the result.<br>This pattern is described here:
+    <a href="http://en.wikipedia.org/wiki/Post/Redirect/Get" target="_blank">http://en.wikipedia.org/wiki/Post/Redirect/Get</a>
+</p> <p>
+    <a href="/post/img/PostRedirectGet_DoubleSubmitSolution.png" target="_blank">
+        <img title="PostRedirectGet_DoubleSubmitSolution" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="PostRedirectGet_DoubleSubmitSolution" src="/post/img/PostRedirectGet_DoubleSubmitSolution.png" width="366" height="300">
+    </a><br>
+</p> <p>If the task takes a short amount of time (e.g. 10 seconds), then a wait cursor or ‘Please wait’ message would be the simplest feedback you could do. <br>Note: duplicate transactions are possible if the user re-posts the page before processing completes. This scenario must therefore be handled with code on the server.</p> <p>
+    Example:
+    <a title="/mvc/Feedback/PostRedirectGet" href="/mvc/Feedback/PostRedirectGet" target="_blank">/mvc/Feedback/PostRedirectGet</a>
+</p> <p>&nbsp;</p> <p>
+    <strong>Long transactions</strong>
+    <br>A long running task could be one that takes more than 10 seconds. The task could run in the background on the server and the user be redirected to a ‘holding’ page.
+    <br>When the task is running the user would like to see feedback.<br>
+    To give the user this feedback the client must either pull or server must push this information. This should happen every few seconds until the task completes.<br>
+    This could be described as a Post / Redirect / Get / Redirect / Get pattern.
+</p> <p>
+    <a href="/post/img/PRGRG.png" target="_blank">
+        <img title="PRGRG" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="PRGRG" src="/post/img/PRGRG.png" width="333" height="366">
+    </a>
+</p> <p>A simple example of the client pulling the data would be to reload the page from the server every few seconds. When the background task was complete, there would be a redirect to the results page. </p> <p>
+    Example:
+    <a title="/mvc/Feedback/PostRedirectGetRedirectGet" href="/mvc/Feedback/PostRedirectGetRedirectGet" target="_blank">/mvc/Feedback/PostRedirectGetRedirectGet</a>
+</p> <p>Another solution would be to use JavaScript to make periodic Ajax requests to the server.
+</p> <p>
+    A server push solution could use Signal R, which allows the server to push progress data to the client to display to the user.<br><a href="http://en.wikipedia.org/wiki/Comet_(programming)" target="_blank">
+        http://en.wikipedia.org/wiki/Comet_(programming)
+    </a>
+</p> <p>
+    Example:
+    <a title="/mvc/Feedback/SignalR" href="/mvc/Feedback/SignalR" target="_blank">
+        /mvc/Feedback/SignalR
+    </a>
+    <br>&nbsp;&nbsp;&nbsp; <br>
+    <strong>
+        Real World Example
+    </strong>
+    <br>‘comparethemarket.com’ is a comparison site which provides car insurance quotes.
+    <br>After you request a quote, a list is built on the page while you wait. After about 45 seconds the search is stopped and the results are shown.
+</p> <p>
+    This all happens in a single browser page and could be classified as a mini single page application (SPA). It works using JavaScript as follows:
+    <br>1. Block the page displaying ‘Searching…’
+    <br>2. Post the request for quotes to the server.
+    <br>3. Request new quotes from the server in JSON.
+    <br>4. If the server provides quotes they are added to the page and the search feedback is updated.
+    <br>5. If the response Indicates that the search has not finished then sleep for 5 seconds then go back to step 3.
+    <br>6. Unblock the page.
+</p>
+<p>
+    <a href="/post/img/CTm1.png">
+        <strong>1.</strong>&nbsp;<img title="CTm1" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="CTm1" src="/post/img/CTm1.png" width="488" height="201">
+</a>
+    <br /><br />
+    <a href="/post/img/CTm2.png">
+        <strong>2.</strong>&nbsp;<img title="CTm2" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="CTm2" src="/post/img/CTm2.png" width="488" height="264">
+</a>
+    <br /><br />
+    <a href="/post/img/CTm3.png">
+        <strong>3-5.</strong>&nbsp;<img title="CTm3" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="CTm3" src="/post/img/CTm3.png" width="488" height="268">
+</a>
+    <br /><br />
+    <a href="/post/img/CTm4.png">
+        <strong>6.</strong>&nbsp;<img title="CTm4" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="CTm4" src="/post/img/CTm4.png" width="460" height="488">
+</a>
+    <br /><br />
+    <a href="/post/img/Calls.png">
+        <strong>.</strong>&nbsp;<img title="Calls" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Calls" src="/post/img/Calls.png">
+    </a>
+</p>

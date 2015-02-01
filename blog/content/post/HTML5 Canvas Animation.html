@@ -1,0 +1,56 @@
+{
+"date": "2014-02-16",
+"title": "HTML5 Canvas Animation",
+"description": "This demo draws a rectangle and moves it each time it is redrawn",
+"slug": "HTML5-Canvas-Animation",
+"draft": true
+}
+
+<a href="/post/img/js-logo-badge-512-200x200.png"><img title="js-logo-badge-512-200x200" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="js-logo-badge-512-200x200" src="/post/img/js-logo-badge-512-200x200.png" width="204" height="204"></a><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>  <p>Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:</p><pre class="prettyprint"><p>var requestAnimFrame = (function () {<br>&nbsp;&nbsp;&nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());<br>&nbsp;&nbsp;&nbsp; };<br>})();</p>
+<p>function animate() {<br>&nbsp;&nbsp;&nbsp; draw();<br>&nbsp;&nbsp;&nbsp; requestAnimationFrame(animate);<br>}</p>
+<p>function draw() {</p>
+<p>// redraw the next frame here<br>}</p>
+<p>window.onload = function (e) {<br>&nbsp;&nbsp;&nbsp; animate();<br>}</p>
+</pre>
+<p>&nbsp;</p>
+<p>This demo draws a rectangle and moves it each time it is redrawn:</p><canvas id="myCanvas" height="80" width="578">Canvas </canvas><pre class="prettyprint"><p>var canvas = &lt;HTMLCanvasElement&gt;document.getElementById('myCanvas');<br>var context = canvas.getContext('2d');<br>var x = 50;<br>var y = 20;<br>var vx = 1;</p>
+<p>function draw() {&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; x = x + vx;<br>&nbsp;&nbsp;&nbsp; if (x &gt; 100 || x &lt; 1) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vx = -vx;<br>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; context.beginPath();<br>&nbsp;&nbsp;&nbsp; context.rect(x, y, 40, 20);<br>&nbsp;&nbsp;&nbsp; context.fillStyle = '#8ED6FF';<br>&nbsp;&nbsp;&nbsp; context.fill();<br>&nbsp;&nbsp;&nbsp; context.lineWidth = 1;<br>&nbsp;&nbsp;&nbsp; context.strokeStyle = 'black';<br>&nbsp;&nbsp;&nbsp; context.stroke();<br>}</p>
+</pre><script>
+var requestAnimFrame = (function () {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+        window.setTimeout(callback, 1000 / 60, new Date().getTime());
+    };
+})();
+
+function animate() {
+    draw();
+    requestAnimationFrame(animate);
+}
+
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+var x = 50;
+var y = 20;
+var vx = 1;
+
+function draw() {
+    x = x + vx;
+    if (x > 100 || x < 1) {
+        vx = -vx;
+    }
+
+    context.beginPath();
+    context.rect(x, y, 40, 20);
+    context.fillStyle = '#8ED6FF';
+    context.fill();
+    context.lineWidth = 1;
+    context.strokeStyle = 'black';
+    context.stroke();
+}
+
+window.onload = function (e) {
+    animate();
+};
+
+</script>

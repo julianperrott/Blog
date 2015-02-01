@@ -1,0 +1,89 @@
+﻿
+<html>
+<head>
+    <script src="js/jquery-1.11.0.js"></script>
+    <link href="bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <br />
+
+        <div class="well">
+            <div>
+                JQuery Promises
+                <a class="btn btn-primary" id="go">Go</a>
+            </div>
+        </div>
+
+        <div>
+            <h4>Processing Scenario:</h4>
+            <div style="margin-left: 20px">
+                <br />
+                <input type="radio" name="Process" value="1"> Error on Step 1 </input>
+                <br />
+                <input type="radio" name="Process" value="2"> Error on Step 2 </input>
+                <br />
+                <input type="radio" name="Process" value="3"> Error on Step 3 </input>
+                <br />
+                <input type="radio" name="Process" value="4"> Error on Step 4 </input>
+                <br />
+                <input type="radio" name="Process" value="0" checked> Process all </input>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            <h4>Log:</h4>
+            <div id="log" />
+        </div>
+    </div>
+
+    <script>
+
+        $('#go').click(function () { go(); })
+
+        function go() {
+
+            $('#log').empty();
+            
+
+            a_asyncEvent(1)
+            .then(function () { return a_asyncEvent(2); }, function () { alert('doh1'); })
+            .then(function () { return a_asyncEvent(3); }, function () { alert('doh2'); })
+            .then(function () { return a_asyncEvent(4); }, function () { alert('doh3'); })
+            .done(function () { alert('all worked'); })
+            .fail(function () { alert('at least one failed'); })
+            .always(function () { alert('I always run'); });
+
+        };
+
+        function a_asyncEvent(step) {
+
+            log("<br/>Running step" + step + "...");
+
+            var deferred = new jQuery.Deferred();
+
+            var errorOnStep = $("input[type='radio']:checked").val();
+
+            setTimeout(function () {
+                if (errorOnStep != step) {
+                    log("success");
+                    deferred.resolve();
+                }
+                else {
+                    log("failed");
+                    deferred.reject();
+                }
+            }, 1000);
+
+            return deferred.promise();
+        };
+
+        function log(value) {
+            $('#log').append(value);
+        }
+
+    </script>
+</body>
+</html>

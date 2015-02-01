@@ -1,0 +1,57 @@
+{
+"date": "2014-03-01",
+"title": "Testing JavaScript with Visual Studio",
+"description": "If your web application is using JavaScript for non trivial functionality then it makes sense to test it programmatically.",
+"slug": "Testing-JavaScript-with-Visual-Studio",
+"draft": true
+}
+
+<p>If your web application is using JavaScript for non trivial functionality then it makes sense to test it programmatically. Various JavaScript frameworks have been written to allow you to write JavaScript tests to test your JavaScript.  <p>This pluralsight course gives a good overview: pluralsight - Testing Clientside JavaScript  <h2>The main decisions you will need to make</h2>
+<p>1. What style do you want to write your tests in ?
+<p>Behaviour Driven Development (BDD) or Test Driven Development (TDD), as this will influence which JavaScript test framework you use.  <p>&nbsp;</p> <div id="scid:5737277B-5D6D-4f48-ABFC-DD9C333F4C5D:0fd715c7-5c87-48d7-ac28-8f324820e0d2" class="wlWriterSmartContent" style="float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px">
+    <div>
+        <embed type="application/x-shockwave-flash" height="355" width="425" src="http://www.youtube.com/v/mT8QDNNhExg&amp;hl=en">
+    </div>
+</div> <p>2. The JavaScript Test framework you are going to use, the most popular are:</p>
+<ul>
+    <li>QUnit(TDD) <a href="http://qunitjs.com">qunitjs.com</a>
+    <li>Jasmine(BDD) <a href="http://pivotal.github.io/jasmine">pivotal.github.io/jasmine</a>
+    <li>
+        Mocha (TDD or BDD).
+        <a href="http://visionmedia.github.io/mocha ">visionmedia.github.io/mocha</a>
+    </li>
+</ul> <p>3. Which test runner or runners you want to use. The options are:
+<p>Outside of Visual Studio:</p>
+<ul> <li>Browser  <li>Grunt </li></ul> <p>Within Visual Studio</p>
+<ul>
+    <li>Visual Studio Extension: Chutzpah&nbsp;
+    <li>Visual Studio Extension: KarmaVs. (Also requires Node.js)
+    <li>ReSharper 6</li>
+</ul>
+<p>My choice is to use a combination of Chutzpah and Browser.  <h2>Browser Test Runner </h2>
+<p>This is the simplest choice, and can be debugged in visual studio, but requires an HTML file for each test / suite of tests.  <p>
+    <a href="/post/img/BrowserJavascriptTesting.png">
+        <img title="BrowserJavascriptTesting[4]" style="display: inline" border="0" alt="BrowserJavascriptTesting[4]" src="/post/img/BrowserJavascriptTesting.png">
+    </a>
+</p>
+<h2>Visual Studio Extension - Chutzpah </h2> <
+ p>
+ Chutzpah is a visual studio extension which contains 3 of the most popular testing frameworks (Mocha, Quit, Jasmine). It runs and displays your tests in the test explorer.
+<p>The major drawback is that you can't debug tests.  <p><a href="http://chutzpah.codeplex.com/">http://chutzpah.codeplex.com/</a>
+<p>
+    In Visual studio 2012/2013: Tools-&gt;Extensions and Updates -&gt; Online -&gt; Search for 'Chutzpah'. Install:<br>•Chutzpah Test Runner Context Menu Extension
+    <br>
+    •Chutzpah Test Adaptor for the Test Explorer
+<p>
+    <a href="/post/img/VisualStudioJavaScript.png">
+        <img title="VisualStudioJavaScript[3]" style="display: inline" border="0" alt="VisualStudioJavaScript[3]" src="/post/img/VisualStudioJavaScript.png">
+    </a>
+    <h3>
+        Configuration
+    </h3>
+<p>Optionally add a Chutzpah.json file, amend to indicate your chosen framework.
+<p>Chutzpah.json Settings File
+<p>{<br>&nbsp;&nbsp;&nbsp; "Framework": "qunit"
+<p>&nbsp;&nbsp;&nbsp; "TestHarnessLocationMode": "TestFileAdjacent",&nbsp;&nbsp;&nbsp;&nbsp;
+<p>&nbsp;&nbsp;&nbsp; "TypeScriptCodeGenTarget" : "ES5",  <p>&nbsp;&nbsp;&nbsp; "RootReferencePathMode":"SettingsFileDirectory"
+<p>} </p>

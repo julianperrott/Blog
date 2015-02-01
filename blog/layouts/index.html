@@ -1,0 +1,54 @@
+﻿{{ partial "head.html" . }}
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="wrapper">
+        <section id="blog" class="subpage">
+
+            <!-- Header -->
+            <header class="font-white striped-image" style="background-image: url(/img/bg_blog.jpg);">
+                {{ partial "banner.html" . }}
+            </header>
+
+            <div class="container">
+                <!-- Content -->
+                {{ partial "articles.html" . }}
+
+                <!-- Pagination -->
+                <nav class="hidden">
+                    <ul class="pagination">
+                        <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        {{ partial "contact.html" . }}
+        {{ partial "googlemap.html" . }}
+
+    </div>
+
+    <footer id="footer">
+        <div>Bootstrap Theme Designed by: <a href="http://jurajmolnar.com" title="#" target="_blank">Juraj Molnár</a></div>
+        <div><a href="http://gohugo.io/" target="_blank">Hugo</a> theme created by: Julian Perrott</div>
+    </footer>
+
+    <link rel="stylesheet" href="/css/options.css">
+
+    {{ partial "scripts.html" . }}
+    {{ partial "googleAnalytics.html" . }}
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</body>
+</html>
