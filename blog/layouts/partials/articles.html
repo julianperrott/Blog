@@ -12,7 +12,7 @@
 						<div class="more">Read more</div>
 					</div>
 				</div>
-				<img src="tmp/600x350.jpg" alt="#" width="600" height="350" class="img-responsive">
+                <img src="img/{{.Params.background}}_600x350.jpg" alt="background - {{ .Title }}" width="600" height="350" class="img-responsive">
 			</div>
 		</a>
 		<div class="row">
@@ -26,13 +26,13 @@
 				</div>
 			</div>
 			<div class="col-lg-10">
-				<h3><a href="{{ .Permalink }}" title="#">{{ .Title }}</a></h3>
+				<h3><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h3>
 				<div class="articleInfo clearfix">
 					<div class="i">Categories: <a href="{{ .Permalink }}"><strong>country</strong></a>, <a href="{{ .Permalink }}"><strong>heaven</strong></a></div>
 				</div>
 				<p>
 					{{.Description}}
-					<a href="{{ .Permalink }}" title=" #">Read more...</a>
+                    <a href="{{ .Permalink }}" title="Read more...">Read more...</a>
 				</p>
 			</div>
 		</div>

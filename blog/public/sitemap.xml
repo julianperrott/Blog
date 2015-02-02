@@ -8,12 +8,12 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/</loc>
+    <loc>http://localhost:1313/post/Single-responsibility-principle-Redefined/</loc>
     <lastmod>2014-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/Single-responsibility-principle-Redefined/</loc>
+    <loc>http://localhost:1313/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/</loc>
     <lastmod>2014-10-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -48,22 +48,22 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</loc>
-    <lastmod>2014-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://localhost:1313/post/Testing-JavaScript-with-Visual-Studio/</loc>
     <lastmod>2014-03-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/HTML5-Canvas-Animation/</loc>
-    <lastmod>2014-02-16T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</loc>
+    <lastmod>2014-03-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://localhost:1313/post/My-Development-Tools/</loc>
+    <lastmod>2014-02-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/HTML5-Canvas-Animation/</loc>
     <lastmod>2014-02-16T00:00:00+00:00</lastmod>
   </url>
   

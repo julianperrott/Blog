@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 
 
 
@@ -11,7 +11,7 @@
 	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pulse</title>
+    <title>CodesIn.net - HTML5 Canvas Animation</title>
     <meta name="description" content="...">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -38,7 +38,7 @@
         <section id="blog" class="subpage detail">
 
             
-            <header class="font-white striped-image" style="background-image: url(/img/bg_blog-detail.jpg);">
+            <header class="font-white striped-image" style="background-image: url(/img/bg_Canvas_javascript_1920x800.jpg);">
                 <div class="container">
     <div class="row">
         <a href="#contact" class="logo wow bounceInDown" data-wow-duration="1s" data-wow-delay=".5s">
@@ -80,11 +80,22 @@
                             </div>
                             <div class="col-lg-10">
                                 <h2 class="title">HTML5 Canvas Animation</h2>
-                                    <div class="articleInfo clearfix">
-                                        <div class="i hidden-lg">Post date: <strong>Sun, Feb 16, 2014</strong></div>
-                                        <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                <div class="articleInfo clearfix">
+                                    <div class="i hidden-lg">Post date: <strong>Sun, Feb 16, 2014</strong></div>
+                                    <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                    <br />
+
+                                    <div class="i">
+                                        Attribution:
+                                        <a style class="external text" href="https://www.flickr.com/photos/hildeengwenverbouwen/6191967019/in/photolist-bzmTpc-6188Qb-9YfRBC-4pY8cw-j8Lq7-c2sE1o-6WePBv-fw188h-8AU7Q2-D9xfH-4oBg8v-6Fifmi-pxxj5r-6yLGbJ-75xPCg-5hj2Xs-4JcGNL-9jXTMA-7YUkUq-ErniK-5sDgor-64GUwY-5Teq89-e6JLj8-q4doxC-dd3na2-BjdFj-fjNRiq-niJPsR-43Yn3a-gXXpvc-mb1KYB-aras54-7icY7o-ajBcuN-4RUNV5-68MDmr-9sgBDe-6jgS5M-4UwVSP-aUeMjB-6ua26b-5QVBTg-e88ctL-7SE7xy-9RR2dD-byYTAg-hFywq8-6Xy2P2-eb7UBP" rel="nofollow" target="_blank">
+                                            "Canvas&#43;javascript"
+                                        </a> by
+                                        <a href="http://www.flickr.com/photos/hildeengwenverbouwen/" rel="nofollow" target="_blank">Gwen Vanhee</a>
+                                        is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow"> CC BY 2.0</a>
                                     </div>
-                                    <a href="/post/img/js-logo-badge-512-200x200.png"><img title="js-logo-badge-512-200x200" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="js-logo-badge-512-200x200" src="/post/img/js-logo-badge-512-200x200.png" width="204" height="204"></a><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>  <p>Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:</p><pre class="prettyprint"><p>var requestAnimFrame = (function () {<br>&nbsp;&nbsp;&nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());<br>&nbsp;&nbsp;&nbsp; };<br>})();</p>
+
+                                </div>
+                                <a href="/post/img/js-logo-badge-512-200x200.png"><img title="js-logo-badge-512-200x200" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="js-logo-badge-512-200x200" src="/post/img/js-logo-badge-512-200x200.png" width="204" height="204"></a><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>  <p>Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:</p><pre class="prettyprint"><p>var requestAnimFrame = (function () {<br>&nbsp;&nbsp;&nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());<br>&nbsp;&nbsp;&nbsp; };<br>})();</p>
 <p>function animate() {<br>&nbsp;&nbsp;&nbsp; draw();<br>&nbsp;&nbsp;&nbsp; requestAnimationFrame(animate);<br>}</p>
 <p>function draw() {</p>
 <p>// redraw the next frame here<br>}</p>
@@ -136,11 +147,23 @@ window.onload = function (e) {
                             </div>
                         </div>
                     </article>
-
+                    
                     
                     <div class="col-xs-12 articleComments">
                         <div class="row">
 
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript">
+                                var disqus_shortname = 'codesindotnet';
+                                var disqus_identifier = 'HTML5-Canvas-Animation';
+                                (function () {
+                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
                         </div>
                     </div>
 

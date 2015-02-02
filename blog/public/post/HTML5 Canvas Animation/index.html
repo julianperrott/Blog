@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 
 
@@ -11,7 +11,7 @@
 	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CodesIn.net - Testing JavaScript with Visual Studio</title>
+    <title>Pulse</title>
     <meta name="description" content="...">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -38,7 +38,7 @@
         <section id="blog" class="subpage detail">
 
             
-            <header class="font-white striped-image" style="background-image: url(/img/bg_color_noise_anomolies_1920x800.jpg);">
+            <header class="font-white striped-image" style="background-image: url(/img/_1920x800.jpg);">
                 <div class="container">
     <div class="row">
         <a href="#contact" class="logo wow bounceInDown" data-wow-duration="1s" data-wow-delay=".5s">
@@ -72,99 +72,85 @@
                             <div class="col-lg-2 visible-lg asideArticleInfo">
                                 <div class="date">
                                     <div class="day">1</div>
-                                    <div class="month">Mar 2014</div>
+                                    <div class="month">Jan 2008</div>
                                 </div>
                                 <div class="comments">
                                     <i class="fa fa-comments"></i> 25
                                 </div>
                             </div>
                             <div class="col-lg-10">
-                                <h2 class="title">Testing JavaScript with Visual Studio</h2>
-                                <div class="articleInfo clearfix">
-                                    <div class="i hidden-lg">Post date: <strong>Sat, Mar 1, 2014</strong></div>
-                                    <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
-                                    <br />
+                                <h2 class="title"></h2>
+                                    <div class="articleInfo clearfix">
+                                        <div class="i hidden-lg">Post date: <strong>Tue, Jan 1, 2008</strong></div>
+                                        <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                        <br/>
 
-                                    <div class="i">
-                                        Attribution:
-                                        <a style class="external text" href="https://www.flickr.com/photos/clopezdepablo/3272014334/in/photolist-5Z8VSf-bWeGW8-avbm4L-pXM5a9-6WKnUa-nF44B-nvDXC-5nNFHy-5nNFHC-3GcWp-5nNFHG-3GcXx-62SzAk-5vmu7T-KnyCa-9iiwHm-gLCrbG-6miT6n-a44boR-5U7CkM-5omH5r-9pgVVm-6D5bvj-4F1pur-zmzty-nfqRNX-8YFiDS-eaAa1Q-eautMM-eauvKX-eaAbZd-eaA9Kj-eaAaUJ-eauswa-eaA66j-eauwbM-eauvie-eaA6Tw-eauy2X-eauwzP-eaAdCU-eaurh8-eaA8AG-eaurvz-eauxfB-eautmR-eaAdSy-eauux4-eauu34-eauqEK" rel="nofollow" target="_blank">
-                                            "color noise anomalies"
-                                        </a> by
-                                        <a href="http://www.flickr.com/photos/clopezdepablo/" rel="nofollow" target="_blank">Carlos Lopez de Pablo</a>
-                                        is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow"> CC BY 2.0</a>
+                                        <div class="i">Attribution: 
+                                                <a style class="external text" href="" rel="nofollow" target="_blank">
+                                                ""
+                                                </a> by
+                                            <a href="http://www.flickr.com/photos//" rel="nofollow" target="_blank"></a>
+                                                is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow"> CC BY 2.0</a>
+                                        </div>
+                                        
                                     </div>
+                                    <a href="/post/img/js-logo-badge-512-200x200.png"><img title="js-logo-badge-512-200x200" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="js-logo-badge-512-200x200" src="/post/img/js-logo-badge-512-200x200.png" width="204" height="204"></a><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>  <p>Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:</p><pre class="prettyprint"><p>var requestAnimFrame = (function () {<br>&nbsp;&nbsp;&nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());<br>&nbsp;&nbsp;&nbsp; };<br>})();</p>
+<p>function animate() {<br>&nbsp;&nbsp;&nbsp; draw();<br>&nbsp;&nbsp;&nbsp; requestAnimationFrame(animate);<br>}</p>
+<p>function draw() {</p>
+<p>// redraw the next frame here<br>}</p>
+<p>window.onload = function (e) {<br>&nbsp;&nbsp;&nbsp; animate();<br>}</p>
+</pre>
+<p>&nbsp;</p>
+<p>This demo draws a rectangle and moves it each time it is redrawn:</p><canvas id="myCanvas" height="80" width="578">Canvas </canvas><pre class="prettyprint"><p>var canvas = &lt;HTMLCanvasElement&gt;document.getElementById('myCanvas');<br>var context = canvas.getContext('2d');<br>var x = 50;<br>var y = 20;<br>var vx = 1;</p>
+<p>function draw() {&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; x = x + vx;<br>&nbsp;&nbsp;&nbsp; if (x &gt; 100 || x &lt; 1) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vx = -vx;<br>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; context.beginPath();<br>&nbsp;&nbsp;&nbsp; context.rect(x, y, 40, 20);<br>&nbsp;&nbsp;&nbsp; context.fillStyle = '#8ED6FF';<br>&nbsp;&nbsp;&nbsp; context.fill();<br>&nbsp;&nbsp;&nbsp; context.lineWidth = 1;<br>&nbsp;&nbsp;&nbsp; context.strokeStyle = 'black';<br>&nbsp;&nbsp;&nbsp; context.stroke();<br>}</p>
+</pre><script>
+var requestAnimFrame = (function () {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+        window.setTimeout(callback, 1000 / 60, new Date().getTime());
+    };
+})();
 
-                                </div>
-                                <p>If your web application is using JavaScript for non trivial functionality then it makes sense to test it programmatically. Various JavaScript frameworks have been written to allow you to write JavaScript tests to test your JavaScript.  <p>This pluralsight course gives a good overview: pluralsight - Testing Clientside JavaScript  <h2>The main decisions you will need to make</h2>
-<p>1. What style do you want to write your tests in ?
-<p>Behaviour Driven Development (BDD) or Test Driven Development (TDD), as this will influence which JavaScript test framework you use.  <p>&nbsp;</p> <div id="scid:5737277B-5D6D-4f48-ABFC-DD9C333F4C5D:0fd715c7-5c87-48d7-ac28-8f324820e0d2" class="wlWriterSmartContent" style="float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px">
-    <div>
-        <embed type="application/x-shockwave-flash" height="355" width="425" src="http://www.youtube.com/v/mT8QDNNhExg&amp;hl=en">
-    </div>
-</div> <p>2. The JavaScript Test framework you are going to use, the most popular are:</p>
-<ul>
-    <li>QUnit(TDD) <a href="http://qunitjs.com">qunitjs.com</a>
-    <li>Jasmine(BDD) <a href="http://pivotal.github.io/jasmine">pivotal.github.io/jasmine</a>
-    <li>
-        Mocha (TDD or BDD).
-        <a href="http://visionmedia.github.io/mocha ">visionmedia.github.io/mocha</a>
-    </li>
-</ul> <p>3. Which test runner or runners you want to use. The options are:
-<p>Outside of Visual Studio:</p>
-<ul> <li>Browser  <li>Grunt </li></ul> <p>Within Visual Studio</p>
-<ul>
-    <li>Visual Studio Extension: Chutzpah&nbsp;
-    <li>Visual Studio Extension: KarmaVs. (Also requires Node.js)
-    <li>ReSharper 6</li>
-</ul>
-<p>My choice is to use a combination of Chutzpah and Browser.  <h2>Browser Test Runner </h2>
-<p>This is the simplest choice, and can be debugged in visual studio, but requires an HTML file for each test / suite of tests.  <p>
-    <a href="/post/img/BrowserJavascriptTesting.png">
-        <img title="BrowserJavascriptTesting[4]" style="display: inline" border="0" alt="BrowserJavascriptTesting[4]" src="/post/img/BrowserJavascriptTesting.png">
-    </a>
-</p>
-<h2>Visual Studio Extension - Chutzpah </h2> <
- p>
- Chutzpah is a visual studio extension which contains 3 of the most popular testing frameworks (Mocha, Quit, Jasmine). It runs and displays your tests in the test explorer.
-<p>The major drawback is that you can't debug tests.  <p><a href="http://chutzpah.codeplex.com/">http://chutzpah.codeplex.com/</a>
-<p>
-    In Visual studio 2012/2013: Tools-&gt;Extensions and Updates -&gt; Online -&gt; Search for 'Chutzpah'. Install:<br>•Chutzpah Test Runner Context Menu Extension
-    <br>
-    •Chutzpah Test Adaptor for the Test Explorer
-<p>
-    <a href="/post/img/VisualStudioJavaScript.png">
-        <img title="VisualStudioJavaScript[3]" style="display: inline" border="0" alt="VisualStudioJavaScript[3]" src="/post/img/VisualStudioJavaScript.png">
-    </a>
-    <h3>
-        Configuration
-    </h3>
-<p>Optionally add a Chutzpah.json file, amend to indicate your chosen framework.
-<p>Chutzpah.json Settings File
-<p>{<br>&nbsp;&nbsp;&nbsp; "Framework": "qunit"
-<p>&nbsp;&nbsp;&nbsp; "TestHarnessLocationMode": "TestFileAdjacent",&nbsp;&nbsp;&nbsp;&nbsp;
-<p>&nbsp;&nbsp;&nbsp; "TypeScriptCodeGenTarget" : "ES5",  <p>&nbsp;&nbsp;&nbsp; "RootReferencePathMode":"SettingsFileDirectory"
-<p>} </p>
+function animate() {
+    draw();
+    requestAnimationFrame(animate);
+}
+
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+var x = 50;
+var y = 20;
+var vx = 1;
+
+function draw() {
+    x = x + vx;
+    if (x > 100 || x < 1) {
+        vx = -vx;
+    }
+
+    context.beginPath();
+    context.rect(x, y, 40, 20);
+    context.fillStyle = '#8ED6FF';
+    context.fill();
+    context.lineWidth = 1;
+    context.strokeStyle = 'black';
+    context.stroke();
+}
+
+window.onload = function (e) {
+    animate();
+};
+
+</script>
 
                             </div>
                         </div>
                     </article>
-                    
+
                     
                     <div class="col-xs-12 articleComments">
                         <div class="row">
 
-                            <div id="disqus_thread"></div>
-                            <script type="text/javascript">
-                                var disqus_shortname = 'codesindotnet';
-                                var disqus_identifier = 'Testing-JavaScript-with-Visual-Studio';
-                                (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                })();
-                            </script>
-                            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
                         </div>
                     </div>
 

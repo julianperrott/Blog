@@ -1121,10 +1121,6 @@ textarea {
             margin-bottom: 30px;
         }
 
-    #blog.subpage.detail header {
-        background-image: url(/img/bg_blog-detail.jpg);
-    }
-
     #blog.subpage.detail .articles .article {
         border-bottom: 1px solid #bfbfbf;
         padding-bottom: 20px;

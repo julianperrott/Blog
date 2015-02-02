@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Recent Content on my new hugo site </title>
+      <title>Recent Content on index </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
     <link>http://localhost:1313/index.xml/</link>
-    <language>en-us</language>
+    <language>en-gb</language>
     
     
     <updated>Mon, 20 Oct 2014 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Single responsibility principle - Redefined</title>
+      <link>http://localhost:1313/post/Single-responsibility-principle-Redefined/</link>
+      <pubDate>Mon, 20 Oct 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/post/Single-responsibility-principle-Redefined/</guid>
+      <description>&lt;p&gt;
+    Single responsibility principle by Uncle Bob (Robert C. Martin) is the first of the SOLID object orientated design principles. I read it a few years ago, but felt my understanding of it was a little unclear, and I am not alone. This led me to try to understand it again and during which I&#39;ve discovered that Uncle Bob has redefined it.
+&lt;/p&gt; &lt;p&gt;
+    &lt;a href=&#34;/post/img/UncleBob.jpg&#34;&gt;
+        &lt;img title=&#34;UncleBob&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;UncleBob&#34; src=&#34;/post/img/UncleBob.jpg&#34; width=&#34;244&#34; height=&#34;186&#34;&gt;
+    &lt;/a&gt;&lt;br&gt;&amp;nbsp;&lt;br&gt;
+&lt;/p&gt;
+&lt;h2&gt;The old SRP&lt;/h2&gt; &lt;p&gt;
+    &#34;A CLASS SHOULD HAVE ONLY ONE REASON TO CHANGE.&#34;&lt;br&gt;&amp;nbsp;
+    &lt;br&gt;Bob explains that a responsibility is defined as &#34;a reason for change&#34;. If a class has more that one responsibility then those responsibilities become coupled and changes to one may impair the ability to meet the others. This coupling makes the design fragile, with changes causing unexpected impacts in the system.
+    &lt;br&gt;&amp;nbsp;&lt;br&gt;&#34;If you can think of more than one motive for changing a class, then that class has more than one responsibility.&#34;&lt;br&gt;&amp;nbsp;
+    &lt;br&gt;When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality.
+&lt;/p&gt;
+&lt;p&gt;
+    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then a most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit&#34;&gt;The Single Responsibility - Chapter&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Single_responsibility_principle&#34;&gt;wikipedia.org&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/p&gt;
+&lt;h2&gt;The new SRP&lt;/h2&gt;
+&lt;p&gt;
+    Bob says that &#34;Things that change for the same reason should be grouped together. Things that change for different reasons should be separated.&#34;, this is not new, but he also says:
+&lt;/p&gt; &lt;p&gt;&#34;A responsibility is a person, not something the code does. It is a person who wants to make a change to the code.&#34;&lt;/p&gt;
+&lt;p&gt;So we now should think about who would require changes to our classes. He clarifies that a person can have more than one role and the role is who the code is responsible to.&lt;/p&gt;
+&lt;p&gt;&#34;If two different people want to change a class for two different reasons, then pull those reasons into two different classes. That is the SRP.&#34; &lt;/p&gt;
+&lt;p&gt;
+    &#34;Violation of SRP means that a change by one role could affect the code for another role.&#34;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href=&#34;http://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html&#34;&gt;Uncle Bob&#39;s blog&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&#34;http://vimeo.com/43592685&#34;&gt;NDC 2012 - Video&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt; &lt;p&gt;Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.&lt;/p&gt;
+&lt;p&gt;Wikipedia is out of date.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Ingress Intel Total Conversion - JavaScript Plugin</title>
@@ -61,54 +109,6 @@
         field-finisher.user.js
     &lt;/a&gt;
 &lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Single responsibility principle - Redefined</title>
-      <link>http://localhost:1313/post/Single-responsibility-principle-Redefined/</link>
-      <pubDate>Mon, 20 Oct 2014 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/post/Single-responsibility-principle-Redefined/</guid>
-      <description>&lt;p&gt;
-    Single responsibility principle by Uncle Bob (Robert C. Martin) is the first of the SOLID object orientated design principles. I read it a few years ago, but felt my understanding of it was a little unclear, and I am not alone. This led me to try to understand it again and during which I&#39;ve discovered that Uncle Bob has redefined it.
-&lt;/p&gt; &lt;p&gt;
-    &lt;a href=&#34;/post/img/UncleBob.jpg&#34;&gt;
-        &lt;img title=&#34;UncleBob&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;UncleBob&#34; src=&#34;/post/img/UncleBob.jpg&#34; width=&#34;244&#34; height=&#34;186&#34;&gt;
-    &lt;/a&gt;&lt;br&gt;&amp;nbsp;&lt;br&gt;
-&lt;/p&gt;
-&lt;h2&gt;The old SRP&lt;/h2&gt; &lt;p&gt;
-    &#34;A CLASS SHOULD HAVE ONLY ONE REASON TO CHANGE.&#34;&lt;br&gt;&amp;nbsp;
-    &lt;br&gt;Bob explains that a responsibility is defined as &#34;a reason for change&#34;. If a class has more that one responsibility then those responsibilities become coupled and changes to one may impair the ability to meet the others. This coupling makes the design fragile, with changes causing unexpected impacts in the system.
-    &lt;br&gt;&amp;nbsp;&lt;br&gt;&#34;If you can think of more than one motive for changing a class, then that class has more than one responsibility.&#34;&lt;br&gt;&amp;nbsp;
-    &lt;br&gt;When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality.
-&lt;/p&gt;
-&lt;p&gt;
-    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then a most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit&#34;&gt;The Single Responsibility - Chapter&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Single_responsibility_principle&#34;&gt;wikipedia.org&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/p&gt;
-&lt;h2&gt;The new SRP&lt;/h2&gt;
-&lt;p&gt;
-    Bob says that &#34;Things that change for the same reason should be grouped together. Things that change for different reasons should be separated.&#34;, this is not new, but he also says:
-&lt;/p&gt; &lt;p&gt;&#34;A responsibility is a person, not something the code does. It is a person who wants to make a change to the code.&#34;&lt;/p&gt;
-&lt;p&gt;So we now should think about who would require changes to our classes. He clarifies that a person can have more than one role and the role is who the code is responsible to.&lt;/p&gt;
-&lt;p&gt;&#34;If two different people want to change a class for two different reasons, then pull those reasons into two different classes. That is the SRP.&#34; &lt;/p&gt;
-&lt;p&gt;
-    &#34;Violation of SRP means that a change by one role could affect the code for another role.&#34;
-    &lt;ul&gt;
-        &lt;li&gt;
-            &lt;a href=&#34;http://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html&#34;&gt;Uncle Bob&#39;s blog&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li&gt;
-            &lt;a href=&#34;http://vimeo.com/43592685&#34;&gt;NDC 2012 - Video&lt;/a&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/p&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt; &lt;p&gt;Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.&lt;/p&gt;
-&lt;p&gt;Wikipedia is out of date.&lt;/p&gt;
 </description>
     </item>
     
@@ -571,6 +571,64 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     </item>
     
     <item>
+      <title>Testing JavaScript with Visual Studio</title>
+      <link>http://localhost:1313/post/Testing-JavaScript-with-Visual-Studio/</link>
+      <pubDate>Sat, 01 Mar 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/post/Testing-JavaScript-with-Visual-Studio/</guid>
+      <description>&lt;p&gt;If your web application is using JavaScript for non trivial functionality then it makes sense to test it programmatically. Various JavaScript frameworks have been written to allow you to write JavaScript tests to test your JavaScript.  &lt;p&gt;This pluralsight course gives a good overview: pluralsight - Testing Clientside JavaScript  &lt;h2&gt;The main decisions you will need to make&lt;/h2&gt;
+&lt;p&gt;1. What style do you want to write your tests in ?
+&lt;p&gt;Behaviour Driven Development (BDD) or Test Driven Development (TDD), as this will influence which JavaScript test framework you use.  &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;div id=&#34;scid:5737277B-5D6D-4f48-ABFC-DD9C333F4C5D:0fd715c7-5c87-48d7-ac28-8f324820e0d2&#34; class=&#34;wlWriterSmartContent&#34; style=&#34;float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px&#34;&gt;
+    &lt;div&gt;
+        &lt;embed type=&#34;application/x-shockwave-flash&#34; height=&#34;355&#34; width=&#34;425&#34; src=&#34;http://www.youtube.com/v/mT8QDNNhExg&amp;amp;hl=en&#34;&gt;
+    &lt;/div&gt;
+&lt;/div&gt; &lt;p&gt;2. The JavaScript Test framework you are going to use, the most popular are:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;QUnit(TDD) &lt;a href=&#34;http://qunitjs.com&#34;&gt;qunitjs.com&lt;/a&gt;
+    &lt;li&gt;Jasmine(BDD) &lt;a href=&#34;http://pivotal.github.io/jasmine&#34;&gt;pivotal.github.io/jasmine&lt;/a&gt;
+    &lt;li&gt;
+        Mocha (TDD or BDD).
+        &lt;a href=&#34;http://visionmedia.github.io/mocha &#34;&gt;visionmedia.github.io/mocha&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt; &lt;p&gt;3. Which test runner or runners you want to use. The options are:
+&lt;p&gt;Outside of Visual Studio:&lt;/p&gt;
+&lt;ul&gt; &lt;li&gt;Browser  &lt;li&gt;Grunt &lt;/li&gt;&lt;/ul&gt; &lt;p&gt;Within Visual Studio&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Visual Studio Extension: Chutzpah&amp;nbsp;
+    &lt;li&gt;Visual Studio Extension: KarmaVs. (Also requires Node.js)
+    &lt;li&gt;ReSharper 6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My choice is to use a combination of Chutzpah and Browser.  &lt;h2&gt;Browser Test Runner &lt;/h2&gt;
+&lt;p&gt;This is the simplest choice, and can be debugged in visual studio, but requires an HTML file for each test / suite of tests.  &lt;p&gt;
+    &lt;a href=&#34;/post/img/BrowserJavascriptTesting.png&#34;&gt;
+        &lt;img title=&#34;BrowserJavascriptTesting[4]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;BrowserJavascriptTesting[4]&#34; src=&#34;/post/img/BrowserJavascriptTesting.png&#34;&gt;
+    &lt;/a&gt;
+&lt;/p&gt;
+&lt;h2&gt;Visual Studio Extension - Chutzpah &lt;/h2&gt; &lt;
+ p&gt;
+ Chutzpah is a visual studio extension which contains 3 of the most popular testing frameworks (Mocha, Quit, Jasmine). It runs and displays your tests in the test explorer.
+&lt;p&gt;The major drawback is that you can&#39;t debug tests.  &lt;p&gt;&lt;a href=&#34;http://chutzpah.codeplex.com/&#34;&gt;http://chutzpah.codeplex.com/&lt;/a&gt;
+&lt;p&gt;
+    In Visual studio 2012/2013: Tools-&amp;gt;Extensions and Updates -&amp;gt; Online -&amp;gt; Search for &#39;Chutzpah&#39;. Install:&lt;br&gt;•Chutzpah Test Runner Context Menu Extension
+    &lt;br&gt;
+    •Chutzpah Test Adaptor for the Test Explorer
+&lt;p&gt;
+    &lt;a href=&#34;/post/img/VisualStudioJavaScript.png&#34;&gt;
+        &lt;img title=&#34;VisualStudioJavaScript[3]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;VisualStudioJavaScript[3]&#34; src=&#34;/post/img/VisualStudioJavaScript.png&#34;&gt;
+    &lt;/a&gt;
+    &lt;h3&gt;
+        Configuration
+    &lt;/h3&gt;
+&lt;p&gt;Optionally add a Chutzpah.json file, amend to indicate your chosen framework.
+&lt;p&gt;Chutzpah.json Settings File
+&lt;p&gt;{&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;Framework&#34;: &#34;qunit&#34;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;TestHarnessLocationMode&#34;: &#34;TestFileAdjacent&#34;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;TypeScriptCodeGenTarget&#34; : &#34;ES5&#34;,  &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;RootReferencePathMode&#34;:&#34;SettingsFileDirectory&#34;
+&lt;p&gt;} &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Mapping Images on Spherical Surfaces Using Javascript and HTML5 Canvas</title>
       <link>http://localhost:1313/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</link>
       <pubDate>Sat, 01 Mar 2014 00:00:00 UTC</pubDate>
@@ -708,121 +766,6 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     </item>
     
     <item>
-      <title>Testing JavaScript with Visual Studio</title>
-      <link>http://localhost:1313/post/Testing-JavaScript-with-Visual-Studio/</link>
-      <pubDate>Sat, 01 Mar 2014 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/post/Testing-JavaScript-with-Visual-Studio/</guid>
-      <description>&lt;p&gt;If your web application is using JavaScript for non trivial functionality then it makes sense to test it programmatically. Various JavaScript frameworks have been written to allow you to write JavaScript tests to test your JavaScript.  &lt;p&gt;This pluralsight course gives a good overview: pluralsight - Testing Clientside JavaScript  &lt;h2&gt;The main decisions you will need to make&lt;/h2&gt;
-&lt;p&gt;1. What style do you want to write your tests in ?
-&lt;p&gt;Behaviour Driven Development (BDD) or Test Driven Development (TDD), as this will influence which JavaScript test framework you use.  &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;div id=&#34;scid:5737277B-5D6D-4f48-ABFC-DD9C333F4C5D:0fd715c7-5c87-48d7-ac28-8f324820e0d2&#34; class=&#34;wlWriterSmartContent&#34; style=&#34;float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px&#34;&gt;
-    &lt;div&gt;
-        &lt;embed type=&#34;application/x-shockwave-flash&#34; height=&#34;355&#34; width=&#34;425&#34; src=&#34;http://www.youtube.com/v/mT8QDNNhExg&amp;amp;hl=en&#34;&gt;
-    &lt;/div&gt;
-&lt;/div&gt; &lt;p&gt;2. The JavaScript Test framework you are going to use, the most popular are:&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;QUnit(TDD) &lt;a href=&#34;http://qunitjs.com&#34;&gt;qunitjs.com&lt;/a&gt;
-    &lt;li&gt;Jasmine(BDD) &lt;a href=&#34;http://pivotal.github.io/jasmine&#34;&gt;pivotal.github.io/jasmine&lt;/a&gt;
-    &lt;li&gt;
-        Mocha (TDD or BDD).
-        &lt;a href=&#34;http://visionmedia.github.io/mocha &#34;&gt;visionmedia.github.io/mocha&lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt; &lt;p&gt;3. Which test runner or runners you want to use. The options are:
-&lt;p&gt;Outside of Visual Studio:&lt;/p&gt;
-&lt;ul&gt; &lt;li&gt;Browser  &lt;li&gt;Grunt &lt;/li&gt;&lt;/ul&gt; &lt;p&gt;Within Visual Studio&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;Visual Studio Extension: Chutzpah&amp;nbsp;
-    &lt;li&gt;Visual Studio Extension: KarmaVs. (Also requires Node.js)
-    &lt;li&gt;ReSharper 6&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My choice is to use a combination of Chutzpah and Browser.  &lt;h2&gt;Browser Test Runner &lt;/h2&gt;
-&lt;p&gt;This is the simplest choice, and can be debugged in visual studio, but requires an HTML file for each test / suite of tests.  &lt;p&gt;
-    &lt;a href=&#34;/post/img/BrowserJavascriptTesting.png&#34;&gt;
-        &lt;img title=&#34;BrowserJavascriptTesting[4]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;BrowserJavascriptTesting[4]&#34; src=&#34;/post/img/BrowserJavascriptTesting.png&#34;&gt;
-    &lt;/a&gt;
-&lt;/p&gt;
-&lt;h2&gt;Visual Studio Extension - Chutzpah &lt;/h2&gt; &lt;
- p&gt;
- Chutzpah is a visual studio extension which contains 3 of the most popular testing frameworks (Mocha, Quit, Jasmine). It runs and displays your tests in the test explorer.
-&lt;p&gt;The major drawback is that you can&#39;t debug tests.  &lt;p&gt;&lt;a href=&#34;http://chutzpah.codeplex.com/&#34;&gt;http://chutzpah.codeplex.com/&lt;/a&gt;
-&lt;p&gt;
-    In Visual studio 2012/2013: Tools-&amp;gt;Extensions and Updates -&amp;gt; Online -&amp;gt; Search for &#39;Chutzpah&#39;. Install:&lt;br&gt;•Chutzpah Test Runner Context Menu Extension
-    &lt;br&gt;
-    •Chutzpah Test Adaptor for the Test Explorer
-&lt;p&gt;
-    &lt;a href=&#34;/post/img/VisualStudioJavaScript.png&#34;&gt;
-        &lt;img title=&#34;VisualStudioJavaScript[3]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;VisualStudioJavaScript[3]&#34; src=&#34;/post/img/VisualStudioJavaScript.png&#34;&gt;
-    &lt;/a&gt;
-    &lt;h3&gt;
-        Configuration
-    &lt;/h3&gt;
-&lt;p&gt;Optionally add a Chutzpah.json file, amend to indicate your chosen framework.
-&lt;p&gt;Chutzpah.json Settings File
-&lt;p&gt;{&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;Framework&#34;: &#34;qunit&#34;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;TestHarnessLocationMode&#34;: &#34;TestFileAdjacent&#34;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;TypeScriptCodeGenTarget&#34; : &#34;ES5&#34;,  &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;RootReferencePathMode&#34;:&#34;SettingsFileDirectory&#34;
-&lt;p&gt;} &lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>HTML5 Canvas Animation</title>
-      <link>http://localhost:1313/post/HTML5-Canvas-Animation/</link>
-      <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/post/HTML5-Canvas-Animation/</guid>
-      <description>&lt;a href=&#34;/post/img/js-logo-badge-512-200x200.png&#34;&gt;&lt;img title=&#34;js-logo-badge-512-200x200&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;js-logo-badge-512-200x200&#34; src=&#34;/post/img/js-logo-badge-512-200x200.png&#34; width=&#34;204&#34; height=&#34;204&#34;&gt;&lt;/a&gt;&lt;script src=&#34;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#34;&gt;&lt;/script&gt;  &lt;p&gt;Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var requestAnimFrame = (function () {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;br&gt;})();&lt;/p&gt;
-&lt;p&gt;function animate() {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; draw();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; requestAnimationFrame(animate);&lt;br&gt;}&lt;/p&gt;
-&lt;p&gt;function draw() {&lt;/p&gt;
-&lt;p&gt;// redraw the next frame here&lt;br&gt;}&lt;/p&gt;
-&lt;p&gt;window.onload = function (e) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; animate();&lt;br&gt;}&lt;/p&gt;
-&lt;/pre&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;This demo draws a rectangle and moves it each time it is redrawn:&lt;/p&gt;&lt;canvas id=&#34;myCanvas&#34; height=&#34;80&#34; width=&#34;578&#34;&gt;Canvas &lt;/canvas&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var canvas = &amp;lt;HTMLCanvasElement&amp;gt;document.getElementById(&#39;myCanvas&#39;);&lt;br&gt;var context = canvas.getContext(&#39;2d&#39;);&lt;br&gt;var x = 50;&lt;br&gt;var y = 20;&lt;br&gt;var vx = 1;&lt;/p&gt;
-&lt;p&gt;function draw() {&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x = x + vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (x &amp;gt; 100 || x &amp;lt; 1) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; vx = -vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.beginPath();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.rect(x, y, 40, 20);&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fillStyle = &#39;#8ED6FF&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fill();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.lineWidth = 1;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.strokeStyle = &#39;black&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.stroke();&lt;br&gt;}&lt;/p&gt;
-&lt;/pre&gt;&lt;script&gt;
-var requestAnimFrame = (function () {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
-        window.setTimeout(callback, 1000 / 60, new Date().getTime());
-    };
-})();
-
-function animate() {
-    draw();
-    requestAnimationFrame(animate);
-}
-
-var canvas = document.getElementById(&#39;myCanvas&#39;);
-var context = canvas.getContext(&#39;2d&#39;);
-var x = 50;
-var y = 20;
-var vx = 1;
-
-function draw() {
-    x = x + vx;
-    if (x &gt; 100 || x &lt; 1) {
-        vx = -vx;
-    }
-
-    context.beginPath();
-    context.rect(x, y, 40, 20);
-    context.fillStyle = &#39;#8ED6FF&#39;;
-    context.fill();
-    context.lineWidth = 1;
-    context.strokeStyle = &#39;black&#39;;
-    context.stroke();
-}
-
-window.onload = function (e) {
-    animate();
-};
-
-&lt;/script&gt;
-</description>
-    </item>
-    
-    <item>
       <title>My Development Tools</title>
       <link>http://localhost:1313/post/My-Development-Tools/</link>
       <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
@@ -943,6 +886,63 @@ window.onload = function (e) {
         &lt;/tr&gt;
     &lt;/tbody&gt;
 &lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>HTML5 Canvas Animation</title>
+      <link>http://localhost:1313/post/HTML5-Canvas-Animation/</link>
+      <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/post/HTML5-Canvas-Animation/</guid>
+      <description>&lt;a href=&#34;/post/img/js-logo-badge-512-200x200.png&#34;&gt;&lt;img title=&#34;js-logo-badge-512-200x200&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;js-logo-badge-512-200x200&#34; src=&#34;/post/img/js-logo-badge-512-200x200.png&#34; width=&#34;204&#34; height=&#34;204&#34;&gt;&lt;/a&gt;&lt;script src=&#34;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#34;&gt;&lt;/script&gt;  &lt;p&gt;Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var requestAnimFrame = (function () {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;br&gt;})();&lt;/p&gt;
+&lt;p&gt;function animate() {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; draw();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; requestAnimationFrame(animate);&lt;br&gt;}&lt;/p&gt;
+&lt;p&gt;function draw() {&lt;/p&gt;
+&lt;p&gt;// redraw the next frame here&lt;br&gt;}&lt;/p&gt;
+&lt;p&gt;window.onload = function (e) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; animate();&lt;br&gt;}&lt;/p&gt;
+&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;This demo draws a rectangle and moves it each time it is redrawn:&lt;/p&gt;&lt;canvas id=&#34;myCanvas&#34; height=&#34;80&#34; width=&#34;578&#34;&gt;Canvas &lt;/canvas&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var canvas = &amp;lt;HTMLCanvasElement&amp;gt;document.getElementById(&#39;myCanvas&#39;);&lt;br&gt;var context = canvas.getContext(&#39;2d&#39;);&lt;br&gt;var x = 50;&lt;br&gt;var y = 20;&lt;br&gt;var vx = 1;&lt;/p&gt;
+&lt;p&gt;function draw() {&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x = x + vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (x &amp;gt; 100 || x &amp;lt; 1) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; vx = -vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.beginPath();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.rect(x, y, 40, 20);&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fillStyle = &#39;#8ED6FF&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fill();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.lineWidth = 1;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.strokeStyle = &#39;black&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.stroke();&lt;br&gt;}&lt;/p&gt;
+&lt;/pre&gt;&lt;script&gt;
+var requestAnimFrame = (function () {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+        window.setTimeout(callback, 1000 / 60, new Date().getTime());
+    };
+})();
+
+function animate() {
+    draw();
+    requestAnimationFrame(animate);
+}
+
+var canvas = document.getElementById(&#39;myCanvas&#39;);
+var context = canvas.getContext(&#39;2d&#39;);
+var x = 50;
+var y = 20;
+var vx = 1;
+
+function draw() {
+    x = x + vx;
+    if (x &gt; 100 || x &lt; 1) {
+        vx = -vx;
+    }
+
+    context.beginPath();
+    context.rect(x, y, 40, 20);
+    context.fillStyle = &#39;#8ED6FF&#39;;
+    context.fill();
+    context.lineWidth = 1;
+    context.strokeStyle = &#39;black&#39;;
+    context.stroke();
+}
+
+window.onload = function (e) {
+    animate();
+};
+
+&lt;/script&gt;
 </description>
     </item>
     

@@ -3,7 +3,14 @@
 "title": "HTML5 Canvas Animation",
 "description": "This demo draws a rectangle and moves it each time it is redrawn",
 "slug": "HTML5-Canvas-Animation",
-"draft": true
+"draft": true,
+
+"background": "bg_Canvas_javascript",
+"bg_name": "Canvas+javascript",
+"bg_url": "https://www.flickr.com/photos/hildeengwenverbouwen/6191967019/in/photolist-bzmTpc-6188Qb-9YfRBC-4pY8cw-j8Lq7-c2sE1o-6WePBv-fw188h-8AU7Q2-D9xfH-4oBg8v-6Fifmi-pxxj5r-6yLGbJ-75xPCg-5hj2Xs-4JcGNL-9jXTMA-7YUkUq-ErniK-5sDgor-64GUwY-5Teq89-e6JLj8-q4doxC-dd3na2-BjdFj-fjNRiq-niJPsR-43Yn3a-gXXpvc-mb1KYB-aras54-7icY7o-ajBcuN-4RUNV5-68MDmr-9sgBDe-6jgS5M-4UwVSP-aUeMjB-6ua26b-5QVBTg-e88ctL-7SE7xy-9RR2dD-byYTAg-hFywq8-6Xy2P2-eb7UBP",
+"bg_owner": "hildeengwenverbouwen",
+"bg_owner_name": "Gwen Vanhee"
+
 }
 
 <a href="/post/img/js-logo-badge-512-200x200.png"><img title="js-logo-badge-512-200x200" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="js-logo-badge-512-200x200" src="/post/img/js-logo-badge-512-200x200.png" width="204" height="204"></a><script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>  <p>Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:</p><pre class="prettyprint"><p>var requestAnimFrame = (function () {<br>&nbsp;&nbsp;&nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());<br>&nbsp;&nbsp;&nbsp; };<br>})();</p>

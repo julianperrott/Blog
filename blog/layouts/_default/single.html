@@ -7,7 +7,7 @@
         <section id="blog" class="subpage detail">
 
             <!-- Header -->
-            <header class="font-white striped-image" style="background-image: url(/img/bg_blog-detail.jpg);">
+            <header class="font-white striped-image" style="background-image: url(/img/{{.Params.background}}_1920x800.jpg);">
                 {{ partial "banner.html" . }}
             </header>
 
@@ -29,19 +29,42 @@
                             </div>
                             <div class="col-lg-10">
                                 <h2 class="title">{{ .Title }}</h2>
-                                    <div class="articleInfo clearfix">
-                                        <div class="i hidden-lg">Post date: <strong>{{ .Date.Format "Mon, Jan 2, 2006" }}</strong></div>
-                                        <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                <div class="articleInfo clearfix">
+                                    <div class="i hidden-lg">Post date: <strong>{{ .Date.Format "Mon, Jan 2, 2006" }}</strong></div>
+                                    <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                    <br />
+
+                                    <div class="i">
+                                        Attribution:
+                                        <a style class="external text" href="{{ .Params.bg_url }}" rel="nofollow" target="_blank">
+                                            "{{ .Params.bg_name }}"
+                                        </a> by
+                                        <a href="http://www.flickr.com/photos/{{ .Params.bg_owner }}/" rel="nofollow" target="_blank">{{ .Params.bg_owner_name }}</a>
+                                        is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow"> CC BY 2.0</a>
                                     </div>
-                                    {{ .Content }}
+
+                                </div>
+                                {{ .Content }}
                             </div>
                         </div>
                     </article>
-
+                    
                     <!-- Article comments -->
                     <div class="col-xs-12 articleComments">
                         <div class="row">
 
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript">
+                                var disqus_shortname = 'codesindotnet';
+                                var disqus_identifier = '{{ .Slug }}';
+                                (function () {
+                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
                         </div>
                     </div>
 
