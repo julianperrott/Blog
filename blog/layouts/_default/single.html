@@ -31,17 +31,19 @@
                                 <h2 class="title">{{ .Title }}</h2>
                                 <div class="articleInfo clearfix">
                                     <div class="i hidden-lg">Post date: <strong>{{ .Date.Format "Mon, Jan 2, 2006" }}</strong></div>
-                                    <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>
+                                    <!-- <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>-->
                                     <br />
-
+									
+									{{ if isset .Params "bg_name" }}
                                     <div class="i">
                                         Attribution:
                                         <a style class="external text" href="{{ .Params.bg_url }}" rel="nofollow" target="_blank">
                                             "{{ .Params.bg_name }}"
                                         </a> by
                                         <a href="http://www.flickr.com/photos/{{ .Params.bg_owner }}/" rel="nofollow" target="_blank">{{ .Params.bg_owner_name }}</a>
-                                        is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow"> CC BY 2.0</a>
+                                        is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank"> CC BY 2.0</a>
                                     </div>
+									{{ end }}
 
                                 </div>
                                 {{ .Content }}
@@ -50,9 +52,8 @@
                     </article>
                     
                     <!-- Article comments -->
+					 <div class="row">
                     <div class="col-xs-12 articleComments">
-                        <div class="row">
-
                             <div id="disqus_thread"></div>
                             <script type="text/javascript">
                                 var disqus_shortname = 'codesindotnet';
