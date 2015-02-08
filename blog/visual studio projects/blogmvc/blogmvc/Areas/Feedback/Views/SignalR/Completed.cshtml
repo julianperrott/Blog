@@ -1,0 +1,19 @@
+﻿@model BlogMvc.Areas.Feedback.Models.TaskResult
+@{
+    ViewBag.Title = "Page 3: Signal R - Task Completed";
+}
+<div class="well">
+    <p>
+        Task started at @Model.StartTime
+    </p>
+    <p>
+        Task Ended at @Model.EndTime
+    </p>
+    <p>
+        Duration @Model.TotalSeconds Seconds
+    </p>
+</div>
+
+<p>
+    <a href="Index">Home</a>
+</p>

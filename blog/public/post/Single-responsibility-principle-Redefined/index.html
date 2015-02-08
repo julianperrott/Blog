@@ -6,8 +6,14 @@
 <html class="no-js">
  
 <head>
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffc40d">
+	<meta name="theme-color" content="#ffffff">
 	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,7 +81,7 @@
                                     <div class="month">Oct 2014</div>
                                 </div>
                                 <div class="comments">
-                                    <i class="fa fa-comments"></i> 25
+                                    <i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="Single-responsibility-principle-Redefined"></span>
                                 </div>
                             </div>
                             <div class="col-lg-10">
@@ -108,10 +114,10 @@
     "A CLASS SHOULD HAVE ONLY ONE REASON TO CHANGE."<br>&nbsp;
     <br>Bob explains that a responsibility is defined as "a reason for change". If a class has more that one responsibility then those responsibilities become coupled and changes to one may impair the ability to meet the others. This coupling makes the design fragile, with changes causing unexpected impacts in the system.
     <br>&nbsp;<br>"If you can think of more than one motive for changing a class, then that class has more than one responsibility."<br>&nbsp;
-    <br>When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality.
+    <br>When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality, which seems to be no different than cohesiveness.
 </p>
 <p>
-    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then a most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
+    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
     <ul>
         <li><a href="https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit">The Single Responsibility - Chapter</a></li>
         <li><a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">wikipedia.org</a></li>
@@ -134,7 +140,7 @@
         </li>
     </ul>
 </p>
-<h2>Conclusion</h2> <p>Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.</p>
+<h2>Conclusions</h2> <p>Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.</p>
 <p>Wikipedia is out of date.</p>
 
                             </div>
@@ -146,6 +152,7 @@
                     <div class="col-xs-12 articleComments">
                             <div id="disqus_thread"></div>
                             <script type="text/javascript">
+							    
                                 var disqus_shortname = 'codesindotnet';
                                 var disqus_identifier = 'Single-responsibility-principle-Redefined';
                                 (function () {
@@ -247,8 +254,17 @@
         })
     </script>
 
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	
+	<script type="text/javascript">
+	  
+	  
+	 (function () {
+	 var s = document.createElement('script'); s.async = true;
+	 s.type = 'text/javascript';
+	 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	 }());
+ </script> 
+	
+</body>
 </html>

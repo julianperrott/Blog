@@ -6,8 +6,14 @@
 <html class="no-js">
  
 <head>
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffc40d">
+	<meta name="theme-color" content="#ffffff">
 	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,7 +81,7 @@
                                     <div class="month">Jul 2014</div>
                                 </div>
                                 <div class="comments">
-                                    <i class="fa fa-comments"></i> 25
+                                    <i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="Chaining-promises-with-AngularJs-and-JQuery"></span>
                                 </div>
                             </div>
                             <div class="col-lg-10">
@@ -258,6 +264,7 @@ If you must have more than one step then promises can be chained. Each step in t
                     <div class="col-xs-12 articleComments">
                             <div id="disqus_thread"></div>
                             <script type="text/javascript">
+							    
                                 var disqus_shortname = 'codesindotnet';
                                 var disqus_identifier = 'Chaining-promises-with-AngularJs-and-JQuery';
                                 (function () {
@@ -359,8 +366,17 @@ If you must have more than one step then promises can be chained. Each step in t
         })
     </script>
 
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	
+	<script type="text/javascript">
+	  
+	  
+	 (function () {
+	 var s = document.createElement('script'); s.async = true;
+	 s.type = 'text/javascript';
+	 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	 }());
+ </script> 
+	
+</body>
 </html>

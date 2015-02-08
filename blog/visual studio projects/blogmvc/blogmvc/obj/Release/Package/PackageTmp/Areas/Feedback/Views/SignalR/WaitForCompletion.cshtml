@@ -1,0 +1,40 @@
+﻿@model Guid
+@{
+    ViewBag.Title = "Page 2: Signal R - Waiting for slow task to finish";
+}
+<div class="well">
+    <p>Waiting to complete: @DateTime.Now.ToLongTimeString()</p>
+    <img src="~/Areas/Feedback/images/ajax-loader.gif" />
+
+</div>
+
+<p>The server is running the task. This can take up to a minute.</p>
+<p>This page is shown while the server processes.</p>
+<p>Press 'F5' and refresh the page, it will not re-submit.</p>
+
+<script src="~/Areas/Feedback/js/jquery-1.9.1.js"></script>
+<script src="~/Areas/Feedback/js/jquery.signalR-2.0.3.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var connection = $.connection('/mvc/echo');
+
+        connection.received(function (data) {
+            if (data == 'Finished') {
+                window.location = '@Url.Action("Completed", new { taskId = Model })';
+            }
+            else {
+                $('#messages').prepend('<li>' + data + '</li>');
+            }
+        });
+
+        connection.start().done(function () {
+            connection.send('@Model.ToString()');
+        });
+    });
+
+</script>
+
+
+<b>Signal R (Server Pushed) messages:</b>
+<ul id="messages"></ul>

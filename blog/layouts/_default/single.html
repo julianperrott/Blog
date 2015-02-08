@@ -24,7 +24,7 @@
                                     <div class="month">{{ .Date.Format "Jan 2006" }}</div>
                                 </div>
                                 <div class="comments">
-                                    <i class="fa fa-comments"></i> 25
+                                    <i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="{{ .Slug }}"></span>
                                 </div>
                             </div>
                             <div class="col-lg-10">
@@ -56,6 +56,7 @@
                     <div class="col-xs-12 articleComments">
                             <div id="disqus_thread"></div>
                             <script type="text/javascript">
+							   /* Disgus comment count */
                                 var disqus_shortname = 'codesindotnet';
                                 var disqus_identifier = '{{ .Slug }}';
                                 (function () {
@@ -97,5 +98,17 @@
         })
     </script>
 
+	
+	<script type="text/javascript">
+	 /* Disgus comment count */
+	 /* * * DON'T EDIT BELOW THIS LINE * * */
+	 (function () {
+	 var s = document.createElement('script'); s.async = true;
+	 s.type = 'text/javascript';
+	 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	 }());
+ </script> 
+	
 </body>
 </html>

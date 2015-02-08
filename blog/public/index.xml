@@ -3,7 +3,7 @@
   <channel>
       <title>Recent Content on Blog </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/index.xml/</link>
+    <link>http://www.codesin.net/index.xml/</link>
     <language>en-gb</language>
     
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>Single responsibility principle - Redefined</title>
-      <link>http://localhost:1313/post/Single-responsibility-principle-Redefined/</link>
+      <link>http://www.codesin.net/post/Single-responsibility-principle-Redefined/</link>
       <pubDate>Mon, 20 Oct 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Single-responsibility-principle-Redefined/</guid>
+      <guid>http://www.codesin.net/post/Single-responsibility-principle-Redefined/</guid>
       <description>&lt;p&gt;
     Single responsibility principle by Uncle Bob (Robert C. Martin) is the first of the SOLID object orientated design principles. I read it a few years ago, but felt my understanding of it was a little unclear, and I am not alone. This led me to try to understand it again and during which I&#39;ve discovered that Uncle Bob has redefined it.
 &lt;/p&gt; &lt;p&gt;
@@ -26,10 +26,10 @@
     &#34;A CLASS SHOULD HAVE ONLY ONE REASON TO CHANGE.&#34;&lt;br&gt;&amp;nbsp;
     &lt;br&gt;Bob explains that a responsibility is defined as &#34;a reason for change&#34;. If a class has more that one responsibility then those responsibilities become coupled and changes to one may impair the ability to meet the others. This coupling makes the design fragile, with changes causing unexpected impacts in the system.
     &lt;br&gt;&amp;nbsp;&lt;br&gt;&#34;If you can think of more than one motive for changing a class, then that class has more than one responsibility.&#34;&lt;br&gt;&amp;nbsp;
-    &lt;br&gt;When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality.
+    &lt;br&gt;When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality, which seems to be no different than cohesiveness.
 &lt;/p&gt;
 &lt;p&gt;
-    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then a most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
+    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
     &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit&#34;&gt;The Single Responsibility - Chapter&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Single_responsibility_principle&#34;&gt;wikipedia.org&lt;/a&gt;&lt;/li&gt;
@@ -52,17 +52,17 @@
         &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/p&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt; &lt;p&gt;Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.&lt;/p&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt; &lt;p&gt;Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.&lt;/p&gt;
 &lt;p&gt;Wikipedia is out of date.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Ingress Intel Total Conversion - JavaScript Plugin</title>
-      <link>http://localhost:1313/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/</link>
+      <link>http://www.codesin.net/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/</link>
       <pubDate>Mon, 20 Oct 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/</guid>
+      <guid>http://www.codesin.net/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/</guid>
       <description>&lt;p&gt;
     &lt;a href=&#34;https://www.ingress.com/&#34;&gt;Ingress&lt;/a&gt;
     is a game where real world locations are defined as portals. These portals can be linked to other portals. When 3 portals are linked in a triangle a &#34;field&#34; is created. These fields score &#34;points&#34; for your team.
@@ -114,10 +114,10 @@
     
     <item>
       <title>Chaining promises with AngularJs and JQuery</title>
-      <link>http://localhost:1313/post/Chaining-promises-with-AngularJs-and-JQuery/</link>
+      <link>http://www.codesin.net/post/Chaining-promises-with-AngularJs-and-JQuery/</link>
       <pubDate>Tue, 08 Jul 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Chaining-promises-with-AngularJs-and-JQuery/</guid>
+      <guid>http://www.codesin.net/post/Chaining-promises-with-AngularJs-and-JQuery/</guid>
       <description>&lt;p&gt;Promises allow for consistent handling of the results of a task (Usually asynchronous). A promise is returned from a function call with a deferred result. &lt;br&gt;The promise result is either success (promise.resolve) or failure (promise.reject).&lt;/p&gt; &lt;p&gt;The basic usage pattern looks like this: &lt;/p&gt; &lt;p&gt;&lt;!-- HTML generated using hilite.me --&gt;&lt;/p&gt; &lt;div style=&#34;overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em&#34;&gt;
     &lt;table&gt;
         &lt;tbody&gt;
@@ -274,10 +274,10 @@ If you must have more than one step then promises can be chained. Each step in t
     
     <item>
       <title>Giving feedback during a long running task</title>
-      <link>http://localhost:1313/post/Giving-feedback-during-a-long-running-task/</link>
+      <link>http://www.codesin.net/post/Giving-feedback-during-a-long-running-task/</link>
       <pubDate>Mon, 16 Jun 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Giving-feedback-during-a-long-running-task/</guid>
+      <guid>http://www.codesin.net/post/Giving-feedback-during-a-long-running-task/</guid>
       <description>&lt;p&gt;Some tasks take a long time, there is no avoiding it. &lt;br&gt;Some factors are under your control and can be optimised, such as your data caching. Others are not, for example external services.&lt;/p&gt; &lt;p&gt;When considering what if any feedback to give to the users, you need to consider the following: &lt;/p&gt;
 &lt;ul&gt;
     &lt;li&gt;What is the most time the user should go without any feedback?
@@ -292,10 +292,14 @@ If you must have more than one step then promises can be chained. Each step in t
     &lt;a href=&#34;/post/img/PostRedirectGet_DoubleSubmitSolution.png&#34; target=&#34;_blank&#34;&gt;
         &lt;img title=&#34;PostRedirectGet_DoubleSubmitSolution&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;PostRedirectGet_DoubleSubmitSolution&#34; src=&#34;/post/img/PostRedirectGet_DoubleSubmitSolution.png&#34; width=&#34;366&#34; height=&#34;300&#34;&gt;
     &lt;/a&gt;&lt;br&gt;
-&lt;/p&gt; &lt;p&gt;If the task takes a short amount of time (e.g. 10 seconds), then a wait cursor or ‘Please wait’ message would be the simplest feedback you could do. &lt;br&gt;Note: duplicate transactions are possible if the user re-posts the page before processing completes. This scenario must therefore be handled with code on the server.&lt;/p&gt; &lt;p&gt;
-    Example:
+&lt;/p&gt; &lt;p&gt;If the task takes a short amount of time (e.g. 10 seconds), then a wait cursor or ‘Please wait’ message would be the simplest feedback you could do. &lt;br&gt;Note: duplicate transactions are possible if the user re-posts the page before processing completes. This scenario must therefore be handled with code on the server.&lt;/p&gt; 
+
+&lt;p class=&#34;well&#34;&gt;
+    &lt;strong&gt;Click to see a Demo:&lt;/strong&gt;
     &lt;a title=&#34;/mvc/Feedback/PostRedirectGet&#34; href=&#34;/mvc/Feedback/PostRedirectGet&#34; target=&#34;_blank&#34;&gt;/mvc/Feedback/PostRedirectGet&lt;/a&gt;
-&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;
+&lt;/p&gt; 
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;
     &lt;strong&gt;Long transactions&lt;/strong&gt;
     &lt;br&gt;A long running task could be one that takes more than 10 seconds. The task could run in the background on the server and the user be redirected to a ‘holding’ page.
     &lt;br&gt;When the task is running the user would like to see feedback.&lt;br&gt;
@@ -305,26 +309,33 @@ If you must have more than one step then promises can be chained. Each step in t
     &lt;a href=&#34;/post/img/PRGRG.png&#34; target=&#34;_blank&#34;&gt;
         &lt;img title=&#34;PRGRG&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;PRGRG&#34; src=&#34;/post/img/PRGRG.png&#34; width=&#34;333&#34; height=&#34;366&#34;&gt;
     &lt;/a&gt;
-&lt;/p&gt; &lt;p&gt;A simple example of the client pulling the data would be to reload the page from the server every few seconds. When the background task was complete, there would be a redirect to the results page. &lt;/p&gt; &lt;p&gt;
-    Example:
+&lt;/p&gt; &lt;p&gt;A simple example of the client pulling the data would be to reload the page from the server every few seconds. When the background task was complete, there would be a redirect to the results page. &lt;/p&gt; 
+
+&lt;p class=&#34;well&#34;&gt;
+    &lt;strong&gt;Click to see a Demo:&lt;/strong&gt;
     &lt;a title=&#34;/mvc/Feedback/PostRedirectGetRedirectGet&#34; href=&#34;/mvc/Feedback/PostRedirectGetRedirectGet&#34; target=&#34;_blank&#34;&gt;/mvc/Feedback/PostRedirectGetRedirectGet&lt;/a&gt;
-&lt;/p&gt; &lt;p&gt;Another solution would be to use JavaScript to make periodic Ajax requests to the server.
+&lt;/p&gt; 
+
+&lt;p&gt;Another solution would be to use JavaScript to make periodic Ajax requests to the server.
 &lt;/p&gt; &lt;p&gt;
     A server push solution could use Signal R, which allows the server to push progress data to the client to display to the user.&lt;br&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Comet_(programming)&#34; target=&#34;_blank&#34;&gt;
         http://en.wikipedia.org/wiki/Comet_(programming)
     &lt;/a&gt;
-&lt;/p&gt; &lt;p&gt;
-    Example:
+&lt;/p&gt; 
+&lt;p class=&#34;well&#34;&gt;
+    &lt;strong&gt;Click to see a Demo:&lt;/strong&gt;
     &lt;a title=&#34;/mvc/Feedback/SignalR&#34; href=&#34;/mvc/Feedback/SignalR&#34; target=&#34;_blank&#34;&gt;
         /mvc/Feedback/SignalR
     &lt;/a&gt;
-    &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;br&gt;
+&lt;/p&gt;	
+&lt;br&gt;
+&lt;br&gt;
     &lt;strong&gt;
         Real World Example
     &lt;/strong&gt;
     &lt;br&gt;‘comparethemarket.com’ is a comparison site which provides car insurance quotes.
     &lt;br&gt;After you request a quote, a list is built on the page while you wait. After about 45 seconds the search is stopped and the results are shown.
-&lt;/p&gt; &lt;p&gt;
+&lt;p&gt;
     This all happens in a single browser page and could be classified as a mini single page application (SPA). It works using JavaScript as follows:
     &lt;br&gt;1. Block the page displaying ‘Searching…’
     &lt;br&gt;2. Post the request for quotes to the server.
@@ -359,10 +370,10 @@ If you must have more than one step then promises can be chained. Each step in t
     
     <item>
       <title>The Physical vs Online Scrum board</title>
-      <link>http://localhost:1313/post/The-Physical-vs-Online-Scrum-board/</link>
+      <link>http://www.codesin.net/post/The-Physical-vs-Online-Scrum-board/</link>
       <pubDate>Tue, 15 Apr 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/The-Physical-vs-Online-Scrum-board/</guid>
+      <guid>http://www.codesin.net/post/The-Physical-vs-Online-Scrum-board/</guid>
       <description>&lt;p&gt; &lt;p&gt;At the start of a Scrum sprint the team commits to some user stories which the team plans to complete by the end.
 &lt;p&gt;Each user story is a piece of work which will deliver a feature or part of a feature.  &lt;p&gt;
     The stories move through a workflow on their way to completion. For example:  &lt;ol&gt;
@@ -401,10 +412,10 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     
     <item>
       <title>Scrum Retrospective &amp; Preparation</title>
-      <link>http://localhost:1313/post/Scrum/</link>
+      <link>http://www.codesin.net/post/Scrum/</link>
       <pubDate>Sun, 06 Apr 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Scrum/</guid>
+      <guid>http://www.codesin.net/post/Scrum/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;/post/img/ScrumLargeLabelled.png&#34;&gt;&lt;img title=&#34;ScrumLargeLabelled&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;ScrumLargeLabelled&#34; src=&#34;/post/img/ScrumLargeLabelled.png&#34; width=&#34;644&#34; height=&#34;301&#34;&gt;&lt;/a&gt; &lt;/p&gt; &lt;p&gt;A retrospective is a meeting held at the end of a sprint which has the main aim of improving the performance of the team during future sprints. It is probably the most important event from the teams point of view.&amp;nbsp; &lt;/p&gt; &lt;p&gt;There are usually a number of questions the team is asked,&amp;nbsp; such as:&lt;/p&gt; &lt;p&gt;What should we: &lt;/p&gt;
 &lt;ol&gt; &lt;li&gt;Start doing.  &lt;li&gt;Stop doing  &lt;li&gt;Continue doing &lt;/li&gt;&lt;/ol&gt;
 &lt;p&gt;&lt;a href=&#34;http://www.mountaingoatsoftware.com/agile/scrum/sprint-retrospective/&#34;&gt;http://www.mountaingoatsoftware.com/agile/scrum/sprint-retrospective/&lt;/a&gt;&lt;/p&gt; &lt;p&gt;or &lt;/p&gt;
@@ -439,10 +450,10 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     
     <item>
       <title>Virtual Reality is back</title>
-      <link>http://localhost:1313/post/Virtual-Reality-is-back/</link>
+      <link>http://www.codesin.net/post/Virtual-Reality-is-back/</link>
       <pubDate>Sun, 06 Apr 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Virtual-Reality-is-back/</guid>
+      <guid>http://www.codesin.net/post/Virtual-Reality-is-back/</guid>
       <description>&lt;p&gt;Back in the early 90&#39;s virtual reality promised a lot and delivered little. This was the time of movie &#34;Lawnmower man&#34;, the 486 Intel pc, Doom was the must have PC game with blocky graphics as this&lt;br&gt;was years before the 3DFX Voodoo 3D cards were released. Game consoles were pretty poor (pre Sony PlayStation one) and game arcades were still the place to play top games, 3D games such as &#39;Hard Drivin&#39; or Daytona USA. Around this time I used to take the train down to London occasionally to visit the arcades there. It was fun to visit Soho(the Red light district) which amongst sex shops and review bars also had one or two cool arcades.&amp;nbsp; I can remember playing &#34;Dragon&#39;s Lair&#34; there, but this must of been in the late 80&#39;s.&lt;/p&gt; &lt;p&gt;&lt;a href=&#34;/post/img/2-lawnmower-man.jpg&#34;&gt;&lt;img title=&#34;2-lawnmower-man&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;2-lawnmower-man&#34; src=&#34;/post/img/2-lawnmower-man.jpg&#34; width=&#34;244&#34; height=&#34;148&#34;&gt;&lt;/a&gt;&lt;/p&gt; &lt;p&gt;The Trocadero in Piccadilly Circus also contained a huge arcade and within it was the &#34;Virtuality&#34; centre, home to 3D game Heavy Metal (Exorex) which had stereoscopic 3D visuals. The head mounted display &lt;br&gt;consisted of a visor fitted with two displays of 276x372 resolution. I remember having to wait a while to get a go, it was expensive costing £5, the equivalent of £9.50 today. I only had one go which was utterly disappointing, it was one of the worst games I had ever played. The graphics were blocky and it was almost impossible to control due to the lag and poor processing power. The hardware was expensive and so was never going to be seen in your local arcade, let alone in your living room.&lt;/p&gt;
 &lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;600&#34; border=&#34;0&#34;&gt;
     &lt;tbody&gt;
@@ -524,10 +535,10 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     
     <item>
       <title>CSS Transformations</title>
-      <link>http://localhost:1313/post/Css-Transformations/</link>
+      <link>http://www.codesin.net/post/Css-Transformations/</link>
       <pubDate>Sun, 02 Mar 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Css-Transformations/</guid>
+      <guid>http://www.codesin.net/post/Css-Transformations/</guid>
       <description>&lt;p&gt;
     &lt;a href=&#34;/post/img/CssJs.png&#34;&gt;
         &lt;img title=&#34;CssJs&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CssJs&#34; src=&#34;/post/img/CssJs.png&#34; width=&#34;244&#34; height=&#34;167&#34;&gt;
@@ -572,10 +583,10 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     
     <item>
       <title>Testing JavaScript with Visual Studio</title>
-      <link>http://localhost:1313/post/Testing-JavaScript-with-Visual-Studio/</link>
+      <link>http://www.codesin.net/post/Testing-JavaScript-with-Visual-Studio/</link>
       <pubDate>Sat, 01 Mar 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Testing-JavaScript-with-Visual-Studio/</guid>
+      <guid>http://www.codesin.net/post/Testing-JavaScript-with-Visual-Studio/</guid>
       <description>&lt;p&gt;If your web application is using JavaScript for non trivial functionality then it makes sense to test it programmatically. Various JavaScript frameworks have been written to allow you to write JavaScript tests to test your JavaScript.  &lt;p&gt;This pluralsight course gives a good overview: pluralsight - Testing Clientside JavaScript  &lt;h2&gt;The main decisions you will need to make&lt;/h2&gt;
 &lt;p&gt;1. What style do you want to write your tests in ?
 &lt;p&gt;Behaviour Driven Development (BDD) or Test Driven Development (TDD), as this will influence which JavaScript test framework you use.  &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;div id=&#34;scid:5737277B-5D6D-4f48-ABFC-DD9C333F4C5D:0fd715c7-5c87-48d7-ac28-8f324820e0d2&#34; class=&#34;wlWriterSmartContent&#34; style=&#34;float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px&#34;&gt;
@@ -630,10 +641,10 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     
     <item>
       <title>Mapping Images on Spherical Surfaces Using Javascript and HTML5 Canvas</title>
-      <link>http://localhost:1313/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</link>
+      <link>http://www.codesin.net/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</link>
       <pubDate>Sat, 01 Mar 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</guid>
+      <guid>http://www.codesin.net/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;/post/img/Earth.png&#34;&gt;&lt;img title=&#34;Earth&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Earth&#34; src=&#34;/post/img/Earth.png&#34; width=&#34;155&#34; height=&#34;154&#34;&gt;&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;andalmeida&#34; href=&#34;http://www.codeproject.com/Members/andalmeida&#34;&gt;andalmeida&lt;/a&gt; posted on codeproject.com showing how to map images onto spherical surfaces using C#. I have taken his code and converted it to work with javascript and an HTML5 Canvas.&lt;/p&gt; &lt;p&gt;Original article: &lt;a href=&#34;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&#34;&gt;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Demo:&lt;/h2&gt;&lt;iframe height=&#34;260&#34; src=&#34;/post/content/ImageWrapDemo/wrapspheredemo.html&#34; width=&#34;600&#34;&gt;&lt;/iframe&gt;&lt;br&gt;
 &lt;h2&gt;Source Code&lt;/h2&gt;&lt;a href=&#34;/post/content/ImageWrapDemo/ImageWrapDemo.zip&#34;&gt;Download source code&lt;/a&gt;&amp;nbsp;&amp;nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  &lt;h2&gt;Html:&lt;/h2&gt;Contains a canvas &#39;myCanvas&#39; which will be drawn to. &lt;pre class=&#34;prettyprint&#34;&gt;&amp;lt;img src=&#34;images/worldmap.gif&#34; id=&#34;myImage&#34; /&amp;gt;
@@ -767,10 +778,10 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     
     <item>
       <title>My Development Tools</title>
-      <link>http://localhost:1313/post/My-Development-Tools/</link>
+      <link>http://www.codesin.net/post/My-Development-Tools/</link>
       <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/My-Development-Tools/</guid>
+      <guid>http://www.codesin.net/post/My-Development-Tools/</guid>
       <description>&lt;h3&gt;These are the tools I use daily...&lt;/h3&gt;
 &lt;h4&gt;IDE Tools&lt;/h4&gt;
 &lt;table class=&#34;table table-bordered&#34; cellspacing=&#34;20&#34; cellpadding=&#34;10&#34; width=&#34;600&#34; border=&#34;0&#34;&gt;
@@ -891,10 +902,10 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     
     <item>
       <title>HTML5 Canvas Animation</title>
-      <link>http://localhost:1313/post/HTML5-Canvas-Animation/</link>
+      <link>http://www.codesin.net/post/HTML5-Canvas-Animation/</link>
       <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/HTML5-Canvas-Animation/</guid>
+      <guid>http://www.codesin.net/post/HTML5-Canvas-Animation/</guid>
       <description>&lt;a href=&#34;/post/img/js-logo-badge-512-200x200.png&#34;&gt;&lt;img title=&#34;js-logo-badge-512-200x200&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;js-logo-badge-512-200x200&#34; src=&#34;/post/img/js-logo-badge-512-200x200.png&#34; width=&#34;204&#34; height=&#34;204&#34;&gt;&lt;/a&gt;&lt;script src=&#34;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#34;&gt;&lt;/script&gt;  &lt;p&gt;Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var requestAnimFrame = (function () {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;br&gt;})();&lt;/p&gt;
 &lt;p&gt;function animate() {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; draw();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; requestAnimationFrame(animate);&lt;br&gt;}&lt;/p&gt;
 &lt;p&gt;function draw() {&lt;/p&gt;
@@ -948,10 +959,10 @@ window.onload = function (e) {
     
     <item>
       <title>HTML5 Canvas</title>
-      <link>http://localhost:1313/post/HTML5-Canvas/</link>
+      <link>http://www.codesin.net/post/HTML5-Canvas/</link>
       <pubDate>Sun, 09 Feb 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/HTML5-Canvas/</guid>
+      <guid>http://www.codesin.net/post/HTML5-Canvas/</guid>
       <description>&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td valign=&#34;top&#34; width=&#34;244&#34;&gt;&lt;a href=&#34;/post/img/mb_html5_badge_right.jpg&#34;&gt;&lt;em&gt;&lt;img id=&#34;cupimage&#34; title=&#34;mb_html5_badge_right&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;mb_html5_badge_right&#34; src=&#34;/post/img/mb_html5_badge_right.jpg&#34; width=&#34;244&#34; height=&#34;244&#34;&gt;&lt;/em&gt;&lt;/a&gt;&lt;em&gt;&amp;nbsp;&lt;/em&gt;&lt;/td&gt; &lt;td valign=&#34;top&#34;&gt; &lt;p&gt;What is the the HTML5 canvas, and what can it do?&lt;/p&gt; &lt;p&gt;Below you will find some examples and links to summarise its capabilities.&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://www.w3schools.com/html/html5_canvas.asp&#34; href=&#34;http://www.w3schools.com/html/html5_canvas.asp&#34;&gt;http://www.w3schools.com/html/html5_canvas.asp&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://diveintohtml5.info/canvas.html&#34; href=&#34;http://diveintohtml5.info/canvas.html&#34;&gt;http://diveintohtml5.info/canvas.html&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://www.html5canvastutorials.com/&#34; href=&#34;http://www.html5canvastutorials.com/&#34;&gt;http://www.html5canvastutorials.com/&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://code.tutsplus.com/articles/21-ridiculously-impressive-html5-canvas-experiments--net-14210&#34; href=&#34;http://code.tutsplus.com/articles/21-ridiculously-impressive-html5-canvas-experiments--net-14210&#34;&gt;http://code.tutsplus.com/articles/21-ridiculously-impressive-html5-canvas-experiments--net-14210&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;h3&gt;&lt;a title=&#34;http://en.wikipedia.org/wiki/Canvas_element&#34; href=&#34;http://en.wikipedia.org/wiki/Canvas_element&#34;&gt;&lt;em&gt;Wikipedia: Canvas Element&lt;/em&gt;&lt;/a&gt;&lt;/h3&gt; &lt;p&gt;&lt;em&gt;The &lt;b&gt;canvas &lt;a href=&#34;http://en.wikipedia.org/wiki/HTML_element&#34;&gt;element&lt;/a&gt;&lt;/b&gt; is part of &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/HTML5&#34;&gt;&lt;em&gt;HTML5&lt;/em&gt;&lt;/a&gt;&lt;em&gt; and allows for dynamic, &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Scripting_language&#34;&gt;&lt;em&gt;scriptable&lt;/em&gt;&lt;/a&gt;&lt;em&gt; &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Rendering_(computer_graphics)&#34;&gt;&lt;em&gt;rendering&lt;/em&gt;&lt;/a&gt;&lt;em&gt; of 2D shapes and &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Bitmap&#34;&gt;&lt;em&gt;bitmap&lt;/em&gt;&lt;/a&gt;&lt;em&gt; images. It is a low level, procedural model that updates a &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Bitmap&#34;&gt;&lt;em&gt;bitmap&lt;/em&gt;&lt;/a&gt;&lt;em&gt; and does not have a built-in &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Scene_graph&#34;&gt;&lt;em&gt;scene graph&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;h4&gt;&lt;em&gt;Usage&lt;/em&gt;&lt;/h4&gt; &lt;p&gt;&lt;em&gt;Canvas consists of a drawable region defined in HTML code with height and width attributes. &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/JavaScript&#34;&gt;&lt;em&gt;JavaScript&lt;/em&gt;&lt;/a&gt;&lt;em&gt; code may access the area through a full set of drawing functions similar to those of other common 2D APIs, thus allowing for dynamically generated graphics. Some anticipated uses of canvas include building graphs, animations, games, and image composition.&lt;/em&gt;  &lt;/p&gt;

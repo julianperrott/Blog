@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Page 1: Post Redirect Get Redirect Get (Meta Refresh) - Slow task";
+}
+
+<div class="well">
+    <a href="@Url.Action("RunAsynchronousTask")" class="btn btn-primary">Click here to start the task</a>
+</div>
+<p>The server will start the task. This can take up to a minute.</p>
+<p>A page will be shown while the server processes, and will refresh every 2 seconds.</p>
+
+<p>
+    @Html.ActionLink("Demo Index", "index", "Demo")
+</p>

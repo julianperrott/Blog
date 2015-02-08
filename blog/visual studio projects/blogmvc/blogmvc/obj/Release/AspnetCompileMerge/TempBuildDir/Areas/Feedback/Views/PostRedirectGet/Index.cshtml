@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Page 1: Post Redirect Get - Slow task";
+}
+<script src="~/Areas/Feedback/js/jquery-1.9.1.js"></script>
+
+<link href="~/Areas/Feedback/css/animate.css" rel="stylesheet" />
+
+<div class="well">
+    <a id="btn" href="@Url.Action("RunSynchronousTask")" class="btn btn-primary">Click here to start the task</a>
+</div>
+
+<p>
+    @Html.ActionLink("Demo Index", "index","Demo")
+</p>
+
+<p>The server will not respond until the task completes. This can take up to a minute.</p>
+<p> Due to a lack of feedback the user may click the button again, or press 'F5' (This is bad!)</p>
+
+<blockquote id="thought" class="oval-thought hidden">
+    <p id="bubble"></p>
+</blockquote>
+
+<script>
+
+    $(document).ready(function () {
+        var thoughts = ["Is it doing anything ?", "What is going on?", "Hello is anything happening?", "Hmmm...", "Should I refresh the page?", "Did I click the button ?", "Zzzzzzzz!"];
+
+        $('#btn').click(function () { sleepThenShowMessage() });
+
+        function showRandomMessage() {
+            var l = Math.random() * thoughts.length;
+            var thought = thoughts[parseInt(l, 10)];
+            document.getElementById("bubble").innerHTML = thought;
+
+            $('#thought').addClass('bounceInUp animated').removeClass('hidden');
+
+            window.setTimeout(function () {
+                $('#thought').removeClass('bounceInUp animated').addClass('hidden');
+            }, 4000);
+
+
+            sleepThenShowMessage();
+        }
+
+        function sleepThenShowMessage() {
+            window.setTimeout(function () {
+                showRandomMessage();
+            }, Math.floor(Math.random() * 2000 + 4100));
+        }
+    });
+
+</script>
+
+
+
+<style type="text/css">
+    .oval-thought {
+        position: relative;
+        width: 270px;
+        padding: 50px 40px;
+        margin: 1em auto 80px;
+        text-align: center;
+        color: #fff;
+        background: #075698;
+        /* css3 */
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+        background: -moz-linear-gradient(#2e88c4, #075698);
+        background: -o-linear-gradient(#2e88c4, #075698);
+        background: linear-gradient(#2e88c4, #075698);
+        /*
+  NOTES:
+  -webkit-border-radius:220px 120px; // produces oval in safari 4 and chrome 4
+  -webkit-border-radius:220px / 120px; // produces oval in chrome 4 (again!) but not supported in safari 4
+  Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+  */
+        -webkit-border-top-left-radius: 220px 120px;
+        -webkit-border-top-right-radius: 220px 120px;
+        -webkit-border-bottom-right-radius: 220px 120px;
+        -webkit-border-bottom-left-radius: 220px 120px;
+        -moz-border-radius: 220px / 120px;
+        border-radius: 220px / 120px;
+    }
+
+        .oval-thought p {
+            font-size: 1.25em;
+        }
+
+        /* creates the larger circle */
+        .oval-thought:before {
+            content: "";
+            position: absolute;
+            bottom: -20px;
+            left: 50px;
+            width: 30px;
+            height: 30px;
+            background: #075698;
+            /* css3 */
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+        }
+
+        /* creates the smaller circle */
+        .oval-thought:after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: 30px;
+            width: 15px;
+            height: 15px;
+            background: #075698;
+            /* css3 */
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+        }
+
+</style>

@@ -1,0 +1,14 @@
+﻿@model int 
+@{
+    ViewBag.Title = "Page 2: Post Redirect Get Redirect Get (Meta Refresh) - Waiting for slow task to finish";
+    ViewBag.Meta = "<meta http-equiv=\"refresh\" content=\"2\">";
+}
+<div class="well">
+    <p>Waiting to complete: @DateTime.Now.ToLongTimeString()</p>
+    <p>Page refreshed @Model times.</p>
+    <img src="~/Areas/Feedback/images/ajax-loader.gif" />
+</div>
+
+<p>The server is running the task. This can take up to a minute.</p>
+<p>This page is shown while the server processes, and will refresh every 2 seconds.</p>
+<p>Press 'F5' and refresh the page, it will not re-submit.</p>
