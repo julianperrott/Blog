@@ -3,7 +3,7 @@
 	{{ range $index, $element := .Data.Pages }}
 
 	<!-- Article -->
-	<article class="col-xs-6 article wow  {{ if ge $index 2 }}animated {{ if eq ( mod $index 2) 0 }}fadeInLeft{{ else }}fadeInRight{{ end }} {{ end }}">
+	<article class="col-xs-6 article {{ if ge $index 2 }} wow animated {{ if eq ( mod $index 2) 0 }}fadeInLeft{{ else }}fadeInRight{{ end }} {{ end }}">
 		<a href="{{ .Permalink }}" class="c borderedHover">
 			<div class="wrap">
 				<div class="info">
