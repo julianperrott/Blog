@@ -10,54 +10,6 @@
     <updated>Mon, 20 Oct 2014 00:00:00 UTC</updated>
     
     <item>
-      <title>Single responsibility principle - Redefined</title>
-      <link>http://www.codesin.net/post/Single-responsibility-principle-Redefined/</link>
-      <pubDate>Mon, 20 Oct 2014 00:00:00 UTC</pubDate>
-      
-      <guid>http://www.codesin.net/post/Single-responsibility-principle-Redefined/</guid>
-      <description>&lt;p&gt;
-    Single responsibility principle by Uncle Bob (Robert C. Martin) is the first of the SOLID object orientated design principles. I read it a few years ago, but felt my understanding of it was a little unclear, and I am not alone. This led me to try to understand it again and during which I&#39;ve discovered that Uncle Bob has redefined it.
-&lt;/p&gt; &lt;p&gt;
-    &lt;a href=&#34;/post/img/UncleBob.jpg&#34;&gt;
-        &lt;img title=&#34;UncleBob&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;UncleBob&#34; src=&#34;/post/img/UncleBob.jpg&#34; width=&#34;244&#34; height=&#34;186&#34;&gt;
-    &lt;/a&gt;&lt;br&gt;&amp;nbsp;&lt;br&gt;
-&lt;/p&gt;
-&lt;h2&gt;The old SRP&lt;/h2&gt; &lt;p&gt;
-    &#34;A CLASS SHOULD HAVE ONLY ONE REASON TO CHANGE.&#34;&lt;br&gt;&amp;nbsp;
-    &lt;br&gt;Bob explains that a responsibility is defined as &#34;a reason for change&#34;. If a class has more that one responsibility then those responsibilities become coupled and changes to one may impair the ability to meet the others. This coupling makes the design fragile, with changes causing unexpected impacts in the system.
-    &lt;br&gt;&amp;nbsp;&lt;br&gt;&#34;If you can think of more than one motive for changing a class, then that class has more than one responsibility.&#34;&lt;br&gt;&amp;nbsp;
-    &lt;br&gt;When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality, which seems to be no different than cohesiveness.
-&lt;/p&gt;
-&lt;p&gt;
-    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit&#34;&gt;The Single Responsibility - Chapter&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Single_responsibility_principle&#34;&gt;wikipedia.org&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/p&gt;
-&lt;h2&gt;The new SRP&lt;/h2&gt;
-&lt;p&gt;
-    Bob says that &#34;Things that change for the same reason should be grouped together. Things that change for different reasons should be separated.&#34;, this is not new, but he also says:
-&lt;/p&gt; &lt;p&gt;&#34;A responsibility is a person, not something the code does. It is a person who wants to make a change to the code.&#34;&lt;/p&gt;
-&lt;p&gt;So we now should think about who would require changes to our classes. He clarifies that a person can have more than one role and the role is who the code is responsible to.&lt;/p&gt;
-&lt;p&gt;&#34;If two different people want to change a class for two different reasons, then pull those reasons into two different classes. That is the SRP.&#34; &lt;/p&gt;
-&lt;p&gt;
-    &#34;Violation of SRP means that a change by one role could affect the code for another role.&#34;
-    &lt;ul&gt;
-        &lt;li&gt;
-            &lt;a href=&#34;http://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html&#34;&gt;Uncle Bob&#39;s blog&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li&gt;
-            &lt;a href=&#34;http://vimeo.com/43592685&#34;&gt;NDC 2012 - Video&lt;/a&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/p&gt;
-&lt;h2&gt;Conclusions&lt;/h2&gt; &lt;p&gt;Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.&lt;/p&gt;
-&lt;p&gt;Wikipedia is out of date.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Ingress Intel Total Conversion - JavaScript Plugin</title>
       <link>http://www.codesin.net/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/</link>
       <pubDate>Mon, 20 Oct 2014 00:00:00 UTC</pubDate>
@@ -109,6 +61,54 @@
         field-finisher.user.js
     &lt;/a&gt;
 &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Single responsibility principle - Redefined</title>
+      <link>http://www.codesin.net/post/Single-responsibility-principle-Redefined/</link>
+      <pubDate>Mon, 20 Oct 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://www.codesin.net/post/Single-responsibility-principle-Redefined/</guid>
+      <description>&lt;p&gt;
+    Single responsibility principle by Uncle Bob (Robert C. Martin) is the first of the SOLID object orientated design principles. I read it a few years ago, but felt my understanding of it was a little unclear, and I am not alone. This led me to try to understand it again and during which I&#39;ve discovered that Uncle Bob has redefined it.
+&lt;/p&gt; &lt;p&gt;
+    &lt;a href=&#34;/post/img/UncleBob.jpg&#34;&gt;
+        &lt;img title=&#34;UncleBob&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;UncleBob&#34; src=&#34;/post/img/UncleBob.jpg&#34; width=&#34;244&#34; height=&#34;186&#34;&gt;
+    &lt;/a&gt;&lt;br&gt;&amp;nbsp;&lt;br&gt;
+&lt;/p&gt;
+&lt;h2&gt;The old SRP&lt;/h2&gt; &lt;p&gt;
+    &#34;A CLASS SHOULD HAVE ONLY ONE REASON TO CHANGE.&#34;&lt;br&gt;&amp;nbsp;
+    &lt;br&gt;Bob explains that a responsibility is defined as &#34;a reason for change&#34;. If a class has more that one responsibility then those responsibilities become coupled and changes to one may impair the ability to meet the others. This coupling makes the design fragile, with changes causing unexpected impacts in the system.
+    &lt;br&gt;&amp;nbsp;&lt;br&gt;&#34;If you can think of more than one motive for changing a class, then that class has more than one responsibility.&#34;&lt;br&gt;&amp;nbsp;
+    &lt;br&gt;When I read this chapter It feels like the focus is the functionality of a class. That it should not have differing sets of functionality, which seems to be no different than cohesiveness.
+&lt;/p&gt;
+&lt;p&gt;
+    If you are already aware that concerns such as presentation, persistence and business logic should be separated, then most of the examples people use to describe SRP become redundant. What you have left with is the decision whether breaking up a class is worth the additional complexity.
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit&#34;&gt;The Single Responsibility - Chapter&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Single_responsibility_principle&#34;&gt;wikipedia.org&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/p&gt;
+&lt;h2&gt;The new SRP&lt;/h2&gt;
+&lt;p&gt;
+    Bob says that &#34;Things that change for the same reason should be grouped together. Things that change for different reasons should be separated.&#34;, this is not new, but he also says:
+&lt;/p&gt; &lt;p&gt;&#34;A responsibility is a person, not something the code does. It is a person who wants to make a change to the code.&#34;&lt;/p&gt;
+&lt;p&gt;So we now should think about who would require changes to our classes. He clarifies that a person can have more than one role and the role is who the code is responsible to.&lt;/p&gt;
+&lt;p&gt;&#34;If two different people want to change a class for two different reasons, then pull those reasons into two different classes. That is the SRP.&#34; &lt;/p&gt;
+&lt;p&gt;
+    &#34;Violation of SRP means that a change by one role could affect the code for another role.&#34;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href=&#34;http://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html&#34;&gt;Uncle Bob&#39;s blog&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&#34;http://vimeo.com/43592685&#34;&gt;NDC 2012 - Video&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/p&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt; &lt;p&gt;Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.&lt;/p&gt;
+&lt;p&gt;Wikipedia is out of date.&lt;/p&gt;
 </description>
     </item>
     
