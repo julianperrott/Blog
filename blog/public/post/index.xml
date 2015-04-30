@@ -7,7 +7,58 @@
     <language>en-gb</language>
     
     
-    <updated>Sat, 18 Apr 2015 00:00:00 UTC</updated>
+    <updated>Sun, 19 Apr 2015 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Cross Platform Apps For Microsoft Developers</title>
+      <link>http://www.codesin.net/post/Cross-Platform-Apps/</link>
+      <pubDate>Sun, 19 Apr 2015 00:00:00 UTC</pubDate>
+      
+      <guid>http://www.codesin.net/post/Cross-Platform-Apps/</guid>
+      <description>&lt;p&gt;There is a demand which didn’t exist five years ago for business applications which run on tablets and phones.&lt;/p&gt;
+
+&lt;p&gt;If you are a developer in a Microsoft shop you would probably first consider developing your app for windows tablets / phones. But you need to consider what devices your customer has and will have over the next few years. Android and IOS fill 89% of the market so developing only for a windows device would limit the app to a tiny percentage of the market. You could pick one of the big two, but this would require learning a new language (Objective-C / Swift or Java) and understanding the design principles of that platform (Material / Flat).&lt;/p&gt;
+
+&lt;p&gt;There seems to be two viable options for developers in the Microsoft stack:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Using C# and XAML with Xamarin Forms.&lt;/li&gt;
+&lt;li&gt;Javascript and HTML5 which has many choices (Phonegap, Sencha, Appcelerator, iFactr etc).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Write once run anywhere seems like an ideal solution, but there may be compromises. The decision needs to consider the following areas:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Accessibility:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The skillsets your developers already have (XAML or HTML).&lt;/li&gt;
+&lt;li&gt;The ease and speed of development in each environment. What tools are available ?&lt;/li&gt;
+&lt;li&gt;Resources for learning. e.g. Videos and the information supplied by the suppliers (wiki, web site).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Popularity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The community and third party activity behind each option.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Activity:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How active the code owners are (releasing new features, bug fixing).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Users:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Each platform has its own design principles which create a standard experience for the users, a common approach may not be able to supply this native experience. If this matters less to your users than the functionality then this shouldn’t be a problem. Users of business apps probably already experience a multitude of design experiences: ‘Winforms’, ‘Web applications’, ‘WPF/Silverlight’ etc.&lt;/li&gt;
+&lt;li&gt;Performance issues may prevent a non native approach. If the app requires a high frame-rate or has intense graphical requirements such as 3D then performance may be an issue.&lt;/li&gt;
+&lt;li&gt;What devices are they using. Do they have a mixture running different operating systems or do you only need to support one.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If there is no clear choice then you could clarify the decision by doing a few sprints developing each solution, then see which the developers and users prefer.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Productivity from &#39;The Flow&#39;</title>
@@ -827,6 +878,63 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     </item>
     
     <item>
+      <title>HTML5 Canvas Animation</title>
+      <link>http://www.codesin.net/post/HTML5-Canvas-Animation/</link>
+      <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://www.codesin.net/post/HTML5-Canvas-Animation/</guid>
+      <description>&lt;a href=&#34;/post/img/js-logo-badge-512-200x200.png&#34;&gt;&lt;img title=&#34;js-logo-badge-512-200x200&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;js-logo-badge-512-200x200&#34; src=&#34;/post/img/js-logo-badge-512-200x200.png&#34; width=&#34;204&#34; height=&#34;204&#34;&gt;&lt;/a&gt;&lt;script src=&#34;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#34;&gt;&lt;/script&gt;  &lt;p&gt;Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var requestAnimFrame = (function () {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;br&gt;})();&lt;/p&gt;
+&lt;p&gt;function animate() {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; draw();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; requestAnimationFrame(animate);&lt;br&gt;}&lt;/p&gt;
+&lt;p&gt;function draw() {&lt;/p&gt;
+&lt;p&gt;// redraw the next frame here&lt;br&gt;}&lt;/p&gt;
+&lt;p&gt;window.onload = function (e) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; animate();&lt;br&gt;}&lt;/p&gt;
+&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;This demo draws a rectangle and moves it each time it is redrawn:&lt;/p&gt;&lt;canvas id=&#34;myCanvas&#34; height=&#34;80&#34; width=&#34;578&#34;&gt;Canvas &lt;/canvas&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var canvas = &amp;lt;HTMLCanvasElement&amp;gt;document.getElementById(&#39;myCanvas&#39;);&lt;br&gt;var context = canvas.getContext(&#39;2d&#39;);&lt;br&gt;var x = 50;&lt;br&gt;var y = 20;&lt;br&gt;var vx = 1;&lt;/p&gt;
+&lt;p&gt;function draw() {&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x = x + vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (x &amp;gt; 100 || x &amp;lt; 1) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; vx = -vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.beginPath();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.rect(x, y, 40, 20);&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fillStyle = &#39;#8ED6FF&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fill();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.lineWidth = 1;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.strokeStyle = &#39;black&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.stroke();&lt;br&gt;}&lt;/p&gt;
+&lt;/pre&gt;&lt;script&gt;
+var requestAnimFrame = (function () {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+        window.setTimeout(callback, 1000 / 60, new Date().getTime());
+    };
+})();
+
+function animate() {
+    draw();
+    requestAnimationFrame(animate);
+}
+
+var canvas = document.getElementById(&#39;myCanvas&#39;);
+var context = canvas.getContext(&#39;2d&#39;);
+var x = 50;
+var y = 20;
+var vx = 1;
+
+function draw() {
+    x = x + vx;
+    if (x &gt; 100 || x &lt; 1) {
+        vx = -vx;
+    }
+
+    context.beginPath();
+    context.rect(x, y, 40, 20);
+    context.fillStyle = &#39;#8ED6FF&#39;;
+    context.fill();
+    context.lineWidth = 1;
+    context.strokeStyle = &#39;black&#39;;
+    context.stroke();
+}
+
+window.onload = function (e) {
+    animate();
+};
+
+&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
       <title>My Development Tools</title>
       <link>http://www.codesin.net/post/My-Development-Tools/</link>
       <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
@@ -947,63 +1055,6 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
         &lt;/tr&gt;
     &lt;/tbody&gt;
 &lt;/table&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>HTML5 Canvas Animation</title>
-      <link>http://www.codesin.net/post/HTML5-Canvas-Animation/</link>
-      <pubDate>Sun, 16 Feb 2014 00:00:00 UTC</pubDate>
-      
-      <guid>http://www.codesin.net/post/HTML5-Canvas-Animation/</guid>
-      <description>&lt;a href=&#34;/post/img/js-logo-badge-512-200x200.png&#34;&gt;&lt;img title=&#34;js-logo-badge-512-200x200&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;js-logo-badge-512-200x200&#34; src=&#34;/post/img/js-logo-badge-512-200x200.png&#34; width=&#34;204&#34; height=&#34;204&#34;&gt;&lt;/a&gt;&lt;script src=&#34;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#34;&gt;&lt;/script&gt;  &lt;p&gt;Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var requestAnimFrame = (function () {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;br&gt;})();&lt;/p&gt;
-&lt;p&gt;function animate() {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; draw();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; requestAnimationFrame(animate);&lt;br&gt;}&lt;/p&gt;
-&lt;p&gt;function draw() {&lt;/p&gt;
-&lt;p&gt;// redraw the next frame here&lt;br&gt;}&lt;/p&gt;
-&lt;p&gt;window.onload = function (e) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; animate();&lt;br&gt;}&lt;/p&gt;
-&lt;/pre&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;This demo draws a rectangle and moves it each time it is redrawn:&lt;/p&gt;&lt;canvas id=&#34;myCanvas&#34; height=&#34;80&#34; width=&#34;578&#34;&gt;Canvas &lt;/canvas&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var canvas = &amp;lt;HTMLCanvasElement&amp;gt;document.getElementById(&#39;myCanvas&#39;);&lt;br&gt;var context = canvas.getContext(&#39;2d&#39;);&lt;br&gt;var x = 50;&lt;br&gt;var y = 20;&lt;br&gt;var vx = 1;&lt;/p&gt;
-&lt;p&gt;function draw() {&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; x = x + vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (x &amp;gt; 100 || x &amp;lt; 1) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; vx = -vx;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.beginPath();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.rect(x, y, 40, 20);&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fillStyle = &#39;#8ED6FF&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.fill();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.lineWidth = 1;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.strokeStyle = &#39;black&#39;;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; context.stroke();&lt;br&gt;}&lt;/p&gt;
-&lt;/pre&gt;&lt;script&gt;
-var requestAnimFrame = (function () {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
-        window.setTimeout(callback, 1000 / 60, new Date().getTime());
-    };
-})();
-
-function animate() {
-    draw();
-    requestAnimationFrame(animate);
-}
-
-var canvas = document.getElementById(&#39;myCanvas&#39;);
-var context = canvas.getContext(&#39;2d&#39;);
-var x = 50;
-var y = 20;
-var vx = 1;
-
-function draw() {
-    x = x + vx;
-    if (x &gt; 100 || x &lt; 1) {
-        vx = -vx;
-    }
-
-    context.beginPath();
-    context.rect(x, y, 40, 20);
-    context.fillStyle = &#39;#8ED6FF&#39;;
-    context.fill();
-    context.lineWidth = 1;
-    context.strokeStyle = &#39;black&#39;;
-    context.stroke();
-}
-
-window.onload = function (e) {
-    animate();
-};
-
-&lt;/script&gt;
 </description>
     </item>
     

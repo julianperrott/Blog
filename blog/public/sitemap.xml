@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://www.codesin.net/</loc>
-    <lastmod>2015-04-18T00:00:00+00:00</lastmod>
+    <lastmod>2015-04-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.codesin.net/post/Cross-Platform-Apps/</loc>
+    <lastmod>2015-04-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -38,12 +43,12 @@
   </url>
   
   <url>
-    <loc>http://www.codesin.net/post/Scrum/</loc>
+    <loc>http://www.codesin.net/post/Virtual-Reality-is-back/</loc>
     <lastmod>2014-04-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.codesin.net/post/Virtual-Reality-is-back/</loc>
+    <loc>http://www.codesin.net/post/Scrum/</loc>
     <lastmod>2014-04-06T00:00:00+00:00</lastmod>
   </url>
   
@@ -63,12 +68,12 @@
   </url>
   
   <url>
-    <loc>http://www.codesin.net/post/My-Development-Tools/</loc>
+    <loc>http://www.codesin.net/post/HTML5-Canvas-Animation/</loc>
     <lastmod>2014-02-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.codesin.net/post/HTML5-Canvas-Animation/</loc>
+    <loc>http://www.codesin.net/post/My-Development-Tools/</loc>
     <lastmod>2014-02-16T00:00:00+00:00</lastmod>
   </url>
   
