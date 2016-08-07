@@ -1,3 +1,112 @@
+# Site settings
 baseurl = "http://www.codesIn.net"
 languageCode = "en-gb"
 title = "Blog"
+theme = "hugo-freelancer-theme"
+
+[params]
+
+    # You can use Markdown syntax for urls [text](//url.to/source) for
+    # most longer texts.
+
+    # To provide some metadata for search engines feel free to add a few
+    # information about you and your website.
+    name = "Codes in .NET"
+    description = "A developer blog by Julian Perrott"
+    email = "julian_perrott@hotmailcom"
+
+    [params.navigation]
+        brand = "Codes In .Net"
+
+
+    [params.header]
+        # Copy your own image into './static/img/'' if you wish
+        image = "Me3.png"
+        name = "Julian Perrott"
+        subtitle = "Developer - Gamer - Botter"
+
+
+    [params.portfolio]
+        # All projects defined in their own files. You can find example projects
+        # at 'exampleSite/data/projects'. Copy the 'projects' folder into the 'data' directory
+        # at the root of this Hugo site.
+        # For more informtion take a look at the README.
+        title = "Blog"
+
+        [params.portfolio.modal]
+            client = "Client"
+            date = "Date"
+            category = "Category"
+            buttontext = "Close"
+
+
+    [params.about]
+        title = "About Me"
+        # The about text is splitted into a left and right column
+        left = "My first computer was a Commodore VIC-20, I had great fun trying to code text adventures and side scrolling shoot 'em ups in BASIC. This helped me lead the way as the first in my school to pass a computer exam."
+        right = "Currently I work as a Senior Software Engineer in Bedford for a FTSE 100 Company. Coding daily in C#, JavaScript and SQL. Outside of work I work on whatever is interesting me at that time."
+
+        [params.about.button]
+            text = "Download theme"
+            link = "//github.com/digitalcraftsman/hugo-freelancer-theme/archive/master.zip"
+            icon = "download"
+
+
+    [params.contact]
+        title = "Contact"
+
+        # 'error' defines error messages for invalid inputs
+        [params.contact.form.name]
+            text = "Name"
+            error = "Please enter your name."
+
+        [params.contact.form.email]
+            text = "Email Address"
+            error = "Please enter your email address."
+
+        [params.contact.form.phone]
+            text = "Phone Number"
+            error = "Please enter your phone number."
+
+        [params.contact.form.message]
+            text = "Message"
+            error = "Please enter a message."
+
+        [params.contact.form.button]
+            text = "Send"
+
+
+    [params.footer]
+        copyright = "Published under the Apache License 2.0. Powered by [Hugo](//gohugo.io)."
+
+        [params.footer.location]
+            title = "Location"
+            # Postal address (add as many lines as necessary)
+            address = ["Milton Keynes, United Kingdom"]
+
+        [params.footer.social]
+            title = "Around the web"
+            # All icons using Fontawesome's icon font. Look at fortawesome.github.io/Font-Awesome/icons/
+            # for more icons. The icons are represented by their corresponding
+            # CSS class.
+			[[params.footer.social.networks]]
+                icon = "fa-github"
+                link = "//github.com/julianperrott"
+				
+            [[params.footer.social.networks]]
+                icon = "fa-linkedin"
+                link = "//uk.linkedin.com/in/julianperrott1"
+
+            [[params.footer.social.networks]]
+                icon = "fa-facebook"
+                link=  "//www.facebook.com/julianperrott"
+				
+			[[params.footer.social.networks]]
+                icon = "fa-envelope"
+                link=  "mailto:julian_perrott@hotmail.com"
+			
+
+
+        [params.footer.credits]
+            title = "About Freelancer Theme"
+            text = "Freelance is a free to use, open source Bootstrap theme created by [Start Bootstrap](//startbootstrap.com)."

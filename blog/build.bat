@@ -1,2 +1,3 @@
-hugo server --buildDrafts --watch --verbose
+hugo server --buildDrafts --theme=hugo-freelancer-theme --watch --verbose
 pause
+

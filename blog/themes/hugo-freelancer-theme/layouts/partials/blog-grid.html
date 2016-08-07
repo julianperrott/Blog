@@ -1,0 +1,45 @@
+{{ "<!-- Portfolio Grid Section -->" | safeHTML }}
+<section id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>{{ with .Site.Params.portfolio.title }}{{.}}{{end}}</h2>
+                <hr class="star-primary">
+            </div>
+        </div>
+	
+        <div class="row">
+
+			{{ range $index, $element := .Data.Pages }}
+				
+            <div class="col-sm-4 portfolio-item">
+                <a href="{{ .Permalink }}" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+							<div class="more">Read more</div>
+                        </div>
+                    </div>
+                    <img src="img/{{.Params.background}}_600x350.jpg" class="img-responsive">
+					<div class="day badge" style="background:green;position: absolute; right: 0px; bottom:0px">{{ .Date.Day }}&nbsp;{{ .Date.Format "Jan 2006" }}</div>
+					
+				
+					<div class="row col-sm-12">
+						<h3><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h3>
+						<p>
+							{{.Description}}
+							<a href="{{ .Permalink }}" title="Read more...">Read more...</a>
+						</p>
+					</div>
+		
+                </a>
+				
+            </div>
+			
+
+            {{ end }}
+			
+        </div>
+    </div>
+	
+</section>

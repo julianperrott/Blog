@@ -12,14 +12,14 @@
 }
 
 <p><a href="/post/img/Earth.png"><img title="Earth" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Earth" src="/post/img/Earth.png" width="155" height="154"></a></p> <p><a title="andalmeida" href="http://www.codeproject.com/Members/andalmeida">andalmeida</a> posted on codeproject.com showing how to map images onto spherical surfaces using C#. I have taken his code and converted it to work with javascript and an HTML5 Canvas.</p> <p>Original article: <a href="http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C">http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C</a></p>
-<h2>Demo:</h2><iframe height="260" src="/post/content/ImageWrapDemo/wrapspheredemo.html" width="600"></iframe><br>
-<h2>Source Code</h2><a href="/post/content/ImageWrapDemo/ImageWrapDemo.zip">Download source code</a>&nbsp;&nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  <h2>Html:</h2>Contains a canvas 'myCanvas' which will be drawn to. <pre class="prettyprint">&lt;img src="images/worldmap.gif" id="myImage" /&gt;
+<H3>Demo:</H3><iframe height="260" src="/post/content/ImageWrapDemo/wrapspheredemo.html" width="600"></iframe><br>
+<H3>Source Code</H3><a href="/post/content/ImageWrapDemo/ImageWrapDemo.zip">Download source code</a>&nbsp;&nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  <H3>Html:</H3>Contains a canvas 'myCanvas' which will be drawn to. <pre class="prettyprint">&lt;img src="images/worldmap.gif" id="myImage" /&gt;
 &lt;canvas id="myCanvas" width="150" height="150" style="background-color: #000000"&gt;&lt;/canvas&gt;
 &lt;br /&gt;
 &lt;input type="range" id="rangeInput" min="-31" max="31"&gt;&amp; Drag to Rotate
 &lt;script src="./js/WrapSphereDemo.js"&gt;&lt;/script&gt;
 </pre>
-<h2>Javascript:</h2>Loads the image to wrap, then calls a library to wrap it around a sphere, then writes the result onto the canvas. <pre class="prettyprint">var WrapSphereDemo;
+<H3>Javascript:</H3>Loads the image to wrap, then calls a library to wrap it around a sphere, then writes the result onto the canvas. <pre class="prettyprint">var WrapSphereDemo;
 (function (WrapSphereDemo) {
     var image;
     var context;
@@ -58,7 +58,7 @@
     }
 })(WrapSphereDemo || (WrapSphereDemo = {}));
 </pre><br>
-<h2>Javascript Lib:</h2>Javascript which maps each pixel in the image onto a sphere, then copies the pixel onto the destination image. Refactored from: <a href="http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C">http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C</a> <pre class="prettyprint">var SphereImageLib;
+<H3>Javascript Lib:</H3>Javascript which maps each pixel in the image onto a sphere, then copies the pixel onto the destination image. Refactored from: <a href="http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C">http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C</a> <pre class="prettyprint">var SphereImageLib;
 (function (SphereImageLib) {
     function WrapSphere(fromImage, toImage, xRotate, yRotate, radius) {
         var coordinates = new SphereMapper(fromImage.width, fromImage.height, xRotate, yRotate, radius);

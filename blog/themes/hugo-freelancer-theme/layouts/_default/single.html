@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+    <head>
+        {{ partial "head.html" . }}
+    </head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		<div id="wrapper">
+			<section id="blog" class="subpage detail">
+			
+			 {{ partial "nav.html" . }}
+
+				<!-- Header -->
+
+				<div>
+				<img  src="/img/{{.Params.background}}_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
+				</div>
+
+				<div class="container">
+					<!-- Content -->
+					<div class="row articles">
+
+						<!-- Article detail -->
+						<article class="col-xs-12 article" style="margin-top:10px">
+							<div class="row">
+								<div class="col-lg-2 visible-lg asideArticleInfo" style="margin-top:10px">
+									<div class="date">
+										<div class="badge">{{ .Date.Day }} {{ .Date.Format "Jan 2006" }}</div>
+									</div>
+									<div class="comments">
+										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="{{ .Slug }}"></span>
+									</div>
+								</div>
+								<div class="col-lg-10">
+									<h2 class="title">{{ .Title }}</h2> 
+									<div class="articleInfo clearfix">
+										<div class="i hidden-lg">Post date: <strong>{{ .Date.Format "Mon, Jan 2, 2006" }}</strong></div>
+										<!-- <div class="i">Categories: <a href="blog-listing.html"><strong>country</strong></a>, <a href="blog-listing.html"><strong>heaven</strong></a></div>-->
+										<br />
+										
+										
+
+									</div>
+									{{ .Content }}
+								</div>
+								
+									
+							</div>
+						</article>
+						
+						<!-- Article comments -->
+						 <div class="row">
+						<div class="col-xs-12 articleComments">
+								<div id="disqus_thread"></div>
+								<script type="text/javascript">
+								   /* Disgus comment count */
+									var disqus_shortname = 'codesindotnet';
+									var disqus_identifier = '{{ .Slug }}';
+									(function () {
+										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+									})();
+								</script>
+								<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+								<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+							</div>
+						</div>
+
+						<!-- Comment form -->
+
+						{{ if isset .Params "bg_name" }}
+						<br/>
+										<div style="font-style: italic" class="pull-right">
+											Image attribution:
+											<a style class="external text" href="{{ .Params.bg_url }}" rel="nofollow" target="_blank">
+												"{{ .Params.bg_name }}"
+											</a> by
+											<a href="http://www.flickr.com/photos/{{ .Params.bg_owner }}/" rel="nofollow" target="_blank">{{ .Params.bg_owner_name }}</a>
+											is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank"> CC BY 2.0</a>
+										</div>
+									{{ end }}
+					</div>
+				</div>
+			</section>
+
+
+
+		</div>
+	    {{ partial "scripts.html" . }}
+
+		<link rel="stylesheet" href="/css/options.css">
+
+	   {{ partial "googleAnalytics.html" . }}
+	   
+	   {{ partial "about.html" . }}
+	   {{ partial "footer.html" . }}
+
+		<script>
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		</script>
+
+		
+		<script type="text/javascript">
+		 /* Disgus comment count */
+		 /* * * DON'T EDIT BELOW THIS LINE * * */
+		 (function () {
+		 var s = document.createElement('script'); s.async = true;
+		 s.type = 'text/javascript';
+		 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+		 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		 }());
+	 </script> 
+		
+	</body>
+</html>

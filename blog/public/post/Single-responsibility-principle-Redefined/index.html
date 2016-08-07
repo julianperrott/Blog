@@ -1,121 +1,108 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<html lang="en-gb">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A developer blog by Julian Perrott">
+<meta name="author" content="Codes in .NET">
+<meta name="generator" content="Hugo 0.16" />
+<title>Blog</title>
+<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/freelancer.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 
-
-
-
-<html class="no-js">
- 
-<head>
-	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffc40d">
-	<meta name="theme-color" content="#ffffff">
-	
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CodesIn.net - Single responsibility principle - Redefined</title>
-    <meta name="description" content="...">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/owl.carousel.css" rel="stylesheet">
-    <link href="/css/animate.css" rel="stylesheet">
-
-    
-    <script src="/js/modernizr-2.6.2.min.js"></script>
-    
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" href="/css/ir_black.css">
-	<script src="/js/highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
-	
-    <script>
-		var mainColor = 'blue';
-    </script>
-</head>
-
-<body>
-    
-    <div id="wrapper">
-        <section id="blog" class="subpage detail">
-
-            
-            <header class="font-white striped-image" style="background-image: url(/img/bg_single_1920x800.jpg);">
-                <div class="container">
-    <div class="row">
-        <a href="#contact" class="logo wow bounceInDown" data-wow-duration="1s" data-wow-delay=".5s">
-            <div class="wrap" style="border: 0;padding-bottom:0;margin-bottom:0">
-                <img src="/img/logo.png" width="100" />
-            </div>
-        </a>
-        <div class="col-sm-8 col-sm-offset-2 wow fadeInDown">
-            <h1>codesin.net</h1>
-            <div class="dotted-break"></div>
-            <h2>A blog about coding - by Julian Perrott</h2>
-
-            <blockquote>
-                <p title="We have to experience something ourselves in order to really understand it. If we are hearing something it might be interesting. If we are seeing something it might be beautiful. But only if we have it happening to ourselves - actively doing it - we can really know how it is."
-                   data-toggle="tooltip" data-placement="top">
-                    "I hear and I forget. I see and I remember. I do and I understand." - Confucius
-                </p>
-            </blockquote>
+    </head>
+	<body>
+		
+		<div id="wrapper">
+			<section id="blog" class="subpage detail">
+			
+			 <!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#page-top">Codes In .Net</a>
         </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="/#portfolio">Blog</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">About Me</a>
+                </li>
+				
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-</div>
-            </header>
+    <!-- /.container-fluid -->
+</nav>
 
-            <div class="container">
-                
-                <div class="row articles">
 
-                    
-                    <article class="col-xs-12 article">
-                        <div class="row">
-                            <div class="col-lg-2 visible-lg asideArticleInfo">
-                                <div class="date">
-                                    <div class="day">20</div>
-                                    <div class="month">Oct 2014</div>
-                                </div>
-                                <div class="comments">
-                                    <i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="Single-responsibility-principle-Redefined"></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-10">
-                                <h2 class="title">Single responsibility principle - Redefined</h2>
-                                <div class="articleInfo clearfix">
-                                    <div class="i hidden-lg">Post date: <strong>Mon, Oct 20, 2014</strong></div>
-                                    
-                                    <br />
-									
-									
-                                    <div class="i">
-                                        Attribution:
-                                        <a style class="external text" href="https://www.flickr.com/photos/drurydrama/8562260428/in/photolist-e3BPHN-cCYJTJ-GMdTD-dY2w1v-bZbfK1-HvAyW-7TmhS7-ctgXGL-demf9p-h3R71H-avHFT-eTTMag-eU6ajj-GM56B-7ibV4o-7Cw1PP-4yP7GA-6fGDnR-4KK7oE-5FSsHn-4ELNSR-pJkjia-6vYKE8-hRnhFM-8BFwvB-bCQnwm-hazzCX-jJto7u-5UaUPR-csbyn3-ngqQhd-fqXvd-2EQu7D-dErVtB-5FSrmD-5FSueP-5FSqdg-5FSuYX-5FSt9v-5FSqZD-5FSqCx-gvPvH-atkknA-5FSuBP-5FWK4Q-5FStwr-5FSrRi-5FSpui-8uAirK-6o5ZGN" rel="nofollow" target="_blank">
-                                            "Ibus and body guards in black suits"
-                                        </a> by
-                                        <a href="http://www.flickr.com/photos/drurydrama/" rel="nofollow" target="_blank">Len Radin</a>
-                                        is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank"> CC BY 2.0</a>
-                                    </div>
-									
+				
 
-                                </div>
-                                <p>
+				<div>
+				<img  src="/img/bg_single_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
+				</div>
+
+				<div class="container">
+					
+					<div class="row articles">
+
+						
+						<article class="col-xs-12 article" style="margin-top:10px">
+							<div class="row">
+								<div class="col-lg-2 visible-lg asideArticleInfo" style="margin-top:10px">
+									<div class="date">
+										<div class="badge">20 Oct 2014</div>
+									</div>
+									<div class="comments">
+										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="Single-responsibility-principle-Redefined"></span>
+									</div>
+								</div>
+								<div class="col-lg-10">
+									<h2 class="title">Single responsibility principle - Redefined</h2> 
+									<div class="articleInfo clearfix">
+										<div class="i hidden-lg">Post date: <strong>Mon, Oct 20, 2014</strong></div>
+										
+										<br />
+										
+										
+
+									</div>
+									<p>
     Single responsibility principle by Uncle Bob (Robert C. Martin) is the first of the SOLID object orientated design principles. I read it a few years ago, but felt my understanding of it was a little unclear, and I am not alone. This led me to try to understand it again and during which I've discovered that Uncle Bob has redefined it.
 </p> <p>
     <a href="/post/img/UncleBob.jpg">
         <img title="UncleBob" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="UncleBob" src="/post/img/UncleBob.jpg" width="244" height="186">
     </a><br>&nbsp;<br>
 </p>
-<h2>The old SRP</h2> <p>
+<H3>The old SRP</H3> <p>
     "A CLASS SHOULD HAVE ONLY ONE REASON TO CHANGE."<br>&nbsp;
     <br>Bob explains that a responsibility is defined as "a reason for change". If a class has more that one responsibility then those responsibilities become coupled and changes to one may impair the ability to meet the others. This coupling makes the design fragile, with changes causing unexpected impacts in the system.
     <br>&nbsp;<br>"If you can think of more than one motive for changing a class, then that class has more than one responsibility."<br>&nbsp;
@@ -128,7 +115,7 @@
         <li><a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">wikipedia.org</a></li>
     </ul>
 </p>
-<h2>The new SRP</h2>
+<H3>The new SRP</H3>
 <p>
     Bob says that "Things that change for the same reason should be grouped together. Things that change for different reasons should be separated.", this is not new, but he also says:
 </p> <p>"A responsibility is a person, not something the code does. It is a person who wants to make a change to the code."</p>
@@ -145,85 +132,55 @@
         </li>
     </ul>
 </p>
-<h2>Conclusions</h2> <p>Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.</p>
+<H3>Conclusions</H3> <p>Changing the focus away from the functionality of the code to the person/role who want to change it makes the principle a lot clearer for me.</p>
 <p>Wikipedia is out of date.</p>
 
-                            </div>
-                        </div>
-                    </article>
-                    
-                    
-					 <div class="row">
-                    <div class="col-xs-12 articleComments">
-                            <div id="disqus_thread"></div>
-                            <script type="text/javascript">
-							    
-                                var disqus_shortname = 'codesindotnet';
-                                var disqus_identifier = 'Single-responsibility-principle-Redefined';
-                                (function () {
-                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                })();
-                            </script>
-                            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-                        </div>
-                    </div>
+								</div>
+								
+									
+							</div>
+						</article>
+						
+						
+						 <div class="row">
+						<div class="col-xs-12 articleComments">
+								<div id="disqus_thread"></div>
+								<script type="text/javascript">
+								    
+									var disqus_shortname = 'codesindotnet';
+									var disqus_identifier = 'Single-responsibility-principle-Redefined';
+									(function () {
+										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+									})();
+								</script>
+								<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+								<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+							</div>
+						</div>
 
-                    
+						
 
-                </div>
-            </div>
-        </section>
-
-
-        
-<section id="contact">
-    <div class="container">
-        
-        <header class="font-white">
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 wow fadeInDown">
-                    <h1>Contact me</h1>
-                    <div class="dotted-break"></div>
-                    <h2>Say Hello !</h2>
-                </div>
-            </div>
-        </header>
-        
-        <div class="row">
-            <div class="col-xs-12 info" style="font-size: 20px;">
-                <span class="wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-location-arrow icon"></i> I Live in Milton Keynes, United Kingdom</span>
-                <span class="wow fadeInRight" data-wow-delay="0.4s"><i class="fa fa-envelope-o icon"></i>
-               <a href="mailto:julian.perrott@gmail.com?Subject=Hello, Julian">julian.perrott@gmail.com</a></span>
-            </div>
-        </div>
-
-        <div id="contactfooter">
-
-            
-            <div class="social">
-                <a href="http://uk.linkedin.com/in/julianperrott1" data-toggle="tooltip" data-placement="bottom" title="linked In" class="icon"><i class="fa fa-3x fa-linkedin"></i></a>
-                <a href="https://github.com/julianperrott" data-toggle="tooltip" data-placement="bottom" title="GitHub" class="icon"><i class="fa fa-3x fa-github"></i></a>
-                <a href="https://www.facebook.com/julianperrott" data-toggle="tooltip" data-placement="bottom" title="Facebook" class="icon"><i class="fa fa-3x fa-facebook"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-        
-<div class="googleMapWrap">
-    <div id="googleMap" class="wow flipInX" data-lat="52.040622" data-lng="-0.759417"></div>
-</div>
+						
+						<br/>
+										<div style="font-style: italic" class="pull-right">
+											Image attribution:
+											<a style class="external text" href="https://www.flickr.com/photos/drurydrama/8562260428/in/photolist-e3BPHN-cCYJTJ-GMdTD-dY2w1v-bZbfK1-HvAyW-7TmhS7-ctgXGL-demf9p-h3R71H-avHFT-eTTMag-eU6ajj-GM56B-7ibV4o-7Cw1PP-4yP7GA-6fGDnR-4KK7oE-5FSsHn-4ELNSR-pJkjia-6vYKE8-hRnhFM-8BFwvB-bCQnwm-hazzCX-jJto7u-5UaUPR-csbyn3-ngqQhd-fqXvd-2EQu7D-dErVtB-5FSrmD-5FSueP-5FSqdg-5FSuYX-5FSt9v-5FSqZD-5FSqCx-gvPvH-atkknA-5FSuBP-5FWK4Q-5FStwr-5FSrRi-5FSpui-8uAirK-6o5ZGN" rel="nofollow" target="_blank">
+												"Ibus and body guards in black suits"
+											</a> by
+											<a href="http://www.flickr.com/photos/drurydrama/" rel="nofollow" target="_blank">Len Radin</a>
+											is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank"> CC BY 2.0</a>
+										</div>
+									
+					</div>
+				</div>
+			</section>
 
 
-        <footer id="footer">
-            <div>Bootstrap Theme Designed by: <a href="http://jurajmolnar.com" title="#" target="_blank">Juraj Molnár</a></div>
-            <div><a href="http://gohugo.io/" target="_blank">Hugo</a> theme created by: Julian Perrott</div>
-        </footer>
 
-    </div>
-    
+		</div>
+	    
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/js/jquery.easing.1.3.js"></script>
@@ -241,9 +198,9 @@
 <script src="/js/script.js"></script>
 
 
-    <link rel="stylesheet" href="/css/options.css">
+		<link rel="stylesheet" href="/css/options.css">
 
-    <script>
+	   <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -252,24 +209,110 @@
           ga('create', 'UA-59171735-1', 'auto');
           ga('send', 'pageview');
 </script>
+	   
+	   <!-- About Section -->
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>About Me</h2>
+                <hr class="star-light">
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-2">
+            <p>My first computer was a Commodore VIC-20, I had great fun trying to code text adventures and side scrolling shoot &lsquo;em ups in BASIC. This helped me lead the way as the first in my school to pass a computer exam.</p>
+        </div>
+            <div class="col-lg-4">
+                <p>Currently I work as a Senior Software Engineer in Bedford for a FTSE 100 Company. Coding daily in C#, JavaScript and SQL. Outside of work I work on whatever is interesting me at that time.</p>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+	   <!-- Footer -->
+<footer class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-4">
+                    <h3>Location</h3>
 
-	
-	<script type="text/javascript">
-	  
-	  
-	 (function () {
-	 var s = document.createElement('script'); s.async = true;
-	 s.type = 'text/javascript';
-	 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-	 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-	 }());
- </script> 
-	
-</body>
+                    
+                        <p>
+                            
+                                
+                                Milton Keynes, United Kingdom
+                            
+                        </p>
+                    
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>Around the web</h3>
+                    <ul class="list-inline">
+                        
+                            <li>
+                                <a href="//github.com/julianperrott" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="//uk.linkedin.com/in/julianperrott1" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="//www.facebook.com/julianperrott" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="mailto:julian_perrott@hotmail.com" class="btn-social btn-outline"><i class="fa fa-fw fa-envelope"></i></a>
+                            </li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>About Freelancer Theme</h3>
+                    <p>Freelance is a free to use, open source Bootstrap theme created by <a href="//startbootstrap.com">Start Bootstrap</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Published under the Apache License 2.0. Powered by <a href="//gohugo.io">Hugo</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top page-scroll visible-xs visible-sm">
+    <a class="btn btn-primary" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
+
+
+		<script>
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		</script>
+
+		
+		<script type="text/javascript">
+		  
+		  
+		 (function () {
+		 var s = document.createElement('script'); s.async = true;
+		 s.type = 'text/javascript';
+		 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+		 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		 }());
+	 </script> 
+		
+	</body>
 </html>

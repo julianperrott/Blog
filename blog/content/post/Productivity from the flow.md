@@ -47,7 +47,7 @@ Once you have experienced the flow, you should feel energised and have been effo
 ----------
 
 
-> "I'm going to give you a little advice. There's a force in the universe that makes things happen. And all you have to do is get in touch with it, stop thinking, let things happen, and be the ball.” Ty Webb “Caddshack”
+> "I'm going to give you a little advice. There's a force in the universe that makes things happen. And all you have to do is get in touch with it, stop thinking, let things happen, and be the ball.” Ty Webb “Caddyshack”
 
 
 ----------
