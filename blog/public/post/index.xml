@@ -2,12 +2,106 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Blog</title>
-    <link>http://www.codesIn.net/post/</link>
+    <link>http://www.codesin.net/post/</link>
     <description>Recent content in Posts on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 19 Apr 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://www.codesIn.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://www.codesin.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SimCity BuildIt Crafting Bot</title>
+      <link>http://www.codesin.net/post/SimCity-BuildIt-Bot/</link>
+      <pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.codesin.net/post/SimCity-BuildIt-Bot/</guid>
+      <description>
+
+&lt;p&gt;When a task is repetitive, why would we want to do it ourselves, if someone or something else could do it equally well or better? Computers are really good at doing repetitive tasks because they are accurate, don’t get bored, complain or need to be paid. Tasks which run within a system are the easiest and cheapest to automate, others can be cost effective if there is enough benefit. For example robots on a factory production line, automated driving or flying an aircraft.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;simcity-buildit&#34;&gt;SimCity BuildIt&lt;/h3&gt;
+
+&lt;p&gt;Certain computer games are a time sink, requiring constant attention to make progress and maintain attention.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/simcity_screenshot.jpg&#34; alt=&#34;alt text&#34; title=&#34;Sim City BuildIt Screenshot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;SimCity BuildIt (a mobile game which runs on the Android or IOS platform) is one such game and has 2 obvious repetitive areas:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Crafting: It requires you to manufacture raw materials and then use them to create other items which are more valuable. These items have an in-game value and can be sold or used to complete tasks.&lt;/li&gt;
+&lt;li&gt;Global Trade: Buying non craft able and time expensive craft-able items. Selling items I have crafted.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Because I want to do the fun things in the game without suffering the pain, I wrote a bot in C# to do the crafting.&lt;/p&gt;
+
+&lt;p&gt;Rather than writing the code native on the platform I use an android emulator (Memu) running on my PC and I send commands to it from my C# code to automate the play.&lt;/p&gt;
+
+&lt;p&gt;The basic iterations between the bot and the game are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Touch and Swipe on the screen.&lt;/li&gt;
+&lt;li&gt;Read text from the display.&lt;/li&gt;
+&lt;li&gt;Read the colour of text on the display.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;bot-demo&#34;&gt;Bot Demo&lt;/h3&gt;
+
+&lt;iframe allowfullscreen=&#34;&#34; frameborder=&#34;0&#34; height=&#34;270&#34; src=&#34;https://www.youtube.com/embed/OOk6HWBdy6U&#34; width=&#34;480&#34;&gt;&lt;/iframe&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;bot-detail&#34;&gt;Bot Detail&lt;/h3&gt;
+
+&lt;p&gt;To build a crafting bot I needed to be able to do the following:&lt;/p&gt;
+
+&lt;h4 id=&#34;select-a-building&#34;&gt;Select a building&lt;/h4&gt;
+
+&lt;p&gt;This can be done by touching the centre of the screen using ADB (Android Debug Bridge), a building must be located at the centre of the screen when the bot is started. It helps to turn on the developer options for &amp;lsquo;pointer location&amp;rsquo; and &amp;lsquo;showing touches&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/simcity_options.jpg&#34; alt=&#34;alt text&#34; title=&#34;Developer Options&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;know-which-building-i-am-in&#34;&gt;Know which building I am in&lt;/h4&gt;
+
+&lt;p&gt;The name of the building is shown at the top of the screen, this is read using OCR (Optical Character Recognition) using Tesseract Open Source OCR Engine. A screen shot of part of the MEMU application is taken and OCR&amp;rsquo;d.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/simcity_title.jpg&#34; alt=&#34;alt text&#34; title=&#34;Building Title&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;navigate-to-another-building&#34;&gt;Navigate to another building&lt;/h4&gt;
+
+&lt;p&gt;There are buttons on the side of the building name which will cycle around the factories or commercial buildings.&lt;/p&gt;
+
+&lt;h4 id=&#34;move-between-a-factory-and-a-commercial-building&#34;&gt;Move between a factory and a Commercial building&lt;/h4&gt;
+
+&lt;p&gt;This is done by positioning selected buildings (one commercial and one factory) in a known configuration and then clicking above or below to switch. For example the Hardware store has a Mass Production factory above it and both of these are unique buildings, so when we are at either in the building cycle we can move to the other.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/simcity_hardware_store.jpg&#34; alt=&#34;alt text&#34; title=&#34;Building Positions&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;build-an-item-in-either-a-factory-or-commercial-building&#34;&gt;Build an Item in either a factory or commercial building&lt;/h4&gt;
+
+&lt;p&gt;The craft-able items are laid out on buttons in specific places. So we can swipe from the button to the crafting location to build the item. Determining if we need to craft raw materials for craft-able items is found out by clicking on the item&amp;rsquo;s button and looking to see the colour of the required materials. Red means we don&amp;rsquo;t have enough.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/simcity_raw_materials.jpg&#34; alt=&#34;alt text&#34; title=&#34;Building Title&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;collect-an-item&#34;&gt;Collect an item&lt;/h4&gt;
+
+&lt;p&gt;Collecting a crafted item requires touching the building.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;the-things-i-learn-t-writing-the-bot&#34;&gt;The things I learn&amp;rsquo;t writing the bot:&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can&amp;rsquo;t use User32.dll methods to click on the Memu application, you need to use ADB.&lt;/li&gt;
+&lt;li&gt;ADB Input commands for tap and swipe don&amp;rsquo;t work reliably. Instead I used ADB &amp;lsquo;sendevent&amp;rsquo; to send a series of commands codes to do each tap and swipe.&lt;/li&gt;
+&lt;li&gt;A seeming complex workflow can be simplified into a working automated process with surprisingly few building blocks.&lt;/li&gt;
+&lt;li&gt;I need to extend the bot to sell the items on the global trade as this is a pain after the bot has been running for a few hours.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Cross Platform Apps For Microsoft Developers</title>
@@ -130,8 +224,8 @@
 &lt;/p&gt; &lt;p&gt;
     One of the rules of linking portals is that a new link may not cross an existing link. So portal 4 could not be linked to 3 because it would cross the 1 to 2 link.
 &lt;/p&gt; &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/Test1.png&#34; target=&#34;_blank&#34;&gt;
-        &lt;img title=&#34;Test1&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Test1&#34; src=&#34;http://www.codesIn.net/post/img/Test1.png&#34; width=&#34;869&#34; height=&#34;425&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/Test1.png&#34; target=&#34;_blank&#34;&gt;
+        &lt;img title=&#34;Test1&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Test1&#34; src=&#34;http://www.codesin.net/post/img/Test1.png&#34; width=&#34;869&#34; height=&#34;425&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt;
 &lt;h3&gt;The Algorithm&lt;/h3&gt; &lt;p&gt;To determine these &#34;field finishing&#34; links:&lt;/p&gt;
@@ -151,14 +245,14 @@
 &lt;h3&gt;The Plug-in&lt;/h3&gt; &lt;p&gt;
     Once the required links have been determined they need to be represented on the map. This done by drawing on a new map layer called &#39;Field Finisher&#39;, the links are indicated using red dotted lines.
 &lt;/p&gt; &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/Plugin.png&#34; target=&#34;_blank&#34;&gt;
-        &lt;img title=&#34;Plugin&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Plugin&#34; src=&#34;http://www.codesIn.net/post/img/Plugin.png&#34; width=&#34;887&#34; height=&#34;430&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/Plugin.png&#34; target=&#34;_blank&#34;&gt;
+        &lt;img title=&#34;Plugin&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Plugin&#34; src=&#34;http://www.codesin.net/post/img/Plugin.png&#34; width=&#34;887&#34; height=&#34;430&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt; &lt;p&gt; &lt;p&gt;
     The algorithm has been unit tested using &lt;a href=&#34;http://jasmine.github.io/&#34;&gt;Jasmine&lt;/a&gt;
 &lt;/p&gt; &lt;p&gt;
     The plug-in code can be download here
-    &lt;a href=&#34;http://www.codesIn.net/post/content/ingress/field-finisher.user.js&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/content/ingress/field-finisher.user.js&#34;&gt;
         field-finisher.user.js
     &lt;/a&gt;
 &lt;/p&gt;
@@ -174,8 +268,8 @@
       <description>&lt;p&gt;
     Single responsibility principle by Uncle Bob (Robert C. Martin) is the first of the SOLID object orientated design principles. I read it a few years ago, but felt my understanding of it was a little unclear, and I am not alone. This led me to try to understand it again and during which I&#39;ve discovered that Uncle Bob has redefined it.
 &lt;/p&gt; &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/UncleBob.jpg&#34;&gt;
-        &lt;img title=&#34;UncleBob&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;UncleBob&#34; src=&#34;http://www.codesIn.net/post/img/UncleBob.jpg&#34; width=&#34;244&#34; height=&#34;186&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/UncleBob.jpg&#34;&gt;
+        &lt;img title=&#34;UncleBob&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;UncleBob&#34; src=&#34;http://www.codesin.net/post/img/UncleBob.jpg&#34; width=&#34;244&#34; height=&#34;186&#34;&gt;
     &lt;/a&gt;&lt;br&gt;&amp;nbsp;&lt;br&gt;
 &lt;/p&gt;
 &lt;H3&gt;The old SRP&lt;/H3&gt; &lt;p&gt;
@@ -390,14 +484,14 @@ If you must have more than one step then promises can be chained. Each step in t
     &lt;strong&gt;Short transactions&lt;/strong&gt;&lt;br&gt;A lot of web transactions are simple one step transactions. The user posts data to the web server, it performs a simple operation then redirects the user to another page which shows the result.&lt;br&gt;This pattern is described here:
     &lt;a href=&#34;http://en.wikipedia.org/wiki/Post/Redirect/Get&#34; target=&#34;_blank&#34;&gt;http://en.wikipedia.org/wiki/Post/Redirect/Get&lt;/a&gt;
 &lt;/p&gt; &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/PostRedirectGet_DoubleSubmitSolution.png&#34; target=&#34;_blank&#34;&gt;
-        &lt;img title=&#34;PostRedirectGet_DoubleSubmitSolution&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;PostRedirectGet_DoubleSubmitSolution&#34; src=&#34;http://www.codesIn.net/post/img/PostRedirectGet_DoubleSubmitSolution.png&#34; width=&#34;366&#34; height=&#34;300&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/PostRedirectGet_DoubleSubmitSolution.png&#34; target=&#34;_blank&#34;&gt;
+        &lt;img title=&#34;PostRedirectGet_DoubleSubmitSolution&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;PostRedirectGet_DoubleSubmitSolution&#34; src=&#34;http://www.codesin.net/post/img/PostRedirectGet_DoubleSubmitSolution.png&#34; width=&#34;366&#34; height=&#34;300&#34;&gt;
     &lt;/a&gt;&lt;br&gt;
 &lt;/p&gt; &lt;p&gt;If the task takes a short amount of time (e.g. 10 seconds), then a wait cursor or ‘Please wait’ message would be the simplest feedback you could do. &lt;br&gt;Note: duplicate transactions are possible if the user re-posts the page before processing completes. This scenario must therefore be handled with code on the server.&lt;/p&gt; 
 
 &lt;p class=&#34;well&#34;&gt;
     &lt;strong&gt;Click to see a Demo:&lt;/strong&gt;
-    &lt;a title=&#34;/mvc/Feedback/PostRedirectGet&#34; href=&#34;http://www.codesIn.net/mvc/Feedback/PostRedirectGet&#34; target=&#34;_blank&#34;&gt;/mvc/Feedback/PostRedirectGet&lt;/a&gt;
+    &lt;a title=&#34;/mvc/Feedback/PostRedirectGet&#34; href=&#34;http://www.codesin.net/mvc/Feedback/PostRedirectGet&#34; target=&#34;_blank&#34;&gt;/mvc/Feedback/PostRedirectGet&lt;/a&gt;
 &lt;/p&gt; 
 
 &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;
@@ -407,14 +501,14 @@ If you must have more than one step then promises can be chained. Each step in t
     To give the user this feedback the client must either pull or server must push this information. This should happen every few seconds until the task completes.&lt;br&gt;
     This could be described as a Post / Redirect / Get / Redirect / Get pattern.
 &lt;/p&gt; &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/PRGRG.png&#34; target=&#34;_blank&#34;&gt;
-        &lt;img title=&#34;PRGRG&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;PRGRG&#34; src=&#34;http://www.codesIn.net/post/img/PRGRG.png&#34; width=&#34;333&#34; height=&#34;366&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/PRGRG.png&#34; target=&#34;_blank&#34;&gt;
+        &lt;img title=&#34;PRGRG&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;PRGRG&#34; src=&#34;http://www.codesin.net/post/img/PRGRG.png&#34; width=&#34;333&#34; height=&#34;366&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt; &lt;p&gt;A simple example of the client pulling the data would be to reload the page from the server every few seconds. When the background task was complete, there would be a redirect to the results page. &lt;/p&gt; 
 
 &lt;p class=&#34;well&#34;&gt;
     &lt;strong&gt;Click to see a Demo:&lt;/strong&gt;
-    &lt;a title=&#34;/mvc/Feedback/PostRedirectGetRedirectGet&#34; href=&#34;http://www.codesIn.net/mvc/Feedback/PostRedirectGetRedirectGet&#34; target=&#34;_blank&#34;&gt;/mvc/Feedback/PostRedirectGetRedirectGet&lt;/a&gt;
+    &lt;a title=&#34;/mvc/Feedback/PostRedirectGetRedirectGet&#34; href=&#34;http://www.codesin.net/mvc/Feedback/PostRedirectGetRedirectGet&#34; target=&#34;_blank&#34;&gt;/mvc/Feedback/PostRedirectGetRedirectGet&lt;/a&gt;
 &lt;/p&gt; 
 
 &lt;p&gt;Another solution would be to use JavaScript to make periodic Ajax requests to the server.
@@ -425,7 +519,7 @@ If you must have more than one step then promises can be chained. Each step in t
 &lt;/p&gt; 
 &lt;p class=&#34;well&#34;&gt;
     &lt;strong&gt;Click to see a Demo:&lt;/strong&gt;
-    &lt;a title=&#34;/mvc/Feedback/SignalR&#34; href=&#34;http://www.codesIn.net/mvc/Feedback/SignalR&#34; target=&#34;_blank&#34;&gt;
+    &lt;a title=&#34;/mvc/Feedback/SignalR&#34; href=&#34;http://www.codesin.net/mvc/Feedback/SignalR&#34; target=&#34;_blank&#34;&gt;
         /mvc/Feedback/SignalR
     &lt;/a&gt;
 &lt;/p&gt;	
@@ -446,24 +540,24 @@ If you must have more than one step then promises can be chained. Each step in t
     &lt;br&gt;6. Unblock the page.
 &lt;/p&gt;
 &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/CTm1.png&#34;&gt;
-        &lt;strong&gt;1.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm1&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm1&#34; src=&#34;http://www.codesIn.net/post/img/CTm1.png&#34; width=&#34;488&#34; height=&#34;201&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/CTm1.png&#34;&gt;
+        &lt;strong&gt;1.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm1&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm1&#34; src=&#34;http://www.codesin.net/post/img/CTm1.png&#34; width=&#34;488&#34; height=&#34;201&#34;&gt;
 &lt;/a&gt;
     &lt;br /&gt;&lt;br /&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/CTm2.png&#34;&gt;
-        &lt;strong&gt;2.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm2&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm2&#34; src=&#34;http://www.codesIn.net/post/img/CTm2.png&#34; width=&#34;488&#34; height=&#34;264&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/CTm2.png&#34;&gt;
+        &lt;strong&gt;2.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm2&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm2&#34; src=&#34;http://www.codesin.net/post/img/CTm2.png&#34; width=&#34;488&#34; height=&#34;264&#34;&gt;
 &lt;/a&gt;
     &lt;br /&gt;&lt;br /&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/CTm3.png&#34;&gt;
-        &lt;strong&gt;3-5.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm3&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm3&#34; src=&#34;http://www.codesIn.net/post/img/CTm3.png&#34; width=&#34;488&#34; height=&#34;268&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/CTm3.png&#34;&gt;
+        &lt;strong&gt;3-5.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm3&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm3&#34; src=&#34;http://www.codesin.net/post/img/CTm3.png&#34; width=&#34;488&#34; height=&#34;268&#34;&gt;
 &lt;/a&gt;
     &lt;br /&gt;&lt;br /&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/CTm4.png&#34;&gt;
-        &lt;strong&gt;6.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm4&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm4&#34; src=&#34;http://www.codesIn.net/post/img/CTm4.png&#34; width=&#34;460&#34; height=&#34;488&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/CTm4.png&#34;&gt;
+        &lt;strong&gt;6.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;CTm4&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CTm4&#34; src=&#34;http://www.codesin.net/post/img/CTm4.png&#34; width=&#34;460&#34; height=&#34;488&#34;&gt;
 &lt;/a&gt;
     &lt;br /&gt;&lt;br /&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/Calls.png&#34;&gt;
-        &lt;strong&gt;.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;Calls&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Calls&#34; src=&#34;http://www.codesIn.net/post/img/Calls.png&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/Calls.png&#34;&gt;
+        &lt;strong&gt;.&lt;/strong&gt;&amp;nbsp;&lt;img title=&#34;Calls&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Calls&#34; src=&#34;http://www.codesin.net/post/img/Calls.png&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt;
 </description>
@@ -505,8 +599,8 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     If you decide not to have a real whiteboard then something tangible is missing. The act of picking up a card and moving it from one status to the next feels like an achievement. Having the sprint status visible gives the team extra focus and motivation to move the stories on.&amp;nbsp; And a sense of working toward a common goal as the sprint is progressing.
 &lt;p&gt;&amp;nbsp;
 &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/meta_35201_fairydustboard_20110324.jpg&#34;&gt;
-        &lt;img title=&#34;meta_35201_fairydustboard_20110324&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;meta_35201_fairydustboard_20110324&#34; src=&#34;http://www.codesIn.net/post/img/meta_35201_fairydustboard_20110324.jpg&#34; width=&#34;323&#34; height=&#34;245&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/meta_35201_fairydustboard_20110324.jpg&#34;&gt;
+        &lt;img title=&#34;meta_35201_fairydustboard_20110324&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;meta_35201_fairydustboard_20110324&#34; src=&#34;http://www.codesin.net/post/img/meta_35201_fairydustboard_20110324.jpg&#34; width=&#34;323&#34; height=&#34;245&#34;&gt;
     &lt;/a&gt;
 </description>
     </item>
@@ -517,7 +611,7 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
       <pubDate>Sun, 06 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.codesin.net/post/Scrum/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.codesIn.net/post/img/ScrumLargeLabelled.png&#34;&gt;&lt;img title=&#34;ScrumLargeLabelled&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;ScrumLargeLabelled&#34; src=&#34;http://www.codesIn.net/post/img/ScrumLargeLabelled.png&#34; width=&#34;644&#34; height=&#34;301&#34;&gt;&lt;/a&gt; &lt;/p&gt; &lt;p&gt;A retrospective is a meeting held at the end of a sprint which has the main aim of improving the performance of the team during future sprints. It is probably the most important event from the teams point of view.&amp;nbsp; &lt;/p&gt; &lt;p&gt;There are usually a number of questions the team is asked,&amp;nbsp; such as:&lt;/p&gt; &lt;p&gt;What should we: &lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.codesin.net/post/img/ScrumLargeLabelled.png&#34;&gt;&lt;img title=&#34;ScrumLargeLabelled&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;ScrumLargeLabelled&#34; src=&#34;http://www.codesin.net/post/img/ScrumLargeLabelled.png&#34; width=&#34;644&#34; height=&#34;301&#34;&gt;&lt;/a&gt; &lt;/p&gt; &lt;p&gt;A retrospective is a meeting held at the end of a sprint which has the main aim of improving the performance of the team during future sprints. It is probably the most important event from the teams point of view.&amp;nbsp; &lt;/p&gt; &lt;p&gt;There are usually a number of questions the team is asked,&amp;nbsp; such as:&lt;/p&gt; &lt;p&gt;What should we: &lt;/p&gt;
 &lt;ol&gt; &lt;li&gt;Start doing.  &lt;li&gt;Stop doing  &lt;li&gt;Continue doing &lt;/li&gt;&lt;/ol&gt;
 &lt;p&gt;&lt;a href=&#34;http://www.mountaingoatsoftware.com/agile/scrum/sprint-retrospective/&#34;&gt;http://www.mountaingoatsoftware.com/agile/scrum/sprint-retrospective/&lt;/a&gt;&lt;/p&gt; &lt;p&gt;or &lt;/p&gt;
 &lt;ol&gt;
@@ -555,7 +649,7 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
       <pubDate>Sun, 06 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.codesin.net/post/Virtual-Reality-is-back/</guid>
-      <description>&lt;p&gt;Back in the early 90&#39;s virtual reality promised a lot and delivered little. This was the time of movie &#34;Lawnmower man&#34;, the 486 Intel pc, Doom was the must have PC game with blocky graphics as this&lt;br&gt;was years before the 3DFX Voodoo 3D cards were released. Game consoles were pretty poor (pre Sony PlayStation one) and game arcades were still the place to play top games, 3D games such as &#39;Hard Drivin&#39; or Daytona USA. Around this time I used to take the train down to London occasionally to visit the arcades there. It was fun to visit Soho(the Red light district) which amongst sex shops and review bars also had one or two cool arcades.&amp;nbsp; I can remember playing &#34;Dragon&#39;s Lair&#34; there, but this must of been in the late 80&#39;s.&lt;/p&gt; &lt;p&gt;&lt;a href=&#34;http://www.codesIn.net/post/img/2-lawnmower-man.jpg&#34;&gt;&lt;img title=&#34;2-lawnmower-man&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;2-lawnmower-man&#34; src=&#34;http://www.codesIn.net/post/img/2-lawnmower-man.jpg&#34; width=&#34;244&#34; height=&#34;148&#34;&gt;&lt;/a&gt;&lt;/p&gt; &lt;p&gt;The Trocadero in Piccadilly Circus also contained a huge arcade and within it was the &#34;Virtuality&#34; centre, home to 3D game Heavy Metal (Exorex) which had stereoscopic 3D visuals. The head mounted display &lt;br&gt;consisted of a visor fitted with two displays of 276x372 resolution. I remember having to wait a while to get a go, it was expensive costing £5, the equivalent of £9.50 today. I only had one go which was utterly disappointing, it was one of the worst games I had ever played. The graphics were blocky and it was almost impossible to control due to the lag and poor processing power. The hardware was expensive and so was never going to be seen in your local arcade, let alone in your living room.&lt;/p&gt;
+      <description>&lt;p&gt;Back in the early 90&#39;s virtual reality promised a lot and delivered little. This was the time of movie &#34;Lawnmower man&#34;, the 486 Intel pc, Doom was the must have PC game with blocky graphics as this&lt;br&gt;was years before the 3DFX Voodoo 3D cards were released. Game consoles were pretty poor (pre Sony PlayStation one) and game arcades were still the place to play top games, 3D games such as &#39;Hard Drivin&#39; or Daytona USA. Around this time I used to take the train down to London occasionally to visit the arcades there. It was fun to visit Soho(the Red light district) which amongst sex shops and review bars also had one or two cool arcades.&amp;nbsp; I can remember playing &#34;Dragon&#39;s Lair&#34; there, but this must of been in the late 80&#39;s.&lt;/p&gt; &lt;p&gt;&lt;a href=&#34;http://www.codesin.net/post/img/2-lawnmower-man.jpg&#34;&gt;&lt;img title=&#34;2-lawnmower-man&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;2-lawnmower-man&#34; src=&#34;http://www.codesin.net/post/img/2-lawnmower-man.jpg&#34; width=&#34;244&#34; height=&#34;148&#34;&gt;&lt;/a&gt;&lt;/p&gt; &lt;p&gt;The Trocadero in Piccadilly Circus also contained a huge arcade and within it was the &#34;Virtuality&#34; centre, home to 3D game Heavy Metal (Exorex) which had stereoscopic 3D visuals. The head mounted display &lt;br&gt;consisted of a visor fitted with two displays of 276x372 resolution. I remember having to wait a while to get a go, it was expensive costing £5, the equivalent of £9.50 today. I only had one go which was utterly disappointing, it was one of the worst games I had ever played. The graphics were blocky and it was almost impossible to control due to the lag and poor processing power. The hardware was expensive and so was never going to be seen in your local arcade, let alone in your living room.&lt;/p&gt;
 &lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;600&#34; border=&#34;0&#34;&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
@@ -641,8 +735,8 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
       
       <guid>http://www.codesin.net/post/Css-Transformations/</guid>
       <description>&lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/CssJs.png&#34;&gt;
-        &lt;img title=&#34;CssJs&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CssJs&#34; src=&#34;http://www.codesIn.net/post/img/CssJs.png&#34; width=&#34;244&#34; height=&#34;167&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/CssJs.png&#34;&gt;
+        &lt;img title=&#34;CssJs&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CssJs&#34; src=&#34;http://www.codesin.net/post/img/CssJs.png&#34; width=&#34;244&#34; height=&#34;167&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt;
 &lt;p&gt;
@@ -650,7 +744,7 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     &lt;br&gt;&lt;a href=&#34;http://daneden.github.io/animate.css/&#34; target=&#34;_blank&#34;&gt;http://daneden.github.io/animate.css/&lt;/a&gt;
 &lt;/p&gt;
 &lt;p&gt;e.g. When a button is pressed you could provide visual feedback that the click has been registered.&lt;/p&gt;
-&lt;iframe height=&#34;200&#34; src=&#34;http://www.codesIn.net/post/content/animatecss/AnimateCss.html&#34; width=&#34;200&#34;&gt;&lt;/iframe&gt;
+&lt;iframe height=&#34;200&#34; src=&#34;http://www.codesin.net/post/content/animatecss/AnimateCss.html&#34; width=&#34;200&#34;&gt;&lt;/iframe&gt;
 &lt;H3&gt;Examples&lt;/H3&gt;
 &lt;p&gt;
     Other examples of CSS animation can be seen on the web, one example doing css animation uses the
@@ -667,17 +761,17 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     &lt;li&gt;Jquery.transit is used to scale and rotate the leaves in their x &amp; y axis&lt;/li&gt;
     &lt;li&gt;A random wind force affects the speed the leaves spin &amp; scale on their x &amp; y axis and how fast they move position.
 &lt;/ul&gt;  &lt;p&gt;The demo animates fifty leaves made up of 6 different leaf designs:&lt;/p&gt;
-&lt;img src=&#34;http://www.codesIn.net/post/content/animatecss/img/leaf1.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesIn.net/post/content/animatecss/img/leaf2.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesIn.net/post/content/animatecss/img/leaf3.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesIn.net/post/content/animatecss/img/leaf4.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesIn.net/post/content/animatecss/img/leaf5.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesIn.net/post/content/animatecss/img/leaf6.gif&#34; style=&#34;width: 100px&#34; /&gt;
+&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf1.gif&#34; style=&#34;width: 100px&#34; /&gt;
+&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf2.gif&#34; style=&#34;width: 100px&#34; /&gt;
+&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf3.gif&#34; style=&#34;width: 100px&#34; /&gt;
+&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf4.gif&#34; style=&#34;width: 100px&#34; /&gt;
+&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf5.gif&#34; style=&#34;width: 100px&#34; /&gt;
+&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf6.gif&#34; style=&#34;width: 100px&#34; /&gt;
 &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/content/animatecss/cssanimationdemo.html&#34;&gt;&lt;strong&gt;View Demo page&lt;/strong&gt;&lt;/a&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/content/animatecss/cssanimationdemo.html&#34;&gt;&lt;strong&gt;View Demo page&lt;/strong&gt;&lt;/a&gt;
 &lt;/p&gt; &lt;p&gt;
     You can download the source code
-    &lt;a href=&#34;http://www.codesIn.net/post/content/animatecss/CssAnimation.zip&#34; target=&#34;_blank&#34;&gt;here...&lt;/a&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/content/animatecss/CssAnimation.zip&#34; target=&#34;_blank&#34;&gt;here...&lt;/a&gt;
 &lt;/p&gt;
 </description>
     </item>
@@ -688,9 +782,9 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
       <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.codesin.net/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.codesIn.net/post/img/Earth.png&#34;&gt;&lt;img title=&#34;Earth&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Earth&#34; src=&#34;http://www.codesIn.net/post/img/Earth.png&#34; width=&#34;155&#34; height=&#34;154&#34;&gt;&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;andalmeida&#34; href=&#34;http://www.codeproject.com/Members/andalmeida&#34;&gt;andalmeida&lt;/a&gt; posted on codeproject.com showing how to map images onto spherical surfaces using C#. I have taken his code and converted it to work with javascript and an HTML5 Canvas.&lt;/p&gt; &lt;p&gt;Original article: &lt;a href=&#34;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&#34;&gt;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&lt;/a&gt;&lt;/p&gt;
-&lt;H3&gt;Demo:&lt;/H3&gt;&lt;iframe height=&#34;260&#34; src=&#34;http://www.codesIn.net/post/content/ImageWrapDemo/wrapspheredemo.html&#34; width=&#34;600&#34;&gt;&lt;/iframe&gt;&lt;br&gt;
-&lt;H3&gt;Source Code&lt;/H3&gt;&lt;a href=&#34;http://www.codesIn.net/post/content/ImageWrapDemo/ImageWrapDemo.zip&#34;&gt;Download source code&lt;/a&gt;&amp;nbsp;&amp;nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  &lt;H3&gt;Html:&lt;/H3&gt;Contains a canvas &#39;myCanvas&#39; which will be drawn to. &lt;pre class=&#34;prettyprint&#34;&gt;&amp;lt;img src=&#34;images/worldmap.gif&#34; id=&#34;myImage&#34; /&amp;gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.codesin.net/post/img/Earth.png&#34;&gt;&lt;img title=&#34;Earth&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Earth&#34; src=&#34;http://www.codesin.net/post/img/Earth.png&#34; width=&#34;155&#34; height=&#34;154&#34;&gt;&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;andalmeida&#34; href=&#34;http://www.codeproject.com/Members/andalmeida&#34;&gt;andalmeida&lt;/a&gt; posted on codeproject.com showing how to map images onto spherical surfaces using C#. I have taken his code and converted it to work with javascript and an HTML5 Canvas.&lt;/p&gt; &lt;p&gt;Original article: &lt;a href=&#34;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&#34;&gt;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&lt;/a&gt;&lt;/p&gt;
+&lt;H3&gt;Demo:&lt;/H3&gt;&lt;iframe height=&#34;260&#34; src=&#34;http://www.codesin.net/post/content/ImageWrapDemo/wrapspheredemo.html&#34; width=&#34;600&#34;&gt;&lt;/iframe&gt;&lt;br&gt;
+&lt;H3&gt;Source Code&lt;/H3&gt;&lt;a href=&#34;http://www.codesin.net/post/content/ImageWrapDemo/ImageWrapDemo.zip&#34;&gt;Download source code&lt;/a&gt;&amp;nbsp;&amp;nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  &lt;H3&gt;Html:&lt;/H3&gt;Contains a canvas &#39;myCanvas&#39; which will be drawn to. &lt;pre class=&#34;prettyprint&#34;&gt;&amp;lt;img src=&#34;images/worldmap.gif&#34; id=&#34;myImage&#34; /&amp;gt;
 &amp;lt;canvas id=&#34;myCanvas&#34; width=&#34;150&#34; height=&#34;150&#34; style=&#34;background-color: #000000&#34;&amp;gt;&amp;lt;/canvas&amp;gt;
 &amp;lt;br /&amp;gt;
 &amp;lt;input type=&#34;range&#34; id=&#34;rangeInput&#34; min=&#34;-31&#34; max=&#34;31&#34;&amp;gt;&amp;amp; Drag to Rotate
@@ -849,8 +943,8 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
 &lt;/ul&gt;
 &lt;p&gt;My choice is to use a combination of Chutzpah and Browser.  &lt;H3&gt;Browser Test Runner &lt;/H3&gt;
 &lt;p&gt;This is the simplest choice, and can be debugged in visual studio, but requires an HTML file for each test / suite of tests.  &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/BrowserJavascriptTesting.png&#34;&gt;
-        &lt;img title=&#34;BrowserJavascriptTesting[4]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;BrowserJavascriptTesting[4]&#34; src=&#34;http://www.codesIn.net/post/img/BrowserJavascriptTesting.png&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/BrowserJavascriptTesting.png&#34;&gt;
+        &lt;img title=&#34;BrowserJavascriptTesting[4]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;BrowserJavascriptTesting[4]&#34; src=&#34;http://www.codesin.net/post/img/BrowserJavascriptTesting.png&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt;
 &lt;H3&gt;Visual Studio Extension - Chutzpah &lt;/H3&gt; &lt;
@@ -862,8 +956,8 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     &lt;br&gt;
     •Chutzpah Test Adaptor for the Test Explorer
 &lt;p&gt;
-    &lt;a href=&#34;http://www.codesIn.net/post/img/VisualStudioJavaScript.png&#34;&gt;
-        &lt;img title=&#34;VisualStudioJavaScript[3]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;VisualStudioJavaScript[3]&#34; src=&#34;http://www.codesIn.net/post/img/VisualStudioJavaScript.png&#34;&gt;
+    &lt;a href=&#34;http://www.codesin.net/post/img/VisualStudioJavaScript.png&#34;&gt;
+        &lt;img title=&#34;VisualStudioJavaScript[3]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;VisualStudioJavaScript[3]&#34; src=&#34;http://www.codesin.net/post/img/VisualStudioJavaScript.png&#34;&gt;
     &lt;/a&gt;
     &lt;h3&gt;
         Configuration
@@ -883,7 +977,7 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
       <pubDate>Sun, 16 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>http://www.codesin.net/post/HTML5-Canvas-Animation/</guid>
-      <description>&lt;a href=&#34;http://www.codesIn.net/post/img/js-logo-badge-512-200x200.png&#34;&gt;&lt;img title=&#34;js-logo-badge-512-200x200&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;js-logo-badge-512-200x200&#34; src=&#34;http://www.codesIn.net/post/img/js-logo-badge-512-200x200.png&#34; width=&#34;204&#34; height=&#34;204&#34;&gt;&lt;/a&gt;&lt;script src=&#34;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#34;&gt;&lt;/script&gt;  &lt;p&gt;Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var requestAnimFrame = (function () {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;br&gt;})();&lt;/p&gt;
+      <description>&lt;a href=&#34;http://www.codesin.net/post/img/js-logo-badge-512-200x200.png&#34;&gt;&lt;img title=&#34;js-logo-badge-512-200x200&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;js-logo-badge-512-200x200&#34; src=&#34;http://www.codesin.net/post/img/js-logo-badge-512-200x200.png&#34; width=&#34;204&#34; height=&#34;204&#34;&gt;&lt;/a&gt;&lt;script src=&#34;https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js&#34;&gt;&lt;/script&gt;  &lt;p&gt;Animating a 2D canvas involves redrawing the canvas via a callback. The basic pattern looks like this:&lt;/p&gt;&lt;pre class=&#34;prettyprint&#34;&gt;&lt;p&gt;var requestAnimFrame = (function () {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; window.setTimeout(callback, 1000 / 60, new Date().getTime());&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;br&gt;})();&lt;/p&gt;
 &lt;p&gt;function animate() {&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; draw();&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; requestAnimationFrame(animate);&lt;br&gt;}&lt;/p&gt;
 &lt;p&gt;function draw() {&lt;/p&gt;
 &lt;p&gt;// redraw the next frame here&lt;br&gt;}&lt;/p&gt;
@@ -946,8 +1040,8 @@ window.onload = function (e) {
     &lt;tbody&gt;
         &lt;tr&gt;
             &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesIn.net/post/img/visual-studio-2013-logo.png&#34;&gt;
-                    &lt;img title=&#34;visual-studio-2013-logo&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;visual-studio-2013-logo&#34; src=&#34;http://www.codesIn.net/post/img/visual-studio-2013-logo.png&#34; width=&#34;244&#34; height=&#34;142&#34;&gt;
+                &lt;a href=&#34;http://www.codesin.net/post/img/visual-studio-2013-logo.png&#34;&gt;
+                    &lt;img title=&#34;visual-studio-2013-logo&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;visual-studio-2013-logo&#34; src=&#34;http://www.codesin.net/post/img/visual-studio-2013-logo.png&#34; width=&#34;244&#34; height=&#34;142&#34;&gt;
                 &lt;/a&gt;
             &lt;/td&gt;
             &lt;td valign=&#34;top&#34;&gt; &lt;h4&gt;Visual Studio IDE&lt;/h4&gt; &lt;p&gt;2013 – the latest and greatest, if you are a .net coder then this is the IDE you use.&lt;/p&gt;&lt;/td&gt;
@@ -975,8 +1069,8 @@ window.onload = function (e) {
         &lt;/tr&gt;
         &lt;tr&gt;
             &lt;td width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesIn.net/post/img/notepadpp.png&#34;&gt;
-                    &lt;img title=&#34;image286&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;image286&#34; src=&#34;http://www.codesIn.net/post/img/image286.png&#34; width=&#34;145&#34; height=&#34;64&#34;&gt;
+                &lt;a href=&#34;http://www.codesin.net/post/img/notepadpp.png&#34;&gt;
+                    &lt;img title=&#34;image286&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;image286&#34; src=&#34;http://www.codesin.net/post/img/image286.png&#34; width=&#34;145&#34; height=&#34;64&#34;&gt;
                 &lt;/a&gt;&lt;br&gt;&lt;br&gt;
             &lt;/td&gt;
             &lt;td&gt;&lt;h4&gt;StyleCop&lt;/h4&gt; analyzes C# source code to enforce a set of style and consistency rules. It can be run from within Visual Studio or integrated into an MSBuild project.&lt;/td&gt;
@@ -990,16 +1084,16 @@ window.onload = function (e) {
     &lt;tbody&gt;
         &lt;tr&gt;
             &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesIn.net/post/img/pl-sql-developer-3.jpg&#34;&gt;
-                    &lt;img title=&#34;pl-sql-developer-3&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;pl-sql-developer-3&#34; src=&#34;http://www.codesIn.net/post/img/pl-sql-developer-3.jpg&#34; width=&#34;244&#34; height=&#34;138&#34;&gt;
+                &lt;a href=&#34;http://www.codesin.net/post/img/pl-sql-developer-3.jpg&#34;&gt;
+                    &lt;img title=&#34;pl-sql-developer-3&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;pl-sql-developer-3&#34; src=&#34;http://www.codesin.net/post/img/pl-sql-developer-3.jpg&#34; width=&#34;244&#34; height=&#34;138&#34;&gt;
                 &lt;/a&gt;&lt;br&gt;&lt;br&gt;
             &lt;/td&gt;
             &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;PL/SQL Developer&lt;/h4&gt; for oracle package coding, debugging, profiling, querying.&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
             &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesIn.net/post/img/sql_logo.png&#34;&gt;
-                    &lt;img title=&#34;sql_logo&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;sql_logo&#34; src=&#34;http://www.codesIn.net/post/img/sql_logo.png&#34; width=&#34;244&#34; height=&#34;54&#34;&gt;
+                &lt;a href=&#34;http://www.codesin.net/post/img/sql_logo.png&#34;&gt;
+                    &lt;img title=&#34;sql_logo&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;sql_logo&#34; src=&#34;http://www.codesin.net/post/img/sql_logo.png&#34; width=&#34;244&#34; height=&#34;54&#34;&gt;
                 &lt;/a&gt;&lt;br&gt;&lt;br&gt;
             &lt;/td&gt;
             &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;Sql Management studio 2012&lt;/h4&gt; for ms sql stored procedure coding &amp;amp; querying.&lt;/td&gt;
@@ -1014,15 +1108,15 @@ window.onload = function (e) {
         &lt;tr&gt;
             &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
                 &lt;a href=&#34;http://notepad-plus-plus.org/&#34;&gt;
-                    &lt;img title=&#34;logo-green-orange&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;logo-green-orange&#34; src=&#34;http://www.codesIn.net/post/img/notepadpp.png&#34; width=&#34;170&#34; height=&#34;244&#34;&gt;
+                    &lt;img title=&#34;logo-green-orange&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;logo-green-orange&#34; src=&#34;http://www.codesin.net/post/img/notepadpp.png&#34; width=&#34;170&#34; height=&#34;244&#34;&gt;
                 &lt;/a&gt;&lt;br&gt;&lt;br&gt;
             &lt;/td&gt;
             &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;Notepad++&lt;/h4&gt; a great MDI notepad.&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
             &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesIn.net/post/img/agent_ransack_128.png&#34;&gt;
-                    &lt;img title=&#34;agent_ransack_128&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;agent_ransack_128&#34; src=&#34;http://www.codesIn.net/post/img/agent_ransack_128.png&#34; width=&#34;132&#34; height=&#34;132&#34;&gt;
+                &lt;a href=&#34;http://www.codesin.net/post/img/agent_ransack_128.png&#34;&gt;
+                    &lt;img title=&#34;agent_ransack_128&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;agent_ransack_128&#34; src=&#34;http://www.codesin.net/post/img/agent_ransack_128.png&#34; width=&#34;132&#34; height=&#34;132&#34;&gt;
                 &lt;/a&gt;
             &lt;/td&gt;
             &lt;td valign=&#34;top&#34;&gt;
@@ -1035,16 +1129,16 @@ window.onload = function (e) {
         &lt;/tr&gt;
         &lt;tr&gt;
             &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesIn.net/post/img/Logo4.png&#34;&gt;
-                    &lt;img title=&#34;Logo4&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Logo4&#34; src=&#34;http://www.codesIn.net/post/img/Logo4.png&#34; width=&#34;242&#34; height=&#34;62&#34;&gt;
+                &lt;a href=&#34;http://www.codesin.net/post/img/Logo4.png&#34;&gt;
+                    &lt;img title=&#34;Logo4&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Logo4&#34; src=&#34;http://www.codesin.net/post/img/Logo4.png&#34; width=&#34;242&#34; height=&#34;62&#34;&gt;
                 &lt;/a&gt;
             &lt;/td&gt;
             &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;Paint.NET&lt;/h4&gt; is free image and photo editing software for PCs that run Windows.&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
             &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesIn.net/post/img/fiddler.jpg&#34;&gt;
-                    &lt;img title=&#34;fiddler&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;fiddler&#34; src=&#34;http://www.codesIn.net/post/img/fiddler.jpg&#34; width=&#34;244&#34; height=&#34;244&#34;&gt;
+                &lt;a href=&#34;http://www.codesin.net/post/img/fiddler.jpg&#34;&gt;
+                    &lt;img title=&#34;fiddler&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;fiddler&#34; src=&#34;http://www.codesin.net/post/img/fiddler.jpg&#34; width=&#34;244&#34; height=&#34;244&#34;&gt;
                 &lt;/a&gt;
             &lt;/td&gt;
             &lt;td valign=&#34;top&#34;&gt;
@@ -1055,170 +1149,6 @@ window.onload = function (e) {
         &lt;/tr&gt;
     &lt;/tbody&gt;
 &lt;/table&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>HTML5 Canvas</title>
-      <link>http://www.codesin.net/post/HTML5-Canvas/</link>
-      <pubDate>Sun, 09 Feb 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.codesin.net/post/HTML5-Canvas/</guid>
-      <description>&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td valign=&#34;top&#34; width=&#34;244&#34;&gt;&lt;a href=&#34;http://www.codesIn.net/post/img/mb_html5_badge_right.jpg&#34;&gt;&lt;em&gt;&lt;img id=&#34;cupimage&#34; title=&#34;mb_html5_badge_right&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;mb_html5_badge_right&#34; src=&#34;http://www.codesIn.net/post/img/mb_html5_badge_right.jpg&#34; width=&#34;244&#34; height=&#34;244&#34;&gt;&lt;/em&gt;&lt;/a&gt;&lt;em&gt;&amp;nbsp;&lt;/em&gt;&lt;/td&gt; &lt;td valign=&#34;top&#34;&gt; &lt;p&gt;What is the the HTML5 canvas, and what can it do?&lt;/p&gt; &lt;p&gt;Below you will find some examples and links to summarise its capabilities.&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://www.w3schools.com/html/html5_canvas.asp&#34; href=&#34;http://www.w3schools.com/html/html5_canvas.asp&#34;&gt;http://www.w3schools.com/html/html5_canvas.asp&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://diveintohtml5.info/canvas.html&#34; href=&#34;http://diveintohtml5.info/canvas.html&#34;&gt;http://diveintohtml5.info/canvas.html&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://www.html5canvastutorials.com/&#34; href=&#34;http://www.html5canvastutorials.com/&#34;&gt;http://www.html5canvastutorials.com/&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;http://code.tutsplus.com/articles/21-ridiculously-impressive-html5-canvas-experiments--net-14210&#34; href=&#34;http://code.tutsplus.com/articles/21-ridiculously-impressive-html5-canvas-experiments--net-14210&#34;&gt;http://code.tutsplus.com/articles/21-ridiculously-impressive-html5-canvas-experiments--net-14210&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;h3&gt;&lt;a title=&#34;http://en.wikipedia.org/wiki/Canvas_element&#34; href=&#34;http://en.wikipedia.org/wiki/Canvas_element&#34;&gt;&lt;em&gt;Wikipedia: Canvas Element&lt;/em&gt;&lt;/a&gt;&lt;/h3&gt; &lt;p&gt;&lt;em&gt;The &lt;b&gt;canvas &lt;a href=&#34;http://en.wikipedia.org/wiki/HTML_element&#34;&gt;element&lt;/a&gt;&lt;/b&gt; is part of &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/HTML5&#34;&gt;&lt;em&gt;HTML5&lt;/em&gt;&lt;/a&gt;&lt;em&gt; and allows for dynamic, &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Scripting_language&#34;&gt;&lt;em&gt;scriptable&lt;/em&gt;&lt;/a&gt;&lt;em&gt; &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Rendering_(computer_graphics)&#34;&gt;&lt;em&gt;rendering&lt;/em&gt;&lt;/a&gt;&lt;em&gt; of 2D shapes and &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Bitmap&#34;&gt;&lt;em&gt;bitmap&lt;/em&gt;&lt;/a&gt;&lt;em&gt; images. It is a low level, procedural model that updates a &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Bitmap&#34;&gt;&lt;em&gt;bitmap&lt;/em&gt;&lt;/a&gt;&lt;em&gt; and does not have a built-in &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Scene_graph&#34;&gt;&lt;em&gt;scene graph&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;h4&gt;&lt;em&gt;Usage&lt;/em&gt;&lt;/h4&gt; &lt;p&gt;&lt;em&gt;Canvas consists of a drawable region defined in HTML code with height and width attributes. &lt;/em&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/JavaScript&#34;&gt;&lt;em&gt;JavaScript&lt;/em&gt;&lt;/a&gt;&lt;em&gt; code may access the area through a full set of drawing functions similar to those of other common 2D APIs, thus allowing for dynamically generated graphics. Some anticipated uses of canvas include building graphs, animations, games, and image composition.&lt;/em&gt;  &lt;/p&gt;
-&lt;h3&gt;&lt;a title=&#34;http://www.w3schools.com/html/html5_canvas.asp&#34; href=&#34;http://www.w3schools.com/html/html5_canvas.asp&#34;&gt;Examples from www.w3schools.com&lt;/a&gt;&lt;/h3&gt;
-&lt;h4&gt;Draw a Rectangle&lt;/h4&gt;
-&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;canvas id=&#34;myCanvas1&#34; style=&#34;border-top: #000000 1px solid; border-right: #000000 1px solid; border-bottom: #000000 1px solid; border-left: #000000 1px solid&#34; width=&#34;200&#34; height=&#34;100&#34;&gt;&lt;/canvas&gt;
-                &lt;script&gt;
-                    var ctx = document.getElementById(&#34;myCanvas1&#34;).getContext(&#34;2d&#34;);
-                    ctx.fillStyle = &#34;#FF0000&#34;;
-                    ctx.fillRect(10, 10, 150, 75);
-                &lt;/script&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;99%&#34;&gt;
-                &lt;pre class=&#34;prettyprint prettyprinted&#34; style=&#34;&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; ctx &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; document&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;myCanvas1&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getContext&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;2d&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;fillStyle &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;#FF0000&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;fillRect&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;150&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;75&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/pre&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4&gt;Draw a Line&lt;/h4&gt;
-&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;canvas id=&#34;myCanvas2&#34; style=&#34;border-top: #000000 1px solid; border-right: #000000 1px solid; border-bottom: #000000 1px solid; border-left: #000000 1px solid&#34; width=&#34;200&#34; height=&#34;100&#34;&gt;&lt;/canvas&gt;
-                &lt;script&gt;
-                    var ctx = document.getElementById(&#34;myCanvas2&#34;).getContext(&#34;2d&#34;);
-                    ctx.moveTo(10, 10);
-                    ctx.lineTo(190, 90);
-                    ctx.stroke();
-                &lt;/script&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;99%&#34;&gt;
-                &lt;pre class=&#34;prettyprint prettyprinted&#34; style=&#34;&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; ctx &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; document&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;myCanvas2&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getContext&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;2d&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;moveTo&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;lineTo&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;190&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;stroke&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/pre&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4&gt;Draw a circle&lt;/h4&gt;
-&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;canvas id=&#34;myCanvas3&#34; style=&#34;border-top: #000000 1px solid; border-right: #000000 1px solid; border-bottom: #000000 1px solid; border-left: #000000 1px solid&#34; width=&#34;200&#34; height=&#34;100&#34;&gt;&lt;/canvas&gt;
-                &lt;script&gt;
-                    var ctx = document.getElementById(&#34;myCanvas3&#34;).getContext(&#34;2d&#34;);
-                    ctx.beginPath();
-                    ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-                    ctx.stroke();
-                &lt;/script&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;99%&#34;&gt;
-                &lt;pre class=&#34;prettyprint prettyprinted&#34; style=&#34;&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; ctx &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; document&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;myCanvas3&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getContext&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;2d&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;beginPath&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;arc&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;95&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;50&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;typ&#34;&gt;Math&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;PI&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;stroke&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/pre&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4&gt;Draw text&lt;/h4&gt;
-&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;canvas id=&#34;myCanvas4&#34; style=&#34;border-top: #000000 1px solid; border-right: #000000 1px solid; border-bottom: #000000 1px solid; border-left: #000000 1px solid&#34; width=&#34;200&#34; height=&#34;100&#34;&gt;&lt;/canvas&gt;
-                &lt;script&gt;
-                    var ctx = document.getElementById(&#34;myCanvas4&#34;).getContext(&#34;2d&#34;);
-                    ctx.font = &#34;30px Arial&#34;;
-                    ctx.fillText(&#34;Hello World&#34;, 10, 50);
-                    ctx.strokeText(&#34;Hello World&#34;, 10, 90);
-                &lt;/script&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;99%&#34;&gt;
-                &lt;pre class=&#34;prettyprint prettyprinted&#34; style=&#34;&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; ctx &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; document&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;myCanvas4&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getContext&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;2d&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;font &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;30px Arial&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;fillText&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;Hello World&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;50&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;strokeText&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;Hello World&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/pre&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4&gt;Draw using gradiant&lt;/h4&gt;
-&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;canvas id=&#34;myCanvas5&#34; style=&#34;border-top: #000000 1px solid; border-right: #000000 1px solid; border-bottom: #000000 1px solid; border-left: #000000 1px solid&#34; width=&#34;200&#34; height=&#34;100&#34;&gt;&lt;/canvas&gt;
-                &lt;script&gt;
-                    var ctx = document.getElementById(&#34;myCanvas5&#34;).getContext(&#34;2d&#34;);
-                    // Create gradient
-                    var grd = ctx.createLinearGradient(0, 0, 200, 0);
-                    grd.addColorStop(0, &#34;red&#34;);
-                    grd.addColorStop(1, &#34;white&#34;);
-
-                    // Fill with gradient
-                    ctx.fillStyle = grd;
-                    ctx.fillRect(10, 10, 150, 80);
-                &lt;/script&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;99%&#34;&gt;
-                &lt;pre class=&#34;prettyprint prettyprinted&#34; style=&#34;&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; ctx &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; document&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;myCanvas5&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getContext&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;2d&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;com&#34;&gt;// Create gradient&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; grd &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;createLinearGradient&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-grd&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;addColorStop&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;red&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-grd&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;addColorStop&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;white&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-                
-&lt;/span&gt;&lt;span class=&#34;com&#34;&gt;// Fill with gradient&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;fillStyle &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; grd&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;fillRect&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;150&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;80&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-                
-&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/pre&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4&gt;Draw an Image&lt;/h4&gt;
-&lt;table cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; width=&#34;100%&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;canvas id=&#34;myCanvas6&#34; style=&#34;border-top: #000000 1px solid; border-right: #000000 1px solid; border-bottom: #000000 1px solid; border-left: #000000 1px solid&#34; width=&#34;200&#34; height=&#34;100&#34;&gt;&lt;/canvas&gt;
-                &lt;script&gt;
-                    var ctx = document.getElementById(&#34;myCanvas6&#34;).getContext(&#34;2d&#34;);
-                    var img = document.getElementById(&#34;cupimage&#34;);
-                    ctx.drawImage(img, 10, 10);
-                &lt;/script&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;99%&#34;&gt;
-                &lt;pre class=&#34;prettyprint prettyprinted&#34; style=&#34;&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; ctx &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; document&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;myCanvas6&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getContext&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;2d&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;kwd&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; img &lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; document&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;str&#34;&gt;&#34;cupimage&#34;&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-ctx&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;drawImage&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt; &lt;/span&gt;&lt;span class=&#34;lit&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;pun&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;pln&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/pre&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;&lt;img title=&#34;jsfiddle-logo-white&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;jsfiddle-logo-white&#34; src=&#34;http://www.codesIn.net/post/img/jsfiddle-logo-white.png&#34; width=&#34;64&#34; height=&#34;64&#34;&gt; Jsfiddle &lt;iframe height=&#34;500&#34; src=&#34;http://jsfiddle.net/C52Cu/2/embedded/&#34; frameborder=&#34;0&#34; width=&#34;100%&#34; allowfullscreen=&#34;allowfullscreen&#34;&gt;&lt;/iframe&gt;
 </description>
     </item>
     
