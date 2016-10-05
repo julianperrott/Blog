@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html lang="en-gb">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A developer blog by Julian Perrott">
+<meta name="author" content="Codes in .NET">
+<meta name="generator" content="Hugo 0.16" />
+<title>Blog</title>
+<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/freelancer.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+    </head>
+	<body>
+		
+		<div id="wrapper">
+			<section id="blog" class="subpage detail">
+			
+			 <!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#page-top">Codes In .Net</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="/#portfolio">Blog</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">About Me</a>
+                </li>
+				
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+				
+
+				<div>
+				<img  src="/img/bg_simcitybot_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
+				</div>
+
+				<div class="container">
+					
+					<div class="row articles">
+
+						
+						<article class="col-xs-12 article" style="margin-top:10px">
+							<div class="row">
+								<div class="col-lg-2 visible-lg asideArticleInfo" style="margin-top:10px">
+									<div class="date">
+										<div class="badge">5 Oct 2016</div>
+									</div>
+									<div class="comments">
+										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="SimCity-BuildIt-Bot-Part-2"></span>
+									</div>
+								</div>
+								<div class="col-lg-10">
+									<h2 class="title">SimCity BuildIt Buying and Selling Bot</h2> 
+									<div class="articleInfo clearfix">
+										<div class="i hidden-lg">Post date: <strong>Wed, Oct 5, 2016</strong></div>
+										
+										<br />
+										
+										
+
+									</div>
+									
+
+<p>On my previous blog post I described how I had automated the crafting element of SimCity BuildIt. Next I tackle buying from &ldquo;Global Trade&rdquo; and Selling crafted items to generate in game currency.</p>
+
+<p>The main new problem I had to solve was recognising images from the game screen. This was solved using perceptual hashing with a dictionary of categorised image hashes.</p>
+
+<p><br/></p>
+
+<h3 id="1-buying-items">1. Buying Items</h3>
+
+<p>Assuming we have a shopping list of items we need, then the goal is to buy those items.</p>
+
+<p>Clicking on the Global trade building brings up the trade window. The window contains a number of panels, each representing an item for sale. Dragging within the list from right to left reveals more items.</p>
+
+<p><img src="/post/img/SB2_1_Global Trade.png" alt="Global Trade HQ" /></p>
+
+<p>Usefully each panel is the same size, so If we can find where a panel starts, then the item will always be in the same place and all we need to do is to recognise the item in the panel. The way I solved this is described below:</p>
+
+<p><br/></p>
+
+<h4 id="finding-panels">Finding Panels</h4>
+
+<p>The tops of the panels are always the same distance from the top of the screen.
+Finding the tops of the panels required looking along this line for pixels close to the colour of the bounding line around the panels (See indicator red lines at the top of each panel below).</p>
+
+<p>Each continuous block of matching pixels is one panel. The first pixel in each line represents the top left of the panel.</p>
+
+<p><img src="/post/img/SB2_2_Global Trade.png" alt="Panels" /></p>
+
+<p><br/></p>
+
+<h4 id="recognising-the-item-in-the-panel">Recognising the item in the panel</h4>
+
+<p>If we image capture a rectangle a fixed distance from the top left of the panel of a set size, we now have an image which can be processed and recognised using Image hashing.</p>
+
+<p><img src="/post/img/SB2_3_Panel.png" alt="Sale Item" /></p>
+
+<p>We recognise it using a library of pre-captured images. We create this library by storing unmatched images and then classify them by hand into named folders. Images which are almost the same (90%) can be automatically classified.</p>
+
+<p>As each image is processed  a hash is created e.g. 70088502915571468. The file is then renamed to the hash so that this never needs to be re-computed.</p>
+
+<p><img src="/post/img/SB2_4_Hashes.png" alt="Image Hashes" /></p>
+
+<p>Once we&rsquo;ve recognised an item that we want to buy, we then click on the panel and are transported to the trade depot of the city who is selling the item.</p>
+
+<p><br/></p>
+
+<h4 id="buying-the-item">Buying the item</h4>
+
+<p>Once you are at the city selling the item, you usually find many other items for sale.</p>
+
+<p>The trade depot is similar to the global trade except that it has boxes instead of panels. We can use the same approach we used earlier to find the contents of the boxes and click on the desired item to buy it</p>
+
+<p><img src="/post/img/SB2_5_TradeDepot.png" alt="Trade Depot" /></p>
+
+<p><br/></p>
+
+<h3 id="2-selling-items">2. Selling items</h3>
+
+<p>We have a trade depot where we can sell items. It contains a number of boxes each of which can contain a single item for sale. Once we click on an empty box a &ldquo;Create Sale&rdquo; dialog is shown.</p>
+
+<p><img src="/post/img/SB2_7_HomeDepot.png" alt="Trade Depot" /></p>
+
+<p>To sell an item, we need to:</p>
+
+<ol>
+<li>Open up our trade depot.</li>
+<li>Collect any sold items.</li>
+<li>Pick an empty box, we may need to scroll horizontally to see more boxes.</li>
+<li>Click on the box to open the &ldquo;Create Sale&rdquo; dialog.</li>
+<li>Pick an item to sell and click on it.</li>
+<li>Press the quantity increase button until it turns grey.</li>
+<li>Press the price increase button until it turns grey.</li>
+<li>Click the &lsquo;Put on sale&rsquo; button.</li>
+</ol>
+
+<p>Most of these steps simply require clicking at predetermined locations on the screen.</p>
+
+<p>Steps 2, 3 &amp; 5 use the same image matching technique used when buying items.</p>
+
+<p><br/></p>
+
+<h3 id="3-what-is-perceptual-hashing">3. What is Perceptual Hashing</h3>
+
+<blockquote>
+<p>A perceptual hash is a fingerprint of a multimedia file derived from various features from its content. Unlike cryptographic hash functions which rely on the avalanche effect of small changes in input leading to drastic changes in output,
+perceptual hashes are &ldquo;close&rdquo; to one another if the features are similar.</p>
+</blockquote>
+
+<p>The bot uses <a href="https://github.com/jforshee/ImageHashing">https://github.com/jforshee/ImageHashing</a> which is an implementation of the algorithm found here: <a href="http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html">http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html</a></p>
+
+<p>A long number hash is created in the following steps:</p>
+
+<ol>
+<li>Reduce the image to 8x8 pixels</li>
+<li>Reduce the color of each pixel from RGB (24 bits) to grayscale (6 bits).</li>
+<li>Compute the mean of all the 6-bit values</li>
+<li>Translate each pixel into a bit. 1 if the greyscale is &gt;= to the mean.</li>
+<li>Turn the binary number into a long decimal.</li>
+</ol>
+
+<p>The following shows the processes as it took place on 2 similar images. The images turned out to be only 73% similar.</p>
+
+<p><img src="/post/img/SB2_6_Compared.png" alt="Hashing Examples" /></p>
+
+								</div>
+								
+									
+							</div>
+						</article>
+						
+						
+						 <div class="row">
+						<div class="col-xs-12 articleComments">
+								<div id="disqus_thread"></div>
+								<script type="text/javascript">
+								    
+									var disqus_shortname = 'codesindotnet';
+									var disqus_identifier = 'SimCity-BuildIt-Bot-Part-2';
+									(function () {
+										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+									})();
+								</script>
+								<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+								<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+							</div>
+						</div>
+
+						
+
+						
+					</div>
+				</div>
+			</section>
+
+
+
+		</div>
+	    
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/parsley.min.js"></script>
+<script src="/js/jquery.shuffle.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.easypiechart.min.js"></script>
+<script src="/js/jquery.countTo.js"></script>
+<script src="/js/waypoints.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+
+
+<script src="/js/portfolio.js"></script>
+<script src="/js/script.js"></script>
+
+
+		<link rel="stylesheet" href="/css/options.css">
+
+	   <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-59171735-1', 'auto');
+          ga('send', 'pageview');
+</script>
+	   
+	   <!-- About Section -->
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>About Me</h2>
+                <hr class="star-light">
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-2">
+            <p>My first computer was a Commodore VIC-20, I had great fun trying to code text adventures and side scrolling shoot &lsquo;em ups in BASIC. This helped me lead the way as the first in my school to pass a computer exam.</p>
+        </div>
+            <div class="col-lg-4">
+                <p>Currently I work as a Senior Software Engineer in Bedford for a FTSE 100 Company. Coding daily in C#, JavaScript and SQL. Outside of work I work on whatever is interesting me at that time.</p>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+	   <!-- Footer -->
+<footer class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-4">
+                    <h3>Location</h3>
+
+                    
+                        <p>
+                            
+                                
+                                Milton Keynes, United Kingdom
+                            
+                        </p>
+                    
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>Around the web</h3>
+                    <ul class="list-inline">
+                        
+                            <li>
+                                <a href="//github.com/julianperrott" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="//uk.linkedin.com/in/julianperrott1" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="//www.facebook.com/julianperrott" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="mailto:julian_perrott@hotmail.com" class="btn-social btn-outline"><i class="fa fa-fw fa-envelope"></i></a>
+                            </li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>About Freelancer Theme</h3>
+                    <p>Freelance is a free to use, open source Bootstrap theme created by <a href="//startbootstrap.com">Start Bootstrap</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Published under the Apache License 2.0. Powered by <a href="//gohugo.io">Hugo</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top page-scroll visible-xs visible-sm">
+    <a class="btn btn-primary" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
+
+
+		<script>
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		</script>
+
+		
+		<script type="text/javascript">
+		  
+		  
+		 (function () {
+		 var s = document.createElement('script'); s.async = true;
+		 s.type = 'text/javascript';
+		 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+		 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		 }());
+	 </script> 
+		
+	</body>
+</html>

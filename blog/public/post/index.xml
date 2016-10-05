@@ -6,8 +6,121 @@
     <description>Recent content in Posts on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 14 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Oct 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://www.codesin.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SimCity BuildIt Buying and Selling Bot</title>
+      <link>http://www.codesin.net/post/SimCity-BuildIt-Bot-Part-2/</link>
+      <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.codesin.net/post/SimCity-BuildIt-Bot-Part-2/</guid>
+      <description>
+
+&lt;p&gt;On my previous blog post I described how I had automated the crafting element of SimCity BuildIt. Next I tackle buying from &amp;ldquo;Global Trade&amp;rdquo; and Selling crafted items to generate in game currency.&lt;/p&gt;
+
+&lt;p&gt;The main new problem I had to solve was recognising images from the game screen. This was solved using perceptual hashing with a dictionary of categorised image hashes.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;1-buying-items&#34;&gt;1. Buying Items&lt;/h3&gt;
+
+&lt;p&gt;Assuming we have a shopping list of items we need, then the goal is to buy those items.&lt;/p&gt;
+
+&lt;p&gt;Clicking on the Global trade building brings up the trade window. The window contains a number of panels, each representing an item for sale. Dragging within the list from right to left reveals more items.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/SB2_1_Global Trade.png&#34; alt=&#34;Global Trade HQ&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Usefully each panel is the same size, so If we can find where a panel starts, then the item will always be in the same place and all we need to do is to recognise the item in the panel. The way I solved this is described below:&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;finding-panels&#34;&gt;Finding Panels&lt;/h4&gt;
+
+&lt;p&gt;The tops of the panels are always the same distance from the top of the screen.
+Finding the tops of the panels required looking along this line for pixels close to the colour of the bounding line around the panels (See indicator red lines at the top of each panel below).&lt;/p&gt;
+
+&lt;p&gt;Each continuous block of matching pixels is one panel. The first pixel in each line represents the top left of the panel.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/SB2_2_Global Trade.png&#34; alt=&#34;Panels&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;recognising-the-item-in-the-panel&#34;&gt;Recognising the item in the panel&lt;/h4&gt;
+
+&lt;p&gt;If we image capture a rectangle a fixed distance from the top left of the panel of a set size, we now have an image which can be processed and recognised using Image hashing.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/SB2_3_Panel.png&#34; alt=&#34;Sale Item&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We recognise it using a library of pre-captured images. We create this library by storing unmatched images and then classify them by hand into named folders. Images which are almost the same (90%) can be automatically classified.&lt;/p&gt;
+
+&lt;p&gt;As each image is processed  a hash is created e.g. 70088502915571468. The file is then renamed to the hash so that this never needs to be re-computed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/SB2_4_Hashes.png&#34; alt=&#34;Image Hashes&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once we&amp;rsquo;ve recognised an item that we want to buy, we then click on the panel and are transported to the trade depot of the city who is selling the item.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;buying-the-item&#34;&gt;Buying the item&lt;/h4&gt;
+
+&lt;p&gt;Once you are at the city selling the item, you usually find many other items for sale.&lt;/p&gt;
+
+&lt;p&gt;The trade depot is similar to the global trade except that it has boxes instead of panels. We can use the same approach we used earlier to find the contents of the boxes and click on the desired item to buy it&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/SB2_5_TradeDepot.png&#34; alt=&#34;Trade Depot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-selling-items&#34;&gt;2. Selling items&lt;/h3&gt;
+
+&lt;p&gt;We have a trade depot where we can sell items. It contains a number of boxes each of which can contain a single item for sale. Once we click on an empty box a &amp;ldquo;Create Sale&amp;rdquo; dialog is shown.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/SB2_7_HomeDepot.png&#34; alt=&#34;Trade Depot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To sell an item, we need to:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Open up our trade depot.&lt;/li&gt;
+&lt;li&gt;Collect any sold items.&lt;/li&gt;
+&lt;li&gt;Pick an empty box, we may need to scroll horizontally to see more boxes.&lt;/li&gt;
+&lt;li&gt;Click on the box to open the &amp;ldquo;Create Sale&amp;rdquo; dialog.&lt;/li&gt;
+&lt;li&gt;Pick an item to sell and click on it.&lt;/li&gt;
+&lt;li&gt;Press the quantity increase button until it turns grey.&lt;/li&gt;
+&lt;li&gt;Press the price increase button until it turns grey.&lt;/li&gt;
+&lt;li&gt;Click the &amp;lsquo;Put on sale&amp;rsquo; button.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Most of these steps simply require clicking at predetermined locations on the screen.&lt;/p&gt;
+
+&lt;p&gt;Steps 2, 3 &amp;amp; 5 use the same image matching technique used when buying items.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;3-what-is-perceptual-hashing&#34;&gt;3. What is Perceptual Hashing&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A perceptual hash is a fingerprint of a multimedia file derived from various features from its content. Unlike cryptographic hash functions which rely on the avalanche effect of small changes in input leading to drastic changes in output,
+perceptual hashes are &amp;ldquo;close&amp;rdquo; to one another if the features are similar.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The bot uses &lt;a href=&#34;https://github.com/jforshee/ImageHashing&#34;&gt;https://github.com/jforshee/ImageHashing&lt;/a&gt; which is an implementation of the algorithm found here: &lt;a href=&#34;http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html&#34;&gt;http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A long number hash is created in the following steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Reduce the image to 8x8 pixels&lt;/li&gt;
+&lt;li&gt;Reduce the color of each pixel from RGB (24 bits) to grayscale (6 bits).&lt;/li&gt;
+&lt;li&gt;Compute the mean of all the 6-bit values&lt;/li&gt;
+&lt;li&gt;Translate each pixel into a bit. 1 if the greyscale is &amp;gt;= to the mean.&lt;/li&gt;
+&lt;li&gt;Turn the binary number into a long decimal.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The following shows the processes as it took place on 2 similar images. The images turned out to be only 73% similar.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/SB2_6_Compared.png&#34; alt=&#34;Hashing Examples&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>SimCity BuildIt Crafting Bot</title>
@@ -1025,130 +1138,6 @@ window.onload = function (e) {
 };
 
 &lt;/script&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>My Development Tools</title>
-      <link>http://www.codesin.net/post/My-Development-Tools/</link>
-      <pubDate>Sun, 16 Feb 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.codesin.net/post/My-Development-Tools/</guid>
-      <description>&lt;h3&gt;These are the tools I use daily...&lt;/h3&gt;
-&lt;h4&gt;IDE Tools&lt;/h4&gt;
-&lt;table class=&#34;table table-bordered&#34; cellspacing=&#34;20&#34; cellpadding=&#34;10&#34; width=&#34;600&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesin.net/post/img/visual-studio-2013-logo.png&#34;&gt;
-                    &lt;img title=&#34;visual-studio-2013-logo&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;visual-studio-2013-logo&#34; src=&#34;http://www.codesin.net/post/img/visual-studio-2013-logo.png&#34; width=&#34;244&#34; height=&#34;142&#34;&gt;
-                &lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34;&gt; &lt;h4&gt;Visual Studio IDE&lt;/h4&gt; &lt;p&gt;2013 – the latest and greatest, if you are a .net coder then this is the IDE you use.&lt;/p&gt;&lt;/td&gt;
-        &lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h4&gt;Visual Studio Extensions&lt;/h4&gt;
-&lt;table class=&#34;table table-bordered&#34; cellspacing=&#34;20&#34; cellpadding=&#34;10&#34; width=&#34;600&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codemaid.net/&#34; target=&#34;_blank&#34;&gt;
-                    &lt;img src=&#34;http://www.codemaid.net/wp-content/themes/codemaid/images/logo.png&#34; width=&#34;132&#34;&gt;
-                &lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td&gt;&lt;h4&gt;Codemaid&lt;/h4&gt; Great for cleaning up code to avoid StyleCop warnings.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://vswebessentials.com&#34; target=&#34;_blank&#34;&gt;
-                    &lt;img src=&#34;http://vswebessentials.com/content/images/logo.png&#34;&gt;
-                &lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td&gt;&lt;h4&gt;Web essentials&lt;/h4&gt; Extends Visual Studio with a lot of new features that web developers have been missing for many years.&lt;br&gt;TsLint is one I use a lot.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesin.net/post/img/notepadpp.png&#34;&gt;
-                    &lt;img title=&#34;image286&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;image286&#34; src=&#34;http://www.codesin.net/post/img/image286.png&#34; width=&#34;145&#34; height=&#34;64&#34;&gt;
-                &lt;/a&gt;&lt;br&gt;&lt;br&gt;
-            &lt;/td&gt;
-            &lt;td&gt;&lt;h4&gt;StyleCop&lt;/h4&gt; analyzes C# source code to enforce a set of style and consistency rules. It can be run from within Visual Studio or integrated into an MSBuild project.&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;br /&gt;
-
-&lt;h4&gt;Database Tools&lt;/h4&gt;
-&lt;table class=&#34;table table-bordered&#34; cellspacing=&#34;20&#34; cellpadding=&#34;10&#34; width=&#34;600&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesin.net/post/img/pl-sql-developer-3.jpg&#34;&gt;
-                    &lt;img title=&#34;pl-sql-developer-3&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;pl-sql-developer-3&#34; src=&#34;http://www.codesin.net/post/img/pl-sql-developer-3.jpg&#34; width=&#34;244&#34; height=&#34;138&#34;&gt;
-                &lt;/a&gt;&lt;br&gt;&lt;br&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;PL/SQL Developer&lt;/h4&gt; for oracle package coding, debugging, profiling, querying.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesin.net/post/img/sql_logo.png&#34;&gt;
-                    &lt;img title=&#34;sql_logo&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;sql_logo&#34; src=&#34;http://www.codesin.net/post/img/sql_logo.png&#34; width=&#34;244&#34; height=&#34;54&#34;&gt;
-                &lt;/a&gt;&lt;br&gt;&lt;br&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;Sql Management studio 2012&lt;/h4&gt; for ms sql stored procedure coding &amp;amp; querying.&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;br /&gt;
-
-&lt;h4&gt;Other Tools&lt;/h4&gt;
-&lt;table class=&#34;table table-bordered&#34; cellspacing=&#34;20&#34; cellpadding=&#34;10&#34; width=&#34;600&#34; border=&#34;0&#34;&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://notepad-plus-plus.org/&#34;&gt;
-                    &lt;img title=&#34;logo-green-orange&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;logo-green-orange&#34; src=&#34;http://www.codesin.net/post/img/notepadpp.png&#34; width=&#34;170&#34; height=&#34;244&#34;&gt;
-                &lt;/a&gt;&lt;br&gt;&lt;br&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;Notepad++&lt;/h4&gt; a great MDI notepad.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesin.net/post/img/agent_ransack_128.png&#34;&gt;
-                    &lt;img title=&#34;agent_ransack_128&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;agent_ransack_128&#34; src=&#34;http://www.codesin.net/post/img/agent_ransack_128.png&#34; width=&#34;132&#34; height=&#34;132&#34;&gt;
-                &lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34;&gt;
-                &lt;h4&gt;Agent Ransack&lt;/h4&gt; Finding files and their contents on your hard drives.
-
-                &lt;br /&gt;
-                &lt;br /&gt;
-                &lt;a title=&#34;http://www.mythicsoft.com/agentransack/&#34; href=&#34;http://www.mythicsoft.com/agentransack/&#34;&gt;http://www.mythicsoft.com/agentransack/&lt;/a&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesin.net/post/img/Logo4.png&#34;&gt;
-                    &lt;img title=&#34;Logo4&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Logo4&#34; src=&#34;http://www.codesin.net/post/img/Logo4.png&#34; width=&#34;242&#34; height=&#34;62&#34;&gt;
-                &lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34;&gt;&lt;h4&gt;Paint.NET&lt;/h4&gt; is free image and photo editing software for PCs that run Windows.&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td valign=&#34;top&#34; width=&#34;200&#34;&gt;
-                &lt;a href=&#34;http://www.codesin.net/post/img/fiddler.jpg&#34;&gt;
-                    &lt;img title=&#34;fiddler&#34; style=&#34;border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; display: inline; padding-right: 0px&#34; border=&#34;0&#34; alt=&#34;fiddler&#34; src=&#34;http://www.codesin.net/post/img/fiddler.jpg&#34; width=&#34;244&#34; height=&#34;244&#34;&gt;
-                &lt;/a&gt;
-            &lt;/td&gt;
-            &lt;td valign=&#34;top&#34;&gt;
-                &lt;p&gt;
-                    &lt;h4&gt;Fiddler&lt;/h4&gt; is a HTTP debugging proxy server application written by Eric Lawrence. It captures HTTP and HTTPS traffic and logs it for the user to review.&lt;br&gt;It can also be used to modify (&#34;fiddle&#34;) with HTTP traffic for troubleshooting purposes as it is being sent or received. Any browser or web application can be configured to route its traffic through Fiddler.
-                &lt;/p&gt; &lt;p&gt;Great for debugging your WCF services.&lt;/p&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
 </description>
     </item>
     

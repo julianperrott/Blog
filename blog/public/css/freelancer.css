@@ -457,3 +457,11 @@ footer .footer-below {
     display: none;
     opacity: 0;
 }
+
+@font-face {
+	font-family: 'benguiat_bold';
+	src: url('fonts/benguiat_bold.eot'); 
+	src: 
+		url('fonts/benguiat_bold.ttf') 
+		format('truetype');
+}
