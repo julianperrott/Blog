@@ -4,52 +4,6 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-
-@-webkit-keyframes fadeInLeftBig2 {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(-2000px, 0, 0);
-    transform: translate3d(-2000px, 0, 0);
-  }
-  99% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInLeftBig2 {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(-2000px, 0, 0);
-    transform: translate3d(-2000px, 0, 0);
-  }
-  25% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-.fadeInLeftBig2 {
-    -webkit-animation-name: fadeInLeftBig2;
-    animation-name: fadeInLeftBig2;
-    -webkit-animation-duration: 12s;
-    animation-duration: 8s !important;
-    animation-iteration-count: infinite;
-}
-
-
 body {
     overflow-x: hidden;
 }
@@ -111,18 +65,21 @@ hr.star-primary:after {
     top: -.8em;
     padding: 0 .25em;
     font-family: FontAwesome;
-    font-size: 2em;
+    font-size: 3em;
+
+    
+    background: transparent\9 !important;
+    background:rgba(255,102,0,0) !important;
 
     -webkit-animation-name: shiningstartext; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
     -webkit-animation-iteration-count: infinite; /* Chrome, Safari, Opera */
     -webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
-    -webkit-animation-timing-function: ease-in-out; /* Chrome, Safari, Opera */
     animation-name: shiningstartext;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+   
 }
 
 /* Chrome, Safari, Opera */
@@ -139,14 +96,16 @@ hr.star-primary:after {
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes shiningstartext{
-    0%   {color:#ffff80; -moz-text-shadow: 0 0 9px #fff; -webkit-text-shadow: 0 0 9px #fff }
-    100% {color:#ffff00; -moz-text-shadow: 4px 4px 9px #fc0; -webkit-text-shadow: 4px 4px 9px #fc0}
+    0%   {color:#ffff80; -moz-text-shadow: 0 0 9px #fff   ; -webkit-transform: rotate3d(0, 0, 1, 0deg)  scale3d(.4, .4, .4);      transform: rotate3d(0, 0, 1, 0deg)   scale3d(.4, .4, .4);}
+    90% {color:#ffff00; -moz-text-shadow: 4px 4px 9px #fc0; -webkit-transform: rotate3d(0, 0, 1, -360deg)  scale3d(0.9, 0.9, 0.9);transform: rotate3d(0, 0, 1, -360deg) scale3d(0.9, 0.9, 0.9);}
+    00% {color:#ffff00; -moz-text-shadow: 4px 4px 9px #fc0; -webkit-transform: rotate3d(0, 0, 1, -360deg)  scale3d(1, 1, 1);     transform: rotate3d(0, 0, 1, -360deg)  scale3d(1, 1, 1);}
 }
 
 /* Standard syntax */
 @keyframes shiningstartext{
-    0%   {color:#ffff80; text-shadow: 0 0 9px #fff;}
-    100% {color:#ffff00; text-shadow: 4px 4px 9px #fc0;}
+    0%   {color:#ffff80; text-shadow: 0 0 9px #fff; -webkit-transform: rotate3d(0, 0, 1, 0deg)  scale3d(.4, .4, .4);transform: rotate3d(0, 0, 1, 0deg)  scale3d(.4, .4, .4);}
+    90% {color:#ffff00; text-shadow: 4px 4px 9px #fc0;-webkit-transform: rotate3d(0, 0, 1, -360deg)  scale3d(0.9, 0.9, 0.9);transform: rotate3d(0, 0, 1, -360deg)  scale3d(0.9, 0.9, 0.9);}
+    100% {color:#ffff00; text-shadow: 4px 4px 9px #fc0;-webkit-transform: rotate3d(0, 0, 1, -360deg)  scale3d(1, 1, 1);transform: rotate3d(0, 0, 1, -360deg)  scale3d(1, 1, 1);}
 }
 
 hr.star-light {
