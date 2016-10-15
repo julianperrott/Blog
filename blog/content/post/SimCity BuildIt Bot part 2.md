@@ -100,3 +100,10 @@ A long number hash is created in the following steps:
 The following shows the processes as it took place on 2 similar images. The images turned out to be only 73% similar. 
 
 ![Hashing Examples](/post/img/SB2_6_Compared.png)
+
+----------
+
+
+### Bot Demo
+
+<iframe allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/JFwONo9b-RE" width="480"></iframe>

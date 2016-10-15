@@ -11,3 +11,12 @@
 <script src="{{ .Site.BaseURL }}js/contact_me.js"></script>
 {{ "<!-- Custom Theme JavaScript -->" | safeHTML }}
 <script src="{{ .Site.BaseURL }}js/freelancer.js"></script>
+
+<script src="{{ .Site.BaseURL }}js/jquery.lettering.js"></script>
+<script src="{{ .Site.BaseURL }}js/jquery.textillate.js"></script>
+
+<script>
+$(function () {
+    $('.tlt').textillate();
+});
+</script>
