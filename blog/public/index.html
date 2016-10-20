@@ -13,6 +13,7 @@
 <!-- Custom CSS -->
 <link href="/css/freelancer.css" rel="stylesheet">
 <link href="/css/animate.css" rel="stylesheet">
+<link href="/css/animatedtitles.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -65,82 +66,21 @@
 
         <!-- Header -->
 
-<style>
-    
-@-webkit-keyframes fadeInLeftBig2 {
-  0%  { opacity: 0;-webkit-transform: translate3d(-2000px, 0, 0);transform: translate3d(-2000px, 0, 0);}
-  25% { opacity: 1;-webkit-transform: none;transform: none;
-  }
-}
-
-@keyframes fadeInLeftBig2 {
-  0%  { opacity: 0;-webkit-transform: translate3d(-2000px, 0, 0);transform: translate3d(-2000px, 0, 0);}
-  25% { opacity: 1;-webkit-transform: none;transform: none;}
-}
-
-.fadeInLeftBig2 {
-    -webkit-animation-name: fadeInLeftBig2;
-    animation-name: fadeInLeftBig2;
-    -webkit-animation-duration: 8s;
-    animation-duration: 8s !important;
-    animation-iteration-count: infinite;
-}
-
-
-@-webkit-keyframes zoomIn2 {
-  0%  { opacity: 0;-webkit-transform: scale3d(.3, .3, .3);transform: scale3d(.3, .3, .3);}
-  20% { opacity: 1; -webkit-transform: scale3d(1, 1,1); transform: scale3d(1, 1,1);};
-}
-
-@keyframes zoomIn2 {
-  0%  { opacity: 0; -webkit-transform: scale3d(.3, .3, .3); transform: scale3d(.3, .3, .3); }
-  20% { opacity: 1;  -webkit-transform: scale3d(1, 1,1); transform: scale3d(1, 1,1); };
-}
-
-.zoomIn2 {
-    -webkit-animation-name: zoomIn2;
-    animation-name: zoomIn2;
-    -webkit-animation-duration: 8s;
-    animation-duration: 8s !important;
-    animation-iteration-count: infinite;
-    animation-delay: 1s;
-    -webkit-animation-delay: 1s;
-}
-
-@-webkit-keyframes rollIn2 {
-    0% {opacity: 0;-webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);}
-    50% {opacity: 1;-webkit-transform: none;transform: none;}
-}
-
-@keyframes rollIn2 {
-    0% {opacity: 0;-webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);}
-    40% {opacity: 1;-webkit-transform: none; transform: none;}
-}
-
-.rollIn2 {
-    -webkit-animation-name: rollIn2;
-    animation-name: rollIn2;
-    -webkit-animation-duration: 8s;
-    animation-duration: 8s !important;
-    animation-iteration-count: infinite;
-}
-</style>
-
 <header>
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid"  id = "canvasdiv">
+        <canvas class="matrixcanvas" id="c"></canvas>
+        <div class="row" style="position: relative">
             <div class="col-lg-12">
                 <img class="img-responsive animated zoomIn2" src="img/Me3.png" alt="">
                 <div class="intro-text">
-                    <span class="name tlt" data-in-effect="fadeInLeftBig2" >Julian Perrott</span>
+                    <span class="name tlt" data-in-effect="fadeInLeftBig2" style="text-shadow: 0px 0px 4px #18bc9c !important;">Julian Perrott</span>
                     <hr class="star-light"/>
-                    <span class="skills tlt"  data-in-effect="rollIn2" data-in-shuffle="true">Developer - Gamer - Botter</span>
+                    <span class="skills tlt"  data-in-effect="rollIn2" data-in-shuffle="true" style="text-shadow: 0px 0px 4px #18bc9c;">Developer - Gamer - Bot Maker</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
         <!-- Portfolio Grid Section -->
 <section id="portfolio">
     <div class="container">
@@ -725,10 +665,12 @@
 
 <script src="http://www.codesin.net/js/jquery.lettering.js"></script>
 <script src="http://www.codesin.net/js/jquery.textillate.js"></script>
+<script src="http://www.codesin.net/js/matrix.js"></script>
 
 <script>
 $(function () {
     $('.tlt').textillate();
+    matrix();
 });
 </script>
 

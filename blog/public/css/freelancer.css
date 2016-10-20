@@ -136,9 +136,22 @@ header {
     background: #18bc9c;
 }
 
+.matrixcanvas
+{
+    position: absolute;
+    left:0px;top: 65px;
+    height: 420px;
+    width: 100%;
+}
+
 header .container {
     padding-top: 100px;
     padding-bottom: 50px;
+}
+
+header .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 20px;
 }
 
 header img {
@@ -160,10 +173,25 @@ header .intro-text .skills {
 }
 
 @media(min-width:768px) {
+
+    .matrixcanvas
+    {
+        position: absolute;
+        left:0px;
+        top: 130px;
+        height: 520px;
+        width: 100%;
+    }
+
     header .container {
         padding-top: 200px;
         padding-bottom: 100px;
     }
+
+    header .container-fluid {
+    padding-top: 150px;
+    padding-bottom: 50px;
+}
 
     header .intro-text .name {
         font-size: 4.75em;

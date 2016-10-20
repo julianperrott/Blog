@@ -23,7 +23,7 @@ theme = "hugo-freelancer-theme"
         # Copy your own image into './static/img/'' if you wish
         image = "Me3.png"
         name = "Julian Perrott"
-        subtitle = "Developer - Gamer - Botter"
+        subtitle = "Developer - Gamer - Bot Maker"
 
 
     [params.portfolio]
