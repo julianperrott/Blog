@@ -1,6 +1,6 @@
 {{ "<!-- Portfolio Grid Section -->" | safeHTML }}
 <section id="portfolio">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2>{{ with .Site.Params.portfolio.title }}{{.}}{{end}}</h2>
@@ -12,7 +12,7 @@
 
 			{{ range $index, $element := .Data.Pages }}
 				
-            <div class="col-sm-4 portfolio-item">
+            <div class="col-xs-3 portfolio-item">
                 <a href="{{ .Permalink }}" class="portfolio-link" data-toggle="modal">
                     <div class="caption">
                         <div class="caption-content">
@@ -24,7 +24,7 @@
 					<div class="day badge" style="background:green;position: absolute; right: 0px; bottom:0px">{{ .Date.Day }}&nbsp;{{ .Date.Format "Jan 2006" }}</div>
 					
 				
-					<div class="row col-sm-12">
+					<div class="row col-xs-12">
 						<h3><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h3>
 						<p>
 							{{.Description}}

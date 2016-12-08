@@ -17,6 +17,8 @@
     animation-duration: 8s !important;
     animation-iteration-count: infinite;
     background: transparent !important;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
 }
 
 
