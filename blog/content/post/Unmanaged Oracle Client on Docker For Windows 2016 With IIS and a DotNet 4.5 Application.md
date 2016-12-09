@@ -9,9 +9,9 @@ background = "bg_odac"
 +++
 
 
-Docker is an interesting container technology which Microsoft is making available on Windows Server 2016 platform.
+Docker is an interesting container technology which Microsoft is making available on thier Windows Server 2016 platform.
 
-For 4.x dotnet applications which connection to Oracle databases the managed Oracle Data Access Client is the easiest route to take these days, 
+For 4.x dotnet applications which need a connection to an Oracle database the managed Oracle Data Access Client is the easiest route to take these days, 
 but if you must use the unmanaged version, then this blog will show you the way to setup your Docker images and 
 what exceptions you may get if you wander from the happy path.
 
@@ -59,22 +59,28 @@ I have created a simple MVC web application to test with. The code is all found 
 
 ### 2. Create your Dockerfile
 
-If you stray from the happy path listed below then you will need to refer to the list of exceptions further down to work out what has gone wrong.
+If you stray from the steps listed below and it you get a runtime exception, then you will need to refer to the list of exceptions further down to work out what has gone wrong.
 
 Note: Make sure the bitness 32 or 64 is consistent for your application, OracleDataAccess.DLL ,ODAC & C++ 2010 Redistributable !
 
 
-- Download ODAC (the xcopy version)  (32-bit Oracle Data Access Components (ODAC) and NuGet Downloads) or (64-bit Oracle Data Access Components (ODAC) Downloads)
-- Compile your application with a reference to the unmanaged OracleDataAccess.DLL  (Use v11 if the ODAC is v11). ( found in odp.net4\odp.net\bin\4\Oracle.DataAccess.dll)
-- Install ODAC Xcopy version of ODP.NET4
+- Download the correct ODAC (xcopy version) for your application. Either ("32-bit Oracle Data Access Components (ODAC) and NuGet Downloads") or ("64-bit Oracle Data Access Components (ODAC) Downloads")
+- Compile your application with a reference to the unmanaged OracleDataAccess.DLL  (Use v11 if the ODAC is v11). (It in doubt use the one found in the ODAC Xcopy, located in odp.net4\odp.net\bin\4\Oracle.DataAccess.dll)
+
+In your Dockerfile:
+
+- Copy your ODAC xcopy and application into the container.
+- Install the ODAC xcopy version of ODP.NET4
 - If using ODAC V12 then install Microsoft Visual C++ 2010 Redistributable Package
 - If using ODAC V12 then set Path to point at oracle client path.
 - Enable 32 bit on the app pool if you are using a web app which is 32 bit.
+- Install your application.
+
 
 <br/> 
 #### Dockerfile Examples ####
 
-The dockerfile is located in the web site folder as is the oracle odac xcopy extracted files.
+In my exampls the dockerfile is located in the web application folder as are the oracle odac xcopy extracted files.
 
 ![alt text](/post/img/Odac_Oracle_Folder.png "Oracle install folder structure")
 
@@ -174,21 +180,25 @@ Your can then either use a browser to view the default page or within the docker
 
 <br/> 
 
-### 5. Container Run-Time Exceptions you may get and what they can mean
+### 5. Container Run-Time Exceptions you may get and what they could mean
 
 
 **BadImageFormatException**
 
+<pre class="prettyprint">
+BadImageFormatException: Could not load file or assembly 'NameOfYourAppHere' or one of its dependencies. An attempt was made to load a program with an incorrect format.
+</pre>
+
 This means that there is a bitness mismatch between the Application pool and the application or the application and the Oracle.DataAccess.dll.
 
-IF App Pool has enable 32bit apps then the app is compiled in x64 or oracle.dataaccess.dll is x64.
+IF App Pool has enabled 32bit apps then the app is compiled in x64 or oracle.dataaccess.dll is x64.
 or if if App Pool has not enable 32bit Apps then App compiled in x86 or oracle.dataaccess.dll is x86 (App pool doesn't support x86)
 
 <br/> 
 
-**HttpException**
-
 <pre class="prettyprint">
+BadImageFormatException: Could not load file or assembly 'Oracle.DataAccess' or one of its dependencies. An attempt was made to load a program with an incorrect format.
+
 HttpException (0x80004005): Could not load file or assembly 'Oracle.DataAccess' or one of its dependencies. An attempt was made to load a program with an incorrect format.
 </pre>
 
@@ -208,8 +218,8 @@ The App pool, application and Oracle.DataAccess.dll are all 32 bit, but the ODP.
 OracleException (0x80004005): ORA-12154: TNS:could not resolve the connect identifier specified]
 </pre>
 
--TNSNAMES.ORA is not in the ORACLE_HOME\NETWORK\ADMIN folder.
--ADDRESS_LIST may need to be used in TNSNAMES,ORA.
+- TNSNAMES.ORA is not in the ORACLE_HOME\NETWORK\ADMIN folder.
+- ADDRESS_LIST may need to be used in TNSNAMES.ORA.
 
 <br/> 
   
