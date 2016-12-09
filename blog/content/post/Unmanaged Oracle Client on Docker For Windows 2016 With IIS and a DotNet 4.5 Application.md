@@ -9,7 +9,7 @@ background = "bg_odac"
 +++
 
 
-Docker is an interesting container technology which Microsoft is making available on thier Windows Server 2016 platform.
+Docker is an interesting container technology which Microsoft is making available on their Windows Server 2016 platform.
 
 For 4.x dotnet applications which need a connection to an Oracle database the managed Oracle Data Access Client is the easiest route to take these days, 
 but if you must use the unmanaged version, then this blog will show you the way to setup your Docker images and 
@@ -80,7 +80,7 @@ In your Dockerfile:
 <br/> 
 #### Dockerfile Examples ####
 
-In my exampls the dockerfile is located in the web application folder as are the oracle odac xcopy extracted files.
+In my examples the dockerfile is located in the web application folder as are the Oracle ODAC xcopy extracted files.
 
 ![alt text](/post/img/Odac_Oracle_Folder.png "Oracle install folder structure")
 
@@ -118,7 +118,7 @@ In my exampls the dockerfile is located in the web application folder as are the
 
 ##### Example Dockerfile for v12 64 bit
 
-The only real difference is I am not setting the app pool to allow 32 bit.
+The only real difference is that I am not setting the app pool to allow 32 bit.
 
 <pre class="prettyprint">
 	FROM microsoft/iis
@@ -164,7 +164,7 @@ Example Log:
 
 <br/> 
 
-### 4. Running the app
+### 4. Running the container
 
 Run using:
 
@@ -180,7 +180,7 @@ Your can then either use a browser to view the default page or within the docker
 
 <br/> 
 
-### 5. Container Run-Time Exceptions you may get and what they could mean
+### 5. Container run-time exceptions and what they mean
 
 
 **BadImageFormatException**
