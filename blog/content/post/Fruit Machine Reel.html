@@ -1,0 +1,107 @@
++++
+date = "2017-03-13"
+title = "Fruit Machine Reel"
+description = "xxx"
+slug = "Fruit-Machine-Reel"
+draft = true
+
+background = "bg_fruit_machine"
+bg_name = "Fruit"
+bg_url = "https://www.flickr.com/photos/97477873@N00/9369949185/in/photolist-7GBvrL-kkVYz5-29NLhU-fgZrs2-p2dtEo-ppmjeG-8YS3vg-7GR6z2-dRoAij-b51hJ2-7shfUj-8JE5Hd-7PEjuJ-bvMzTZ-bceQQX-bZjeDE-81MSoy-98PpyA-s85waN-98PpAU-93q11a-wYkRP-4k3CZc-caKSfJ-3pLFg-98LgCB-e5zTDG-6dsAYy-RR7ceN-62H8KY-p2HwxZ-3XQZD-qtHQwS-bn3eCK-aj9zEP-fzwfcS-AXfwvL-5FvcLv-RJqnAA-bueMaf-vtWPE-3G3AU-cm2Fwf-9anRy4-3RXaMf-6tXr9a-98PpBd-63RM3e-snkGus-bahRaB"
+bg_owner_name = "Marcia O'Connor"
++++
+
+<p>This post is a bit of an experiment, playing with the position and size of images to see if I can create an animated fruit machine reel.</p>
+
+<p>I had the idea of showing the result of a random choice via an animation on my site homepage. I didn&rsquo;t want to use a canvas for this, so I wondered if I could use image tags. The first way I thought I could represent this is was a fruit machine reel, because this shows that there are different options, only one of which is chosen.</p>
+
+<p><img src="/post/img/reels.jpg" alt="alt text" title="Fruit Machine Reels" /></p>
+
+<p>A fruit machine reel is circular with only about 50% visible when viewed side on. The diagram below shows that segments of equal size depending upon their position can appear to have different heights when viewed by the user. By plotting the XY of the circumference of the circle we can work out the Y co-ordinate and determine the height of each image depending on the fixed  number of degrees it covers from it&rsquo;s start position in degrees to its end.</p>
+
+<pre class="prettyprint" >
+for (var i = 0; i < 180; i += 1) {
+    var x = radius * Math.sin(2 * Math.PI * (i - 90) / 360);
+    var y = radius * Math.cos(2 * Math.PI * (i - 90) / 360);
+    ...
+}
+</pre>
+
+<p><img src="/post/img/FruitMachineReel.jpg" alt="alt text" title="A diagram of a circle segments showing the height of each segment and images next to it showing the height of the image" /></p>
+
+<p>I have implemented the animated reel using angular and it can be seen in this plunker.</p>
+
+
+<p>
+<a href="https://run.plnkr.co/plunks/p2cn15/" target="_blank">
+<img src="/post/img/FruitMachinePlunkerLink.png"></img>
+Link to plunker</a></p>
+
+<p>A simple description of how it works:</p>
+
+<ul>
+<li>First the y coords on one side of a circle are calculated.</li>
+<li>A list of images is defined.</li>
+<li>The position in degrees of a one of the images is held as state.</li>
+<li>A timer then moves the image a set number of degrees down.</li>
+<li>The position of all of the other images is calculated from the one we know.</li>
+<li>Once the image has passed the 90 degree angle the tracked image moves to the next in the list.</li>
+<li>The images are shown in an html div in their calaculated position, by setting the CSS height and &lsquo;absolute&rsquo; position from the top.</li>
+</ul>
+
+<p>The result is a reasonably convincing representation of a fruit machine reel. It runs faster in Chrome compared to Internet Explorer.  It can be a little jerky so it is not perfect. In reality you can&rsquo;t see the whole reel, so it that respect it is less useful.</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+<script src="/post/content/FruitMachine/FruitMachine.js"></script>
+
+<div ng-app="myApp" ng-controller="fruitMachine as vm">
+        <div style="background: grey; height:620px; width:550px;position:relative; left:10px; top: 0px;">
+             
+            <canvas id="myCanvas" width="302" height="600" style="background: white;border:1px solid #000000;position:absolute;top: 10px;left: 10px;">
+              </canvas>
+            
+            
+            <div ng-repeat="reel in vm.reelViews" 
+            style="z-index: 20;position: absolute; top: 10px; left: 350px; width: 130px; height: 600px"
+            ng-style="{ ,background: 'white'}">
+                <div 
+                ng-repeat="v in reel" 
+                ng-style="{ 
+                    position: 'absolute', 
+                    top: {{v.startPx}}+'px',
+                    overflow: 'hidden', 
+                    height: {{v.heightdiv}}+'px'
+                  }">
+                    <img 
+                    ng-src="https://github.com/julianperrott/FruitMachineReel/blob/master/{{vm.symbols[v.symbolNo]}}?raw=true" 
+                    style="border: 1px solid black" 
+                    ng-style="{
+                      height: {{v.height}}+'px', 
+                      width: '130px', 
+                      position: 'relative', 
+                      top: {{v.imgTop}}+'px'
+                    }" />
+                </div>
+                
+                 <div 
+                ng-repeat="v in reel" 
+                style="position: absolute;"
+                ng-style="{ top: {{v.startPx}}+'px' }">
+                     <div 
+                     style="border: 1px solid black;left: 180px;position: relative;background: white;padding: 2px" 
+                   ng-style="{top: {{v.imgTop+v.height/4}}+'px'}" >
+                       height:{{v.heightdiv}}, y: {{v.startPx}}, {{vm.symbols[v.symbolNo]}}</div>
+                    
+                </div>
+            </div>
+            
+             <canvas id="myCanvas2" width="302" height="600"
+             style="background: transparent;position:absolute;top: 10px;left: 350px; z-index: 10">
+              </canvas>
+    </div>
+	<div style="margin:10px">
+		<button ng-click="vm.start()">Start Rolling</button>
+		<button ng-click="vm.stop()">Stop Rolling</button>
+		<button ng-click="vm.move()">Step forward</button>
+	</div>
+</div>

@@ -109,4 +109,4 @@ theme = "hugo-freelancer-theme"
 
         [params.footer.credits]
             title = "About Freelancer Theme"
-            text = "Freelance is a free to use, open source Bootstrap theme created by [Start Bootstrap](//startbootstrap.com)."
+            text = "Freelancer is a free to use, open source Bootstrap theme created by [Start Bootstrap](//startbootstrap.com)."
