@@ -6,8 +6,112 @@
     <description>Recent content in Posts on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 04 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Mar 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://www.codesin.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Rendering a Fruit Machine Reel</title>
+      <link>http://www.codesin.net/post/Fruit-Machine-Reel/</link>
+      <pubDate>Mon, 13 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.codesin.net/post/Fruit-Machine-Reel/</guid>
+      <description>&lt;p&gt;So, this is a bit of experimentation, playing with the position and size of images to see if I can create an animated fruit machine reel.&lt;/p&gt;
+
+&lt;p&gt;I had the idea of showing the result of a random choice via an animation on my site homepage. I didn&#39;t want to use a canvas for this, so I wondered if I could use image tags. The first idea of how I could represent this random result was a fruit machine reel, because it also shows that there are different options, only one of which is chosen.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/reels.jpg&#34; alt=&#34;alt text&#34; title=&#34;Fruit Machine Reels&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A fruit machine reel is circular with only about 50% visible when viewed side on. The diagram below shows that the segments are of equal size but depending upon their position can appear to have different heights when viewed by the user. By plotting the XY of the circumference of the circle we can work out the Y co-ordinate and determine the height of each segment depending on the number of degrees it covers from it&#39;s start position to it&#39;s end.&lt;/p&gt;
+
+&lt;pre class=&#34;prettyprint&#34; &gt;
+for (var i = 0; i &lt; 180; i += 1) {
+    var x = radius * Math.sin(2 * Math.PI * (i - 90) / 360);
+    var y = radius * Math.cos(2 * Math.PI * (i - 90) / 360);
+    ...
+}
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/FruitMachineReel.jpg&#34; alt=&#34;alt text&#34; title=&#34;A diagram of a circle segments showing the height of each segment and images next to it showing the height of the image&#34; /&gt;&lt;/p&gt;
+
+&lt;h4&gt;A Demo&lt;/h4&gt;
+
+&lt;p&gt;You can see what it looks like moving in an implemention on plunker. The animated reel uses AngularJs to do the animation.&lt;/p&gt;
+
+
+&lt;p&gt;
+&lt;a href=&#34;https://run.plnkr.co/plunks/p2cn15/&#34; target=&#34;_blank&#34;&gt;
+&lt;img src=&#34;http://www.codesin.net/post/img/FruitMachinePlunkerLink.png&#34;&gt;&lt;/img&gt;
+Link to plunker&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It works roughly like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;First the y coordinates on one side of a circle are calculated.&lt;/li&gt;
+&lt;li&gt;A list of images objects is defined, each one has a reference to a PNG image.&lt;/li&gt;
+&lt;li&gt;The position in degrees of one of the images is tracked.&lt;/li&gt;
+&lt;li&gt;A timer fires a few times a second and steps the tracked image a set number of degrees down.&lt;/li&gt;
+&lt;li&gt;The position of all of the other images is calculated from the one we know.&lt;/li&gt;
+&lt;li&gt;Once the image has passed the 90 degree angle the tracked image moves to the next in the list.&lt;/li&gt;
+&lt;li&gt;The images are shown in an html div in their calaculated position, by setting the CSS height and absolute position from the top.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The result is a reasonably convincing representation of a fruit machine reel. It runs faster in Chrome compared to Internet Explorer.  It can be a little jerky so it is not perfect. In a real fruit machine you can&#39;t see the whole side of the reel, so it that respect it is less realistic or useful.&lt;/p&gt;
+
+&lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://www.codesin.net/post/content/FruitMachine/FruitMachine.js&#34;&gt;&lt;/script&gt;
+
+&lt;div ng-app=&#34;myApp&#34; ng-controller=&#34;fruitMachine as vm&#34;&gt;
+        &lt;div style=&#34;background: grey; height:620px; width:550px;position:relative; left:10px; top: 0px;&#34;&gt;
+             
+            &lt;canvas id=&#34;myCanvas&#34; width=&#34;302&#34; height=&#34;600&#34; style=&#34;background: white;border:1px solid #000000;position:absolute;top: 10px;left: 10px;&#34;&gt;
+              &lt;/canvas&gt;
+            
+            
+            &lt;div ng-repeat=&#34;reel in vm.reelViews&#34; 
+            style=&#34;z-index: 20;position: absolute; top: 10px; left: 350px; width: 130px; height: 600px&#34;
+            ng-style=&#34;{ ,background: &#39;white&#39;}&#34;&gt;
+                &lt;div 
+                ng-repeat=&#34;v in reel&#34; 
+                ng-style=&#34;{ 
+                    position: &#39;absolute&#39;, 
+                    top: {{v.startPx}}+&#39;px&#39;,
+                    overflow: &#39;hidden&#39;, 
+                    height: {{v.heightdiv}}+&#39;px&#39;
+                  }&#34;&gt;
+                    &lt;img 
+                    ng-src=&#34;https://github.com/julianperrott/FruitMachineReel/blob/master/{{vm.symbols[v.symbolNo]}}?raw=true&#34; 
+                    style=&#34;border: 1px solid black&#34; 
+                    ng-style=&#34;{
+                      height: {{v.height}}+&#39;px&#39;, 
+                      width: &#39;130px&#39;, 
+                      position: &#39;relative&#39;, 
+                      top: {{v.imgTop}}+&#39;px&#39;
+                    }&#34; /&gt;
+                &lt;/div&gt;
+                
+                 &lt;div 
+                ng-repeat=&#34;v in reel&#34; 
+                style=&#34;position: absolute;&#34;
+                ng-style=&#34;{ top: {{v.startPx}}+&#39;px&#39; }&#34;&gt;
+                     &lt;div 
+                     style=&#34;border: 1px solid black;left: 180px;position: relative;background: white;padding: 2px&#34; 
+                   ng-style=&#34;{top: {{v.imgTop+v.height/4}}+&#39;px&#39;}&#34; &gt;
+                       height:{{v.heightdiv}}, y: {{v.startPx}}, {{vm.symbols[v.symbolNo]}}&lt;/div&gt;
+                    
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+             &lt;canvas id=&#34;myCanvas2&#34; width=&#34;302&#34; height=&#34;600&#34;
+             style=&#34;background: transparent;position:absolute;top: 10px;left: 350px; z-index: 10&#34;&gt;
+              &lt;/canvas&gt;
+    &lt;/div&gt;
+	&lt;div style=&#34;margin:10px&#34;&gt;
+		&lt;button ng-click=&#34;vm.start()&#34;&gt;Start Rolling&lt;/button&gt;
+		&lt;button ng-click=&#34;vm.stop()&#34;&gt;Stop Rolling&lt;/button&gt;
+		&lt;button ng-click=&#34;vm.move()&#34;&gt;Step forward&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
     
     <item>
       <title>Oracle Client on Windows 2016 Docker &#43; DotNet 4.5 MVC</title>
@@ -1289,64 +1393,6 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     SphereImageLib.Pixel = Pixel;
 })(SphereImageLib || (SphereImageLib = {}));
 &lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Testing JavaScript with Visual Studio</title>
-      <link>http://www.codesin.net/post/Testing-JavaScript-with-Visual-Studio/</link>
-      <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.codesin.net/post/Testing-JavaScript-with-Visual-Studio/</guid>
-      <description>&lt;p&gt;If your web application is using JavaScript for non trivial functionality then it makes sense to test it programmatically. Various JavaScript frameworks have been written to allow you to write JavaScript tests to test your JavaScript.  &lt;p&gt;This pluralsight course gives a good overview: pluralsight - Testing Clientside JavaScript  &lt;H3&gt;The main decisions you will need to make&lt;/H3&gt;
-&lt;p&gt;1. What style do you want to write your tests in ?
-&lt;p&gt;Behaviour Driven Development (BDD) or Test Driven Development (TDD), as this will influence which JavaScript test framework you use.  &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;div id=&#34;scid:5737277B-5D6D-4f48-ABFC-DD9C333F4C5D:0fd715c7-5c87-48d7-ac28-8f324820e0d2&#34; class=&#34;wlWriterSmartContent&#34; style=&#34;float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px&#34;&gt;
-    &lt;div&gt;
-        &lt;embed type=&#34;application/x-shockwave-flash&#34; height=&#34;355&#34; width=&#34;425&#34; src=&#34;http://www.youtube.com/v/mT8QDNNhExg&amp;amp;hl=en&#34;&gt;
-    &lt;/div&gt;
-&lt;/div&gt; &lt;p&gt;2. The JavaScript Test framework you are going to use, the most popular are:&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;QUnit(TDD) &lt;a href=&#34;http://qunitjs.com&#34;&gt;qunitjs.com&lt;/a&gt;
-    &lt;li&gt;Jasmine(BDD) &lt;a href=&#34;http://pivotal.github.io/jasmine&#34;&gt;pivotal.github.io/jasmine&lt;/a&gt;
-    &lt;li&gt;
-        Mocha (TDD or BDD).
-        &lt;a href=&#34;http://visionmedia.github.io/mocha &#34;&gt;visionmedia.github.io/mocha&lt;/a&gt;
-    &lt;/li&gt;
-&lt;/ul&gt; &lt;p&gt;3. Which test runner or runners you want to use. The options are:
-&lt;p&gt;Outside of Visual Studio:&lt;/p&gt;
-&lt;ul&gt; &lt;li&gt;Browser  &lt;li&gt;Grunt &lt;/li&gt;&lt;/ul&gt; &lt;p&gt;Within Visual Studio&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;Visual Studio Extension: Chutzpah&amp;nbsp;
-    &lt;li&gt;Visual Studio Extension: KarmaVs. (Also requires Node.js)
-    &lt;li&gt;ReSharper 6&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My choice is to use a combination of Chutzpah and Browser.  &lt;H3&gt;Browser Test Runner &lt;/H3&gt;
-&lt;p&gt;This is the simplest choice, and can be debugged in visual studio, but requires an HTML file for each test / suite of tests.  &lt;p&gt;
-    &lt;a href=&#34;http://www.codesin.net/post/img/BrowserJavascriptTesting.png&#34;&gt;
-        &lt;img title=&#34;BrowserJavascriptTesting[4]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;BrowserJavascriptTesting[4]&#34; src=&#34;http://www.codesin.net/post/img/BrowserJavascriptTesting.png&#34;&gt;
-    &lt;/a&gt;
-&lt;/p&gt;
-&lt;H3&gt;Visual Studio Extension - Chutzpah &lt;/H3&gt; &lt;
- p&gt;
- Chutzpah is a visual studio extension which contains 3 of the most popular testing frameworks (Mocha, Quit, Jasmine). It runs and displays your tests in the test explorer.
-&lt;p&gt;The major drawback is that you can&#39;t debug tests.  &lt;p&gt;&lt;a href=&#34;http://chutzpah.codeplex.com/&#34;&gt;http://chutzpah.codeplex.com/&lt;/a&gt;
-&lt;p&gt;
-    In Visual studio 2012/2013: Tools-&amp;gt;Extensions and Updates -&amp;gt; Online -&amp;gt; Search for &#39;Chutzpah&#39;. Install:&lt;br&gt;•Chutzpah Test Runner Context Menu Extension
-    &lt;br&gt;
-    •Chutzpah Test Adaptor for the Test Explorer
-&lt;p&gt;
-    &lt;a href=&#34;http://www.codesin.net/post/img/VisualStudioJavaScript.png&#34;&gt;
-        &lt;img title=&#34;VisualStudioJavaScript[3]&#34; style=&#34;display: inline&#34; border=&#34;0&#34; alt=&#34;VisualStudioJavaScript[3]&#34; src=&#34;http://www.codesin.net/post/img/VisualStudioJavaScript.png&#34;&gt;
-    &lt;/a&gt;
-    &lt;h3&gt;
-        Configuration
-    &lt;/h3&gt;
-&lt;p&gt;Optionally add a Chutzpah.json file, amend to indicate your chosen framework.
-&lt;p&gt;Chutzpah.json Settings File
-&lt;p&gt;{&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;Framework&#34;: &#34;qunit&#34;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;TestHarnessLocationMode&#34;: &#34;TestFileAdjacent&#34;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;TypeScriptCodeGenTarget&#34; : &#34;ES5&#34;,  &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#34;RootReferencePathMode&#34;:&#34;SettingsFileDirectory&#34;
-&lt;p&gt;} &lt;/p&gt;
 </description>
     </item>
     

@@ -1,7 +1,7 @@
 +++
 date = "2017-03-13"
-title = "Fruit Machine Reel"
-description = "xxx"
+title = "Rendering a Fruit Machine Reel"
+description = "So, this is a bit of experimentation, playing with the position and size of images to see if I can create an animated fruit machine reel."
 slug = "Fruit-Machine-Reel"
 draft = true
 
@@ -11,13 +11,13 @@ bg_url = "https://www.flickr.com/photos/97477873@N00/9369949185/in/photolist-7GB
 bg_owner_name = "Marcia O'Connor"
 +++
 
-<p>This post is a bit of an experiment, playing with the position and size of images to see if I can create an animated fruit machine reel.</p>
+<p>So, this is a bit of experimentation, playing with the position and size of images to see if I can create an animated fruit machine reel.</p>
 
-<p>I had the idea of showing the result of a random choice via an animation on my site homepage. I didn&rsquo;t want to use a canvas for this, so I wondered if I could use image tags. The first way I thought I could represent this is was a fruit machine reel, because this shows that there are different options, only one of which is chosen.</p>
+<p>I had the idea of showing the result of a random choice via an animation on my site homepage. I didn't want to use a canvas for this, so I wondered if I could use image tags. The first idea of how I could represent this random result was a fruit machine reel, because it also shows that there are different options, only one of which is chosen.</p>
 
 <p><img src="/post/img/reels.jpg" alt="alt text" title="Fruit Machine Reels" /></p>
 
-<p>A fruit machine reel is circular with only about 50% visible when viewed side on. The diagram below shows that segments of equal size depending upon their position can appear to have different heights when viewed by the user. By plotting the XY of the circumference of the circle we can work out the Y co-ordinate and determine the height of each image depending on the fixed  number of degrees it covers from it&rsquo;s start position in degrees to its end.</p>
+<p>A fruit machine reel is circular with only about 50% visible when viewed side on. The diagram below shows that the segments are of equal size but depending upon their position can appear to have different heights when viewed by the user. By plotting the XY of the circumference of the circle we can work out the Y co-ordinate and determine the height of each segment depending on the number of degrees it covers from it's start position to it's end.</p>
 
 <pre class="prettyprint" >
 for (var i = 0; i < 180; i += 1) {
@@ -29,7 +29,9 @@ for (var i = 0; i < 180; i += 1) {
 
 <p><img src="/post/img/FruitMachineReel.jpg" alt="alt text" title="A diagram of a circle segments showing the height of each segment and images next to it showing the height of the image" /></p>
 
-<p>I have implemented the animated reel using angular and it can be seen in this plunker.</p>
+<h4>A Demo</h4>
+
+<p>You can see what it looks like moving in an implemention on plunker. The animated reel uses AngularJs to do the animation.</p>
 
 
 <p>
@@ -37,19 +39,19 @@ for (var i = 0; i < 180; i += 1) {
 <img src="/post/img/FruitMachinePlunkerLink.png"></img>
 Link to plunker</a></p>
 
-<p>A simple description of how it works:</p>
+<p>It works roughly like this:</p>
 
 <ul>
-<li>First the y coords on one side of a circle are calculated.</li>
-<li>A list of images is defined.</li>
-<li>The position in degrees of a one of the images is held as state.</li>
-<li>A timer then moves the image a set number of degrees down.</li>
+<li>First the y coordinates on one side of a circle are calculated.</li>
+<li>A list of images objects is defined, each one has a reference to a PNG image.</li>
+<li>The position in degrees of one of the images is tracked.</li>
+<li>A timer fires a few times a second and steps the tracked image a set number of degrees down.</li>
 <li>The position of all of the other images is calculated from the one we know.</li>
 <li>Once the image has passed the 90 degree angle the tracked image moves to the next in the list.</li>
-<li>The images are shown in an html div in their calaculated position, by setting the CSS height and &lsquo;absolute&rsquo; position from the top.</li>
+<li>The images are shown in an html div in their calaculated position, by setting the CSS height and absolute position from the top.</li>
 </ul>
 
-<p>The result is a reasonably convincing representation of a fruit machine reel. It runs faster in Chrome compared to Internet Explorer.  It can be a little jerky so it is not perfect. In reality you can&rsquo;t see the whole reel, so it that respect it is less useful.</p>
+<p>The result is a reasonably convincing representation of a fruit machine reel. It runs faster in Chrome compared to Internet Explorer.  It can be a little jerky so it is not perfect. In a real fruit machine you can't see the whole side of the reel, so it that respect it is less realistic or useful.</p>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 <script src="/post/content/FruitMachine/FruitMachine.js"></script>
