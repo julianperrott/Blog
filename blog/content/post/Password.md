@@ -41,25 +41,32 @@ So, how do you avoid any of your accounts being compromised? Well, you can’t a
 E:\Cloud Drives\OneDrive\Visual Studio Projects\PasswordDictionaryAnalysis\PasswordDictionaryAnalysis\bin\Debug\Analysis.xls
 
 
-|Lowercase	|Upper Case	|Numbers	|Special characters	| %
-|---	|---	|---	|---	|---	|---
-|X	|	|X	| | 	43.5%
-|X	|	|	| | 	15.2%
-|X	|X	|X	| | 	12.5%
-|	|	|X	| | 	10.8%
-|X	|	|X	|X | 	4.1%
-|	|X	|X	| | 	3.6%
-|X	|X	|X	|X | 	2.9%
-|X	|X	|	| | 	2.8%
-|X	|	|	|X | 	1.7%
-|	|X	|	| | 	1.5%
-|	|	|X	|X | 	0.5%
-|X	|X	|	|X | 	0.4%
-|	|X	|X	|X | 	0.3%
-|	|	|	|X | 	0.1%
-|	|X	|	|X | 	0.1%
+| Example |Lowercase	|Upper Case	|Numbers	|Special characters	| %
+| --- |--	|---	|---	|---	|---	|---
+| "12ab" |X	|	|X	| | 	43.5%
+| "abcd" |X	|	|	| | 	15.2%
+| "abC1" |X	|X	|X	| | 	12.5%
+| "1234"|	|	|X	| | 	10.8%
+| "ab1#" |X	|	|X	|X | 	4.1%
+| "AB12" |	|X	|X	| | 	3.6%
+| "aC3$" |X	|X	|X	|X | 	2.9%
+| "abCD" |X	|X	|	| | 	2.8%
+| "ab!@" |X	|	|	|X | 	1.7%
+| "ABCD" |	|X	|	| | 	1.5%
+| "12#$" |	|	|X	|X | 	0.5%
+| "abC$" |X	|X	|	|X | 	0.4%
+| "AB1#" |	|X	|X	|X | 	0.3%
+| "!@#$" |	|	|	|X | 	0.1%
+| "AB!@" |	|X	|	|X | 	0.1%
 
 75 % don't have upper case letters
+
 90 % of passwords don't include special characters.
+
 69.5 % of passwords are contain only lower case or/and numbers.
+
 74.4% are 10 characters of less
+
+Sites:
+https://weakpass.com/wordlist/50
+https://hashkiller.co.uk/
