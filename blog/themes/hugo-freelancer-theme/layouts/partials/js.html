@@ -12,3 +12,11 @@
 {{ "<!-- Custom Theme JavaScript -->" | safeHTML }}
 <script src="{{ .Site.BaseURL }}/js/freelancer.js"></script>
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
+<script>
+    $(function() {
+        $('.article').find('table').each(function(){ 
+        $(this).addClass('table table-bordered table-striped' );
+        });
+    });
+</script>

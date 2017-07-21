@@ -29,7 +29,7 @@
 <![endif]-->
 
     </head>
-	<body>
+	<body id="page-top">
 		
 		<div id="wrapper" class="animated fadeIn">
 			<section id="blog" class="subpage detail">
@@ -194,6 +194,13 @@ Once you have a virtual whiteboard the question is "What benefit does a physical
 <script src="http://www.codesin.net//js/freelancer.js"></script>
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
 
+<script>
+    $(function() {
+        $('.article').find('table').each(function(){ 
+        $(this).addClass('table table-bordered table-striped' );
+        });
+    });
+</script>
 
 		<link rel="stylesheet" href="/css/options.css">
 

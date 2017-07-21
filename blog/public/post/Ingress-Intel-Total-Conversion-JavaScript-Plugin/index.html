@@ -29,7 +29,7 @@
 <![endif]-->
 
     </head>
-	<body>
+	<body id="page-top">
 		
 		<div id="wrapper" class="animated fadeIn">
 			<section id="blog" class="subpage detail">
@@ -115,7 +115,7 @@
     One of the rules of linking portals is that a new link may not cross an existing link. So portal 4 could not be linked to 3 because it would cross the 1 to 2 link.
 </p> <p>
     <a href="/post/img/Test1.png" target="_blank">
-        <img title="Test1" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Test1" src="/post/img/Test1.png" width="869" height="425">
+        <img title="Test1" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px;max-width:100%" border="0" alt="Test1" src="/post/img/Test1.png">
     </a>
 </p>
 <h3>The Algorithm</h3> <p>To determine these "field finishing" links:</p>
@@ -136,7 +136,7 @@
     Once the required links have been determined they need to be represented on the map. This done by drawing on a new map layer called 'Field Finisher', the links are indicated using red dotted lines.
 </p> <p>
     <a href="/post/img/Plugin.png" target="_blank">
-        <img title="Plugin" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Plugin" src="/post/img/Plugin.png" width="887" height="430">
+        <img title="Plugin" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px;max-width:100%" border="0" alt="Plugin" src="/post/img/Plugin.png">
     </a>
 </p> <p> <p>
     The algorithm has been unit tested using <a href="http://jasmine.github.io/">Jasmine</a>
@@ -197,6 +197,13 @@
 <script src="http://www.codesin.net//js/freelancer.js"></script>
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
 
+<script>
+    $(function() {
+        $('.article').find('table').each(function(){ 
+        $(this).addClass('table table-bordered table-striped' );
+        });
+    });
+</script>
 
 		<link rel="stylesheet" href="/css/options.css">
 

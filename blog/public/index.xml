@@ -6,8 +6,276 @@
     <description>Recent content on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 13 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://www.codesin.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Better Passwords</title>
+      <link>http://www.codesin.net/post/Better-Passwords/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.codesin.net/post/Better-Passwords/</guid>
+      <description>
+
+&lt;p&gt;Passwords are a pain. You have to remember them for a start and you are supposed to use different passwords on every site, and they ought to be complicated. It all seems like a lot of effort. Is it really worth it ?&lt;/p&gt;
+
+&lt;p&gt;Well, I have the hash killer list and on it there are a hell of alot of passwords. The list is not a secret; lots of people have it. The list is long and getting longer every day. Some example passwords on the list are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DarkJediPrincess&lt;/li&gt;
+&lt;li&gt;RainbowJumper&amp;lt;3&lt;/li&gt;
+&lt;li&gt;Italianstud1978&lt;/li&gt;
+&lt;li&gt;{[brainy]}&lt;/li&gt;
+&lt;li&gt;stupid is as stupid does&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The list contains the top 25 passwords of 2017 and another 34 million and counting.&lt;/p&gt;
+
+&lt;p&gt;Because choosing and remembering a password is hard, people reuse the same password across multiple sites: Paypal, Facebook, Netflix, Amazon, LinkedIn, Adobe, Reddit, Skype, Twitter, Pinterest, Flickr, Spotify, Talk Talk etc. Alarmingly 55% of users use the same password on most of their sites.&lt;/p&gt;
+
+&lt;p&gt;Now, if you are wondering how does a hacker know which password yours is ? Well they have to wait until someone (e.g. a bored teenager) hacks one of the many sites you use and steals all of their email addresses and passwords and posts them online. The passwords are usually cryptographically one way hashed for example as “1aa3fdd77c64b143504ea30d67e5425e”, this hash can’t be converted back into the plain text, but If they know how the hashing is done and they probably do, then they can hash each password in the list and if they get a match then they have both your email and your password.&lt;/p&gt;
+
+&lt;p&gt;Once they know your email address and password then they can try logging in to all of the popular sites using this combination and see if they get any hits. Once an account is compromised it can be sold online and criminals can exploit it.&lt;/p&gt;
+
+&lt;p&gt;Even if your password is not in the list then using brute force is another approach where all combinations of letters and numbers are tried, but this is slowed by the type of hashing algorithm and the length of the password.&lt;/p&gt;
+
+&lt;p&gt;So, how do you avoid any of your accounts being compromised? Well, you can’t avoid it completely so you need to limit your exposure by:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Using a different password on every site. Memorising all those passwords is going to be nightmare, so using a password manager such as 1Password to keep track of them is sensible.&lt;/li&gt;
+&lt;li&gt;The longer the better, perhaps a unique phrase memorable to you e.g. “My son&amp;rsquo;s birthday is 12 December, 2004”. Diceware is a means to create a random pass phrase. See &lt;a href=&#34;https://en.wikipedia.org/wiki/Diceware&#34;&gt;https://en.wikipedia.org/wiki/Diceware&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Using a larger range of characters will make the password take longer to brute force. Make sure you use upper case, lower case, special characters and numbers.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;defending-against-a-brute-force-attack&#34;&gt;Defending against a brute force attack&lt;/h2&gt;
+
+&lt;p&gt;If a dictionary attack fails to find a password because it is not in the Hashkiller password list, then passwords can be brute force attacked by trying all combinations in a characters set, starting with 1 character then 2, and so on.&lt;/p&gt;
+
+&lt;p&gt;You choice of the character set in your password will affect how many combinations there are for each character in the password. For example if a your password is 8 characters long then the number of combinations are as follows:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Character set&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Character set size&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Combinations&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Lower case&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;208,827,064,576&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Lower case and numbers&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;36&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2,821,109,907,456&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Lower case, upper case and numbers&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;62&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;218,340,105,584,896&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Lower case, upper case, numbers and special chars&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;157&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;369,145,194,573,386,000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If it took a second to brute force a password that was 26 characters (lower case), then to brute force one which was 157 characters (Lower case, upper case, numbers and special chars) would take 20 days. Adding another character to the password would multiply the number of combinations by 157, and so would take 8.6 years.&lt;/p&gt;
+
+&lt;p&gt;An analysis of the Hashkiller passwords highlights the following weaknesses which made brute forcing the majority of them easier.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;74.4% are 10 characters or less long. The longer a password the more time it will take to brute force.&lt;/li&gt;
+&lt;li&gt;90 % of passwords don&amp;rsquo;t include special characters. The larger the character set the longer it will take to brute force.&lt;/li&gt;
+&lt;li&gt;69.5 % of passwords are contain only lower case or/and numbers. A smaller character set (36) reduces the time to try all the combinations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;hashkiller-dictionary-character-set-popularity&#34;&gt;Hashkiller Dictionary - Character set popularity&lt;/h4&gt;
+
+&lt;p&gt;An analysis of the usage of different character sets can be seen in the table below.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Character set  &amp;nbsp;&lt;/th&gt;
+&lt;th&gt;Lower case (26)&lt;/th&gt;
+&lt;th&gt;Upper case (26)&lt;/th&gt;
+&lt;th&gt;Numbers (10)&lt;/th&gt;
+&lt;th&gt;Special characters (95)&lt;/th&gt;
+&lt;th&gt;x&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;12ab&amp;rdquo; (36)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;43.5%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;abcd&amp;rdquo; (26)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;15.2%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;abC1&amp;rdquo; (62)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;12.5%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;1234&amp;rdquo; (10)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;10.8%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;ab1#&amp;rdquo; (131)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;4.1%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;AB12&amp;rdquo; (36)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;3.6%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;aC3$&amp;rdquo; (157)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;2.9%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;abCD&amp;rdquo; (52)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;2.8%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;ab!@&amp;rdquo; (121)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;1.7%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;ABCD&amp;rdquo; (26)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;1.5%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;12#$&amp;rdquo; (105)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;0.5%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;abC$&amp;rdquo; (147)&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;0.4%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;AB1#&amp;rdquo; (131)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;0.3%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;rdquo;!@#$&amp;rdquo; (95)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;0.1%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;AB!@&amp;rdquo; (121)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;0.1%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;hashkiller-dictionary-password-length&#34;&gt;Hashkiller Dictionary - Password Length&lt;/h4&gt;
+
+&lt;p&gt;Passwords under 20 characters make up 93% of the list.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/DistributionOfPasswordLength.png&#34; alt=&#34;Distribution Of Password Length&#34; title=&#34;Distribution Of Password Length&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/PasswordsThisLengthOrShorter.png&#34; alt=&#34;Passwords This Length Or Shorter&#34; title=&#34;Passwords This Length Or Shorter&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;some-links&#34;&gt;Some Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://weakpass.com/wordlist/50&#34;&gt;https://weakpass.com/wordlist/50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hashkiller.co.uk/&#34;&gt;https://hashkiller.co.uk/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Rendering a Fruit Machine Reel</title>
@@ -708,7 +976,7 @@ perceptual hashes are &amp;ldquo;close&amp;rdquo; to one another if the features
     One of the rules of linking portals is that a new link may not cross an existing link. So portal 4 could not be linked to 3 because it would cross the 1 to 2 link.
 &lt;/p&gt; &lt;p&gt;
     &lt;a href=&#34;http://www.codesin.net/post/img/Test1.png&#34; target=&#34;_blank&#34;&gt;
-        &lt;img title=&#34;Test1&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Test1&#34; src=&#34;http://www.codesin.net/post/img/Test1.png&#34; width=&#34;869&#34; height=&#34;425&#34;&gt;
+        &lt;img title=&#34;Test1&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px;max-width:100%&#34; border=&#34;0&#34; alt=&#34;Test1&#34; src=&#34;http://www.codesin.net/post/img/Test1.png&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt;
 &lt;h3&gt;The Algorithm&lt;/h3&gt; &lt;p&gt;To determine these &#34;field finishing&#34; links:&lt;/p&gt;
@@ -729,7 +997,7 @@ perceptual hashes are &amp;ldquo;close&amp;rdquo; to one another if the features
     Once the required links have been determined they need to be represented on the map. This done by drawing on a new map layer called &#39;Field Finisher&#39;, the links are indicated using red dotted lines.
 &lt;/p&gt; &lt;p&gt;
     &lt;a href=&#34;http://www.codesin.net/post/img/Plugin.png&#34; target=&#34;_blank&#34;&gt;
-        &lt;img title=&#34;Plugin&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Plugin&#34; src=&#34;http://www.codesin.net/post/img/Plugin.png&#34; width=&#34;887&#34; height=&#34;430&#34;&gt;
+        &lt;img title=&#34;Plugin&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px;max-width:100%&#34; border=&#34;0&#34; alt=&#34;Plugin&#34; src=&#34;http://www.codesin.net/post/img/Plugin.png&#34;&gt;
     &lt;/a&gt;
 &lt;/p&gt; &lt;p&gt; &lt;p&gt;
     The algorithm has been unit tested using &lt;a href=&#34;http://jasmine.github.io/&#34;&gt;Jasmine&lt;/a&gt;
@@ -1256,143 +1524,6 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
     You can download the source code
     &lt;a href=&#34;http://www.codesin.net/post/content/animatecss/CssAnimation.zip&#34; target=&#34;_blank&#34;&gt;here...&lt;/a&gt;
 &lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mapping Images on Spherical Surfaces Using Javascript and HTML5 Canvas</title>
-      <link>http://www.codesin.net/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</link>
-      <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.codesin.net/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.codesin.net/post/img/Earth.png&#34;&gt;&lt;img title=&#34;Earth&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;Earth&#34; src=&#34;http://www.codesin.net/post/img/Earth.png&#34; width=&#34;155&#34; height=&#34;154&#34;&gt;&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&lt;a title=&#34;andalmeida&#34; href=&#34;http://www.codeproject.com/Members/andalmeida&#34;&gt;andalmeida&lt;/a&gt; posted on codeproject.com showing how to map images onto spherical surfaces using C#. I have taken his code and converted it to work with javascript and an HTML5 Canvas.&lt;/p&gt; &lt;p&gt;Original article: &lt;a href=&#34;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&#34;&gt;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&lt;/a&gt;&lt;/p&gt;
-&lt;H3&gt;Demo:&lt;/H3&gt;&lt;iframe height=&#34;260&#34; src=&#34;http://www.codesin.net/post/content/ImageWrapDemo/wrapspheredemo.html&#34; width=&#34;600&#34;&gt;&lt;/iframe&gt;&lt;br&gt;
-&lt;H3&gt;Source Code&lt;/H3&gt;&lt;a href=&#34;http://www.codesin.net/post/content/ImageWrapDemo/ImageWrapDemo.zip&#34;&gt;Download source code&lt;/a&gt;&amp;nbsp;&amp;nbsp; Note: You must run it in a web project to avoid cross domain issues which will prevent the reading of image data.  &lt;H3&gt;Html:&lt;/H3&gt;Contains a canvas &#39;myCanvas&#39; which will be drawn to. &lt;pre class=&#34;prettyprint&#34;&gt;&amp;lt;img src=&#34;images/worldmap.gif&#34; id=&#34;myImage&#34; /&amp;gt;
-&amp;lt;canvas id=&#34;myCanvas&#34; width=&#34;150&#34; height=&#34;150&#34; style=&#34;background-color: #000000&#34;&amp;gt;&amp;lt;/canvas&amp;gt;
-&amp;lt;br /&amp;gt;
-&amp;lt;input type=&#34;range&#34; id=&#34;rangeInput&#34; min=&#34;-31&#34; max=&#34;31&#34;&amp;gt;&amp;amp; Drag to Rotate
-&amp;lt;script src=&#34;./js/WrapSphereDemo.js&#34;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/pre&gt;
-&lt;H3&gt;Javascript:&lt;/H3&gt;Loads the image to wrap, then calls a library to wrap it around a sphere, then writes the result onto the canvas. &lt;pre class=&#34;prettyprint&#34;&gt;var WrapSphereDemo;
-(function (WrapSphereDemo) {
-    var image;
-    var context;
-    var myImg = new Image();
-    window.onload = function () {
-        // hook up range change and image onload to render
-        document.getElementById(&#34;rangeInput&#34;).onchange = Render;
-        myImg.onload = Render;
-		
-	// load image
-        myImg.src = &#34;./images/worldmap.gif&#34;;
-    };
-    function Render() {
-        GenerateImage(myImg);
-    }
-    function GenerateImage(myImg) {
-        var canvasToDrawOn = document.getElementById(&#34;myCanvas&#34;);
-        var canvasToDrawOnContext = canvasToDrawOn.getContext(&#34;2d&#34;);
-        // Copy the image into a canvas
-        var offscreenCanvas = document.createElement(&#34;canvas&#34;);
-        offscreenCanvas.width = myImg.width;
-        offscreenCanvas.height = myImg.height;
-        var offscreenContext = offscreenCanvas.getContext(&#34;2d&#34;);
-        offscreenContext.drawImage(myImg, 0, 0);
-		
-	// get the image data from the hidden canvas
-        var fromImage = offscreenContext.getImageData(0, 0, myImg.width, myImg.height);
-        // Create a new image with the source image wrapped around a sphere
-        var yRotate = (parseInt(document.getElementById(&#34;rangeInput&#34;).value) - 31) / 10;
-        var xRotate = Math.PI / 2;
-        var toImage = canvasToDrawOnContext.getImageData(0, 0, 50 * 2, 50 * 2);
-        var image = SphereImageLib.WrapSphere(fromImage, toImage, xRotate, yRotate, 50);
-		
-	// copy the image to the canvas
-        canvasToDrawOnContext.putImageData(image, 25, 25);
-    }
-})(WrapSphereDemo || (WrapSphereDemo = {}));
-&lt;/pre&gt;&lt;br&gt;
-&lt;H3&gt;Javascript Lib:&lt;/H3&gt;Javascript which maps each pixel in the image onto a sphere, then copies the pixel onto the destination image. Refactored from: &lt;a href=&#34;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&#34;&gt;http://www.codeproject.com/Articles/19712/Mapping-Images-on-Spherical-Surfaces-Using-C&lt;/a&gt; &lt;pre class=&#34;prettyprint&#34;&gt;var SphereImageLib;
-(function (SphereImageLib) {
-    function WrapSphere(fromImage, toImage, xRotate, yRotate, radius) {
-        var coordinates = new SphereMapper(fromImage.width, fromImage.height, xRotate, yRotate, radius);
-        for (var i = 0; i &amp;lt; toImage.data.length; i++) {
-            toImage.data[i] = 0;
-        }
-        for (var i = 0; i &amp;lt; fromImage.width; i++) {
-            for (var j = 0; j &amp;lt; fromImage.height; j++) {
-                coordinates.Map(i, j);
-                if (coordinates.z &amp;gt; 0) {
-                    var fromPixel = new Pixel(fromImage, i, j);
-                    var toPixel = new Pixel(toImage, coordinates.x + coordinates.radius, coordinates.y + coordinates.radius);
-                    toPixel.Copy(fromPixel);
-                }
-            }
-        }
-        return toImage;
-    }
-    SphereImageLib.WrapSphere = WrapSphere;
-    var RotateResult = (function () {
-        function RotateResult() {
-        }
-        return RotateResult;
-    })();
-    SphereImageLib.RotateResult = RotateResult;
-    var SphereMapper = (function () {
-        function SphereMapper(width, height, xRotate, yRotate, radius) {
-            this.theta0 = 0.0;
-            this.theta1 = 2.0 * Math.PI;
-            this.phi0 = 0.0;
-            this.phi1 = Math.PI;
-            this.width = width;
-            this.height = height;
-            this.xRotate = xRotate;
-            this.yRotate = yRotate;
-            this.radius = radius;
-        }
-        //// map a pixel to a position on the sphere
-        SphereMapper.prototype.Map = function (i, j) {
-            var theta = this.MapCoordinate(0.0, this.width - 1, this.theta1, this.theta0, i);
-            var phi = this.MapCoordinate(0.0, this.height - 1, this.phi0, this.phi1, j);
-            this.x = this.radius * Math.sin(phi) * Math.cos(theta);
-            this.y = this.radius * Math.sin(phi) * Math.sin(theta);
-            this.z = this.radius * Math.cos(phi);
-            var result;
-            result = this.Rotate(this.xRotate, this.y, this.z);
-            this.y = result.r1;
-            this.z = result.r2;
-            result = this.Rotate(this.yRotate, this.x, this.z);
-            this.x = result.r1;
-            this.z = result.r2;
-        };
-        SphereMapper.prototype.MapCoordinate = function (i1, i2, w1, w2, p) {
-            return ((p - i1) / (i2 - i1)) * (w2 - w1) + w1;
-        };
-        SphereMapper.prototype.Rotate = function (angle, axisA, axisB) {
-            return {
-                r1: axisA * Math.cos(angle) - axisB * Math.sin(angle),
-                r2: axisA * Math.sin(angle) + axisB * Math.cos(angle)
-            };
-        };
-        return SphereMapper;
-    })();
-    SphereImageLib.SphereMapper = SphereMapper;
-    var Pixel = (function () {
-        function Pixel(image, x, y) {
-            this.image = image;
-            this.index = (Math.floor(x) + Math.floor(y) * this.image.width) * 4;
-        }
-        Pixel.prototype.Copy = function (from) {
-            for (var i = 0; i &amp;lt; 3; i++) {
-                this.image.data[this.index + i] = from.image.data[from.index + i];
-            }
-            this.image.data[this.index + 3] = 255; // Alpha not opaque
-        };
-        return Pixel;
-    })();
-    SphereImageLib.Pixel = Pixel;
-})(SphereImageLib || (SphereImageLib = {}));
-&lt;/pre&gt;
 </description>
     </item>
     

@@ -72,7 +72,7 @@
 				
 
 				<div>
-				<img  src="/img/bg_simcitybot_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
+				<img  src="/img/bg_password_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
 				</div>
 
 				<div class="container">
@@ -84,16 +84,16 @@
 							<div class="row">
 								<div class="col-lg-2 visible-lg asideArticleInfo" style="margin-top:10px">
 									<div class="date">
-										<div class="badge">5 Oct 2016</div>
+										<div class="badge">21 Jul 2017</div>
 									</div>
 									<div class="comments">
-										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="SimCity-BuildIt-Bot-Part-2"></span>
+										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="Better-Passwords"></span>
 									</div>
 								</div>
 								<div class="col-lg-10">
-									<h2 class="title">SimCity BuildIt Buying and Selling Bot</h2> 
+									<h2 class="title">Better Passwords</h2> 
 									<div class="articleInfo clearfix">
-										<div class="i hidden-lg">Post date: <strong>Wed, Oct 5, 2016</strong></div>
+										<div class="i hidden-lg">Post date: <strong>Fri, Jul 21, 2017</strong></div>
 										
 										<br />
 										
@@ -102,114 +102,263 @@
 									</div>
 									
 
-<p>On my previous blog post I described how I had automated the crafting element of SimCity BuildIt. Next I tackle buying from &ldquo;Global Trade&rdquo; and Selling crafted items to generate in game currency.</p>
+<p>Passwords are a pain. You have to remember them for a start and you are supposed to use different passwords on every site, and they ought to be complicated. It all seems like a lot of effort. Is it really worth it ?</p>
 
-<p>The main new problem I had to solve was recognising images from the game screen. This was solved using perceptual hashing with a dictionary of categorised image hashes.</p>
+<p>Well, I have the hash killer list and on it there are a hell of alot of passwords. The list is not a secret; lots of people have it. The list is long and getting longer every day. Some example passwords on the list are:</p>
 
-<p><br/></p>
+<ul>
+<li>DarkJediPrincess</li>
+<li>RainbowJumper&lt;3</li>
+<li>Italianstud1978</li>
+<li>{[brainy]}</li>
+<li>stupid is as stupid does</li>
+</ul>
 
-<h3 id="1-buying-items">1. Buying Items</h3>
+<p>The list contains the top 25 passwords of 2017 and another 34 million and counting.</p>
 
-<p>Assuming we have a shopping list of items we need, then the goal is to buy those items.</p>
+<p>Because choosing and remembering a password is hard, people reuse the same password across multiple sites: Paypal, Facebook, Netflix, Amazon, LinkedIn, Adobe, Reddit, Skype, Twitter, Pinterest, Flickr, Spotify, Talk Talk etc. Alarmingly 55% of users use the same password on most of their sites.</p>
 
-<p>Clicking on the Global trade building brings up the trade window. The window contains a number of panels, each representing an item for sale. Dragging within the list from right to left reveals more items.</p>
+<p>Now, if you are wondering how does a hacker know which password yours is ? Well they have to wait until someone (e.g. a bored teenager) hacks one of the many sites you use and steals all of their email addresses and passwords and posts them online. The passwords are usually cryptographically one way hashed for example as “1aa3fdd77c64b143504ea30d67e5425e”, this hash can’t be converted back into the plain text, but If they know how the hashing is done and they probably do, then they can hash each password in the list and if they get a match then they have both your email and your password.</p>
 
-<p><img src="/post/img/SB2_1_Global Trade.png" alt="Global Trade HQ" /></p>
+<p>Once they know your email address and password then they can try logging in to all of the popular sites using this combination and see if they get any hits. Once an account is compromised it can be sold online and criminals can exploit it.</p>
 
-<p>Usefully each panel is the same size, so If we can find where a panel starts, then the item will always be in the same place and all we need to do is to recognise the item in the panel. The way I solved this is described below:</p>
+<p>Even if your password is not in the list then using brute force is another approach where all combinations of letters and numbers are tried, but this is slowed by the type of hashing algorithm and the length of the password.</p>
 
-<p><br/></p>
+<p>So, how do you avoid any of your accounts being compromised? Well, you can’t avoid it completely so you need to limit your exposure by:</p>
 
-<h4 id="finding-panels">Finding Panels</h4>
-
-<p>The tops of the panels are always the same distance from the top of the screen.
-Finding the tops of the panels required looking along this line for pixels close to the colour of the bounding line around the panels (See indicator red lines at the top of each panel below).</p>
-
-<p>Each continuous block of matching pixels is one panel. The first pixel in each line represents the top left of the panel.</p>
-
-<p><img src="/post/img/SB2_2_Global Trade.png" alt="Panels" /></p>
-
-<p><br/></p>
-
-<h4 id="recognising-the-item-in-the-panel">Recognising the item in the panel</h4>
-
-<p>If we image capture a rectangle a fixed distance from the top left of the panel of a set size, we now have an image which can be processed and recognised using Image hashing.</p>
-
-<p><img src="/post/img/SB2_3_Panel.png" alt="Sale Item" /></p>
-
-<p>We recognise it using a library of pre-captured images. We create this library by storing unmatched images and then classify them by hand into named folders. Images which are almost the same (90%) can be automatically classified.</p>
-
-<p>As each image is processed  a hash is created e.g. 70088502915571468. The file is then renamed to the hash so that this never needs to be re-computed.</p>
-
-<p><img src="/post/img/SB2_4_Hashes.png" alt="Image Hashes" /></p>
-
-<p>Once we&rsquo;ve recognised an item that we want to buy, we then click on the panel and are transported to the trade depot of the city who is selling the item.</p>
+<ul>
+<li>Using a different password on every site. Memorising all those passwords is going to be nightmare, so using a password manager such as 1Password to keep track of them is sensible.</li>
+<li>The longer the better, perhaps a unique phrase memorable to you e.g. “My son&rsquo;s birthday is 12 December, 2004”. Diceware is a means to create a random pass phrase. See <a href="https://en.wikipedia.org/wiki/Diceware">https://en.wikipedia.org/wiki/Diceware</a>.</li>
+<li>Using a larger range of characters will make the password take longer to brute force. Make sure you use upper case, lower case, special characters and numbers.</li>
+</ul>
 
 <p><br/></p>
 
-<h4 id="buying-the-item">Buying the item</h4>
+<h2 id="defending-against-a-brute-force-attack">Defending against a brute force attack</h2>
 
-<p>Once you are at the city selling the item, you usually find many other items for sale.</p>
+<p>If a dictionary attack fails to find a password because it is not in the Hashkiller password list, then passwords can be brute force attacked by trying all combinations in a characters set, starting with 1 character then 2, and so on.</p>
 
-<p>The trade depot is similar to the global trade except that it has boxes instead of panels. We can use the same approach we used earlier to find the contents of the boxes and click on the desired item to buy it</p>
+<p>You choice of the character set in your password will affect how many combinations there are for each character in the password. For example if a your password is 8 characters long then the number of combinations are as follows:</p>
 
-<p><img src="/post/img/SB2_5_TradeDepot.png" alt="Trade Depot" /></p>
+<table>
+<thead>
+<tr>
+<th>Character set</th>
+<th align="right">Character set size</th>
+<th align="right">Combinations</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Lower case</td>
+<td align="right">26</td>
+<td align="right">208,827,064,576</td>
+</tr>
+
+<tr>
+<td>Lower case and numbers</td>
+<td align="right">36</td>
+<td align="right">2,821,109,907,456</td>
+</tr>
+
+<tr>
+<td>Lower case, upper case and numbers</td>
+<td align="right">62</td>
+<td align="right">218,340,105,584,896</td>
+</tr>
+
+<tr>
+<td>Lower case, upper case, numbers and special chars</td>
+<td align="right">157</td>
+<td align="right">369,145,194,573,386,000</td>
+</tr>
+</tbody>
+</table>
+
+<p>If it took a second to brute force a password that was 26 characters (lower case), then to brute force one which was 157 characters (Lower case, upper case, numbers and special chars) would take 20 days. Adding another character to the password would multiply the number of combinations by 157, and so would take 8.6 years.</p>
+
+<p>An analysis of the Hashkiller passwords highlights the following weaknesses which made brute forcing the majority of them easier.</p>
+
+<ul>
+<li>74.4% are 10 characters or less long. The longer a password the more time it will take to brute force.</li>
+<li>90 % of passwords don&rsquo;t include special characters. The larger the character set the longer it will take to brute force.</li>
+<li>69.5 % of passwords are contain only lower case or/and numbers. A smaller character set (36) reduces the time to try all the combinations.</li>
+</ul>
 
 <p><br/></p>
 
-<h3 id="2-selling-items">2. Selling items</h3>
+<h4 id="hashkiller-dictionary-character-set-popularity">Hashkiller Dictionary - Character set popularity</h4>
 
-<p>We have a trade depot where we can sell items. It contains a number of boxes each of which can contain a single item for sale. Once we click on an empty box a &ldquo;Create Sale&rdquo; dialog is shown.</p>
+<p>An analysis of the usage of different character sets can be seen in the table below.</p>
 
-<p><img src="/post/img/SB2_7_HomeDepot.png" alt="Trade Depot" /></p>
+<table>
+<thead>
+<tr>
+<th>Character set  &nbsp;</th>
+<th>Lower case (26)</th>
+<th>Upper case (26)</th>
+<th>Numbers (10)</th>
+<th>Special characters (95)</th>
+<th>x</th>
+</tr>
+</thead>
 
-<p>To sell an item, we need to:</p>
+<tbody>
+<tr>
+<td>&ldquo;12ab&rdquo; (36)</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td>43.5%</td>
+</tr>
 
-<ol>
-<li>Open up our trade depot.</li>
-<li>Collect any sold items.</li>
-<li>Pick an empty box, we may need to scroll horizontally to see more boxes.</li>
-<li>Click on the box to open the &ldquo;Create Sale&rdquo; dialog.</li>
-<li>Pick an item to sell and click on it.</li>
-<li>Press the quantity increase button until it turns grey.</li>
-<li>Press the price increase button until it turns grey.</li>
-<li>Click the &lsquo;Put on sale&rsquo; button.</li>
-</ol>
+<tr>
+<td>&ldquo;abcd&rdquo; (26)</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td>15.2%</td>
+</tr>
 
-<p>Most of these steps simply require clicking at predetermined locations on the screen.</p>
+<tr>
+<td>&ldquo;abC1&rdquo; (62)</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td>12.5%</td>
+</tr>
 
-<p>Steps 2, 3 &amp; 5 use the same image matching technique used when buying items.</p>
+<tr>
+<td>&ldquo;1234&rdquo; (10)</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td>10.8%</td>
+</tr>
 
-<p><br/></p>
+<tr>
+<td>&ldquo;ab1#&rdquo; (131)</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>4.1%</td>
+</tr>
 
-<h3 id="3-what-is-perceptual-hashing">3. What is Perceptual Hashing</h3>
+<tr>
+<td>&ldquo;AB12&rdquo; (36)</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td>3.6%</td>
+</tr>
 
-<blockquote>
-<p>A perceptual hash is a fingerprint of a multimedia file derived from various features from its content. Unlike cryptographic hash functions which rely on the avalanche effect of small changes in input leading to drastic changes in output,
-perceptual hashes are &ldquo;close&rdquo; to one another if the features are similar.</p>
-</blockquote>
+<tr>
+<td>&ldquo;aC3$&rdquo; (157)</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>2.9%</td>
+</tr>
 
-<p>The bot uses <a href="https://github.com/jforshee/ImageHashing">https://github.com/jforshee/ImageHashing</a> which is an implementation of the algorithm found here: <a href="http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html">http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html</a></p>
+<tr>
+<td>&ldquo;abCD&rdquo; (52)</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td>2.8%</td>
+</tr>
 
-<p>A long number hash is created in the following steps:</p>
+<tr>
+<td>&ldquo;ab!@&rdquo; (121)</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>1.7%</td>
+</tr>
 
-<ol>
-<li>Reduce the image to 8x8 pixels</li>
-<li>Reduce the color of each pixel from RGB (24 bits) to grayscale (6 bits).</li>
-<li>Compute the mean of all the 6-bit values</li>
-<li>Translate each pixel into a bit. 1 if the greyscale is &gt;= to the mean.</li>
-<li>Turn the binary number into a long decimal.</li>
-</ol>
+<tr>
+<td>&ldquo;ABCD&rdquo; (26)</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td>1.5%</td>
+</tr>
 
-<p>The following shows the processes as it took place on 2 similar images. The images turned out to be only 73% similar.</p>
+<tr>
+<td>&ldquo;12#$&rdquo; (105)</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>0.5%</td>
+</tr>
 
-<p><img src="/post/img/SB2_6_Compared.png" alt="Hashing Examples" /></p>
+<tr>
+<td>&ldquo;abC$&rdquo; (147)</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td>0.4%</td>
+</tr>
 
-<hr />
+<tr>
+<td>&ldquo;AB1#&rdquo; (131)</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>0.3%</td>
+</tr>
 
-<h3 id="bot-demo">Bot Demo</h3>
+<tr>
+<td>&rdquo;!@#$&rdquo; (95)</td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>0.1%</td>
+</tr>
 
-<iframe allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/JFwONo9b-RE" width="480"></iframe>
+<tr>
+<td>&ldquo;AB!@&rdquo; (121)</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td>0.1%</td>
+</tr>
+</tbody>
+</table>
+
+<p><br/>
+<br/></p>
+
+<h4 id="hashkiller-dictionary-password-length">Hashkiller Dictionary - Password Length</h4>
+
+<p>Passwords under 20 characters make up 93% of the list.</p>
+
+<p><img src="/post/img/DistributionOfPasswordLength.png" alt="Distribution Of Password Length" title="Distribution Of Password Length" /></p>
+
+<p><img src="/post/img/PasswordsThisLengthOrShorter.png" alt="Passwords This Length Or Shorter" title="Passwords This Length Or Shorter" /></p>
+
+<h2 id="some-links">Some Links</h2>
+
+<ul>
+<li><a href="https://weakpass.com/wordlist/50">https://weakpass.com/wordlist/50</a></li>
+<li><a href="https://hashkiller.co.uk/">https://hashkiller.co.uk/</a></li>
+</ul>
 
 								</div>
 								
@@ -224,7 +373,7 @@ perceptual hashes are &ldquo;close&rdquo; to one another if the features are sim
 								<script type="text/javascript">
 								    
 									var disqus_shortname = 'codesindotnet';
-									var disqus_identifier = 'SimCity-BuildIt-Bot-Part-2';
+									var disqus_identifier = 'Better-Passwords';
 									(function () {
 										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -239,6 +388,16 @@ perceptual hashes are &ldquo;close&rdquo; to one another if the features are sim
 						
 
 						
+						<br/>
+										<div style="font-style: italic" class="pull-right">
+											Image attribution:
+											<a style class="external text" href="https://www.flickr.com/photos/christiaancolen/20971563620/in/photolist-xXbKe7-xXcTvd-xXcSZJ-xXcT8Q-yeNZAa-j766j1-pAjBfi-4jdyER-m179nU-xhVBRn-yfuYtM-qfwstJ-ycuxnY-nNUfNg-v6a5n-W2UazS-o4kzvS-ycuxvU-ycuxEG-8CFyta-d4yEjy-gRc6BQ-xhMCS7-kTXEDa-eN3LjN-o8snC2-o6pSLP-4MdzVo-at864M-7erQ4r-gRcbQs-e8y5Jm-oQjoSi-d4yEyY-9VhaWN-iue3Mr-4TsEiK-nyvZCn-qfvzds-gRcQyR-d4yDWY-4ss9fo-4so6j2-pfEA7d-5h6ped-oTuvUK-o6oAEr-d7cbP3-d4yDhm-iudENrA" rel="nofollow" target="_blank">
+												"Linux password file"
+											</a> by
+											<a href="http://www.flickr.com/photos/christiaancolen/" rel="nofollow" target="_blank">Christiaan Colen</a>
+											is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank"> CC BY 2.0</a>
+										</div>
+									
 					</div>
 				</div>
 			</section>
