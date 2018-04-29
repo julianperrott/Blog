@@ -6,8 +6,248 @@
     <description>Recent content on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Apr 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://www.codesin.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Phone your Customers and Talk to them using a Chat Bot</title>
+      <link>http://www.codesin.net/post/Chat-Bot/</link>
+      <pubDate>Sun, 29 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.codesin.net/post/Chat-Bot/</guid>
+      <description>
+
+&lt;p&gt;Would you like to be able to phone your customers and let a chat bot talk to them? This is relatively easy to do and I will show you how.&lt;br /&gt;
+There exist many reasons for communicating with your customers.&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;
+Giving information. Some examples are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Courier delivery updates&lt;/li&gt;
+&lt;li&gt;Login issues&lt;/li&gt;
+&lt;li&gt;Banking events&lt;/li&gt;
+&lt;li&gt;Traffic alerts&lt;/li&gt;
+&lt;li&gt;Schedule changes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;and requesting information (who, what, when, where, why).  Some examples are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Courier delivery confirmation&lt;/li&gt;
+&lt;li&gt;Satisfaction / Feedback survey&lt;/li&gt;
+&lt;li&gt;Checking attendance&lt;/li&gt;
+&lt;li&gt;Status requests&lt;/li&gt;
+&lt;li&gt;Location requests&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/br&gt;
+Not all customers are able to or desire to use modern technologies to interact with your system, so a phone call gets around this problem. But the call must be life like and easy to use to be successful.&lt;/p&gt;
+
+&lt;p&gt;The main concerns to be considered, and the service I have used are as follows:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Concern&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Service&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;How to Initiate the call.&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Azure Function&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Starting and controlling the phone call.&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Twilio&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Converting the customer speech into text.&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Twilio&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Converting the application text into speech.&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Twilio or Amazon Polly&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Understanding the customer text&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;DialogFlow&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Determining what to say to the customer.&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;DialogFlow&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Persisting the data.&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Twilio Session during call&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Integrating the services&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Azure function&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;These concerns can be satisfied by various different online services so you don&amp;rsquo;t need to develop them all yourself. I will use quite a simple implementation to show a working example which will ask our user for feedback on a visit to a theme park.&lt;/p&gt;
+
+&lt;p&gt;The application will flow like this:
+&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;example-application&#34;&gt;Example application&lt;/h2&gt;
+
+&lt;p&gt;&lt;/br&gt;
+&lt;img src=&#34;http://www.codesin.net/post/img/Twilio_App_Overview.png&#34; alt=&#34;Example Application&#34; title=&#34;Example Application&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-logic-in-the-conversation&#34;&gt;The logic in the conversation&lt;/h2&gt;
+
+&lt;p&gt;&lt;/br&gt;
+DialogFlow is a free Google product which allows the intent of human speech / text to be understood. This makes it easier to write conversational bots. The bot I have written is very basic and barely scratches the surface of what DialogFlow can do. The capabilities of DialogFlow need to be understand well as it will influence how much logic you can set up inside it, and how much needs to be coded in your bot.&lt;/p&gt;
+
+&lt;p&gt;If you are new to DialogFlow then check out their tutorials:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dialogflow.com/docs/getting-started/building-your-first-agent&#34;&gt;https://dialogflow.com/docs/getting-started/building-your-first-agent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/actions/dialogflow/first-app&#34;&gt;https://developers.google.com/actions/dialogflow/first-app&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/br&gt;
+The DialogFlow agent I have written asks the following 3 questions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Would you like to participate? A &amp;lsquo;No&amp;rsquo; response ends the bot.&lt;/li&gt;
+&lt;li&gt;Did you visit for a special event ?&lt;/li&gt;
+&lt;li&gt;And finally get a rating of the experience.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;/br&gt;
+Three Contexts are moved through during the conversation to control which Intents can be matched by the user input.
+For example if the user said &amp;ldquo;yes&amp;rdquo; intent 2.0 would only be matched if the current context was &amp;ldquo;SpecialEvent&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/Twilio_DialogFlow_Overview.png&#34; alt=&#34;Dialog flow contexts&#34; title=&#34;Dialog flow contexts&#34; /&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+The agent also has the following Entities which are set up to match the possible responses to their related questions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/DialogFlow_Entities.png&#34; alt=&#34;Dialog flow Entities&#34; title=&#34;Dialog flow Entities&#34; /&gt;
+&lt;/br&gt;
+&lt;/br&gt;
+You can restore the agent from a file in my &lt;a href=&#34;https://github.com/julianperrott/FeedbackBot&#34;&gt;GitHub repo&lt;/a&gt; and you can try it out &lt;a href=&#34;https://bot.dialogflow.com/ddd79d30-0b82-4e7f-bc6d-2d74e01beb95&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Start the conversation off by saying &amp;ldquo;startcall&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/FeedbackBot_StartBot_3.png&#34; alt=&#34;DialogFlow Conversation&#34; title=&#34;DialogFlow Conversation&#34; /&gt;
+&lt;/br&gt;
+&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;talking-to-dialogflow-from-a-c-net-application&#34;&gt;Talking to DialogFlow from a C# .net application&lt;/h2&gt;
+
+&lt;p&gt;&lt;/br&gt;
+We are going to use Azure functions to pass on messages from Twilio to Dialogflow and then send a response back to Twilio. To allow our function to talk to DialogFlow we are going to add a nuget package &lt;a href=&#34;https://github.com/dialogflow/dialogflow-dotnet-client&#34;&gt;ApiAiSDK&lt;/a&gt;. We are then able to call dialog flow as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.codesin.net/post/img/FeedbackBot_StartBot_2.png&#34; alt=&#34;C# code&#34; title=&#34;C# code&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The response includes the speech to say to the user and any parameters which contain the information we have collected. There is also other information such as the context and intent which can be useful for testing.&lt;/p&gt;
+
+&lt;p&gt;The application solution comprises of following projects:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Project&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;FeedbackBotAzureFunctions&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Function StartCall makes a request to Twilio to make a phone call. Function MsgIn receives a request from Twilio. It passes the user text to the bot, then returns the bot response to Twilio. Any state required to be kept is stored in a cookie passed to and from Twilio.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;FeedbackBot&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Handles the user conversation with DialogFlow&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;IntegrationTests&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Tests to run through a conversation and to check the intents and contexts are correct with both DialogFlow and the Azure function.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;BotFrameworkAPI&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Allows an alternate route into the bot so that an interactive test can be performed using &lt;a href=&#34;https://github.com/Microsoft/BotFramework-Emulator&#34;&gt;Microsoft&amp;rsquo;s Bot Framework Emulator&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The azure functions will need to be published to Azure. You can learn more about that &lt;a href=&#34;https://tutorials.visualstudio.com/first-azure-function/publish&#34;&gt;here&lt;/a&gt;
+&lt;/br&gt;
+&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;setting-up-twilio&#34;&gt;Setting up Twilio&lt;/h2&gt;
+
+&lt;p&gt;&lt;/br&gt;
+Now that we have our application code we need to set up Twilio to talk to it. Twilio allow you to sign up for a free account.&lt;/p&gt;
+
+&lt;p&gt;Sign up for a Twilio Account &lt;a href=&#34;https://www.twilio.com/try-twilio&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a project. Make a note of the Account SID and auth token&lt;/li&gt;
+&lt;li&gt;Choose get started with twilio for &amp;ldquo;Programmable voice&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Get a phonenumber. Make a note of it.&lt;/li&gt;
+&lt;li&gt;Confirm programming language as C#.&lt;/li&gt;
+&lt;li&gt;Now click on Numbers and select Manage Numbers.&lt;/li&gt;
+&lt;li&gt;Now click on Tools and TwiML Apps and create a new app.&lt;/li&gt;
+&lt;li&gt;The Voice Request URL can then be filled in with our MsgIn azure function URL.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We now need to go back to our function project and fill in the following in the StartCall azure function:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PhoneNumberToCall&lt;/li&gt;
+&lt;li&gt;TwilioAccountSid&lt;/li&gt;
+&lt;li&gt;TwilioAuthToken&lt;/li&gt;
+&lt;li&gt;TwilioProgVoiceApplicationSid&lt;/li&gt;
+&lt;li&gt;phoneNumberCallIsFrom&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We also need to set the following in Bot.cs so that the bot talks to your DialogFlow&lt;br /&gt;
+* DialogFlowAccessToken
+&lt;/br&gt;
+&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-audio&#34;&gt;The Audio&lt;/h2&gt;
+
+&lt;p&gt;&lt;/br&gt;
+The Twilio voices are a little robotic. There are more lifelike voices available from 3rd parties. Here is a recorded call using Twilio voice:  &lt;a href=&#34;http://www.codesin.net/post/sound/TwilioVoice.mp3&#34;&gt;Twilio Voice Recording&lt;/a&gt;
+Note: you may need to download the mp3 to your pc if they won&amp;rsquo;t play in chrome.&lt;/p&gt;
+
+&lt;p&gt;One of which is Amazon Polly. You can listen to some of the voices &lt;a href=&#34;https://aws.amazon.com/polly&#34;&gt;here&lt;/a&gt;. Here is a recorded call using Polly Brian voice:  &lt;a href=&#34;http://www.codesin.net/post/sound/PollyBrianVoice.mp3&#34;&gt;Amazon Polly Voice Recording&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Another text to speech service is available &lt;a href=&#34;https://docs.microsoft.com/en-us/azure/cognitive-services/speech/api-reference-rest/bingvoiceoutput&#34;&gt;here&lt;/a&gt; from Microsoft.
+&lt;/br&gt;
+&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;&lt;/br&gt;
+It&amp;rsquo;s pretty straight forward to write a bot you can talk to once you understand how the various components work and can be put together. Using a 3rd party voice gives less robotic speech, but it does add a slight delay.&lt;/p&gt;
+
+&lt;p&gt;This blog post was inspired by this &lt;a href=&#34;https://www.linkedin.com/pulse/next-generation-ivr-using-twilio-speech-recognition-chatbots-badri/&#34;&gt;article&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Better Passwords</title>
@@ -1475,54 +1715,6 @@ Once you have a virtual whiteboard the question is &#34;What benefit does a phys
             &lt;/tr&gt;
         &lt;/tbody&gt;
     &lt;/table&gt;
-&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>CSS Transformations</title>
-      <link>http://www.codesin.net/post/Css-Transformations/</link>
-      <pubDate>Sun, 02 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.codesin.net/post/Css-Transformations/</guid>
-      <description>&lt;p&gt;
-    &lt;a href=&#34;http://www.codesin.net/post/img/CssJs.png&#34;&gt;
-        &lt;img title=&#34;CssJs&#34; style=&#34;border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px&#34; border=&#34;0&#34; alt=&#34;CssJs&#34; src=&#34;http://www.codesin.net/post/img/CssJs.png&#34; width=&#34;244&#34; height=&#34;167&#34;&gt;
-    &lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;
-    Animation is possible by simply using CSS. Animate.css is an example which allows the animation of html elements by simply adding a style to the element. This could be used to add feedback when an event occurs in the UI.
-    &lt;br&gt;&lt;a href=&#34;http://daneden.github.io/animate.css/&#34; target=&#34;_blank&#34;&gt;http://daneden.github.io/animate.css/&lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;e.g. When a button is pressed you could provide visual feedback that the click has been registered.&lt;/p&gt;
-&lt;iframe height=&#34;200&#34; src=&#34;http://www.codesin.net/post/content/animatecss/AnimateCss.html&#34; width=&#34;200&#34;&gt;&lt;/iframe&gt;
-&lt;H3&gt;Examples&lt;/H3&gt;
-&lt;p&gt;
-    Other examples of CSS animation can be seen on the web, one example doing css animation uses the
-    &lt;a href=&#34;http://www.zachstronaut.com/projects/rotate3di/&#34; target=&#34;_blank&#34;&gt;rotate3di js&lt;/a&gt; library. see
-    &lt;a href=&#34;http://premiumcoding.com/jquery/falling-leaves/Leaf2Example/&#34; target=&#34;_blank&#34;&gt;http://premiumcoding.com/jquery/falling-leaves/Leaf2Example/&lt;/a&gt;
-&lt;/p&gt;&lt;iframe height=&#34;800&#34; src=&#34;http://premiumcoding.com/jquery/falling-leaves/Leaf2Example/&#34; width=&#34;600&#34;&gt;&lt;/iframe&gt;
-&lt;H3&gt;My Demo&lt;/H3&gt; &lt;p&gt;
-    I have used
-    &lt;a href=&#34;http://ricostacruz.com/jquery.transit/&#34; target=&#34;_blank&#34;&gt;jquery.transit&lt;/a&gt;
-    to write my own version of the falling leaves demo using both frame &amp; CSS animation with the following enhancements:
-&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;The leaves are Images rather than graphics.
-    &lt;li&gt;Jquery.transit is used to scale and rotate the leaves in their x &amp; y axis&lt;/li&gt;
-    &lt;li&gt;A random wind force affects the speed the leaves spin &amp; scale on their x &amp; y axis and how fast they move position.
-&lt;/ul&gt;  &lt;p&gt;The demo animates fifty leaves made up of 6 different leaf designs:&lt;/p&gt;
-&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf1.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf2.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf3.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf4.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf5.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;img src=&#34;http://www.codesin.net/post/content/animatecss/img/leaf6.gif&#34; style=&#34;width: 100px&#34; /&gt;
-&lt;p&gt;
-    &lt;a href=&#34;http://www.codesin.net/post/content/animatecss/cssanimationdemo.html&#34;&gt;&lt;strong&gt;View Demo page&lt;/strong&gt;&lt;/a&gt;
-&lt;/p&gt; &lt;p&gt;
-    You can download the source code
-    &lt;a href=&#34;http://www.codesin.net/post/content/animatecss/CssAnimation.zip&#34; target=&#34;_blank&#34;&gt;here...&lt;/a&gt;
 &lt;/p&gt;
 </description>
     </item>

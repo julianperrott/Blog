@@ -73,16 +73,20 @@
         <canvas class="matrixcanvas" id="c"></canvas>
         <div class="row" style="position: relative">
             <div class="col-lg-12">
-                <img class="img-responsive animated zoomIn2" src="img/Me3.png" alt="">
+                <img class="img-fluid animated zoomIn2" src="img/Me3.png" alt="">
                 <div class="intro-text">
-                    <span class="name tlt" data-in-effect="fadeInLeftBig2" style="text-shadow: 0px 0px 4px #18bc9c !important;">Julian Perrott</span>
+                    <div id="tltDiv">
+                        <span class="name tlt" data-in-effect="fadeInLeftBig2" style="text-shadow: 0px 0px 4px #18bc9c !important;">Julian Perrott</span>
+                    </div>
                     <hr class="star-light"/>
-                    <span class="skills tlt"  data-in-effect="rollIn2" data-in-shuffle="true" style="text-shadow: 0px 0px 4px #18bc9c;">Developer - Gamer - Bot Writer</span>
+                    <span class="skills tlt2"  data-in-effect="rollIn2" data-in-shuffle="true" style="text-shadow: 0px 0px 4px #18bc9c;">Developer - Gamer - Bot Writer</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
+
+<div id="test" class="btn btn-primary hidden">Change</div>
         <!-- Portfolio Grid Section -->
 <section id="portfolio">
     <div class="container-fluid">
@@ -99,6 +103,35 @@
 
             
             </div><div class="row">
+            
+				
+            <div class="col-md-3 portfolio-item">
+                <a href="http://www.codesin.net/post/Chat-Bot/" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+							<div class="more">Read more</div>
+                        </div>
+                    </div>
+                    <img src="img/bg_modem_600x350.jpg" class="img-responsive img-background">
+					<div class="day badge" style="background:green;position: absolute; right: 0px; bottom:0px">29&nbsp;Apr 2018</div>
+					
+				
+					<div class="row col-md-12">
+						<h3><a href="http://www.codesin.net/post/Chat-Bot/" title="Phone your Customers and Talk to them using a Chat Bot">Phone your Customers and Talk to them using a Chat Bot</a></h3>
+						<p>
+							This is relatively easy to do and I will show you how.
+							<a href="http://www.codesin.net/post/Chat-Bot/" title="Read more...">Read more...</a>
+						</p>
+					</div>
+		
+                </a>
+				
+            </div>
+			
+
+            
+
             
 				
             <div class="col-md-3 portfolio-item">
@@ -187,6 +220,8 @@
             
 
             
+            </div><div class="row">
+            
 				
             <div class="col-md-3 portfolio-item">
                 <a href="http://www.codesin.net/post/SimCity-BuildIt-Bot-Part-2/" class="portfolio-link" data-toggle="modal">
@@ -215,8 +250,6 @@
 
             
 
-            
-            </div><div class="row">
             
 				
             <div class="col-md-3 portfolio-item">
@@ -305,6 +338,8 @@
             
 
             
+            </div><div class="row">
+            
 				
             <div class="col-md-3 portfolio-item">
                 <a href="http://www.codesin.net/post/Ingress-Intel-Total-Conversion-JavaScript-Plugin/" class="portfolio-link" data-toggle="modal">
@@ -333,8 +368,6 @@
 
             
 
-            
-            </div><div class="row">
             
 				
             <div class="col-md-3 portfolio-item">
@@ -423,6 +456,8 @@
             
 
             
+            </div><div class="row">
+            
 				
             <div class="col-md-3 portfolio-item">
                 <a href="http://www.codesin.net/post/The-Physical-vs-Online-Scrum-board/" class="portfolio-link" data-toggle="modal">
@@ -451,8 +486,6 @@
 
             
 
-            
-            </div><div class="row">
             
 				
             <div class="col-md-3 portfolio-item">
@@ -541,6 +574,8 @@
             
 
             
+            </div><div class="row">
+            
 				
             <div class="col-md-3 portfolio-item">
                 <a href="http://www.codesin.net/post/Mapping-Images-on-Spherical-Surfaces-Using-Javascript-and-HTML5-Canvas/" class="portfolio-link" data-toggle="modal">
@@ -569,8 +604,6 @@
 
             
 
-            
-            </div><div class="row">
             
 				
             <div class="col-md-3 portfolio-item">
@@ -658,6 +691,8 @@
 
             
 
+            
+            </div><div class="row">
             
 				
             <div class="col-md-3 portfolio-item">
@@ -810,10 +845,33 @@
 <script src="http://www.codesin.net//js/matrix.js"></script>
 
 <script>
-$(function () {
-    $('.tlt').textillate();
-    matrix();
-});
+    var tlt;
+
+    var isDefault = true;
+
+    $(function () {
+        tlt = $('.tlt').clone();
+        $('.tlt').textillate();
+        $('.tlt2').textillate();
+        $('#test').click(switchMainMessage);
+
+        matrix();
+    });
+
+    function switchMainMessage(){
+        $('#tltDiv').html("");
+
+        if(isDefault){
+            var newText = $(tlt).clone();
+            $(newText).text("Hello");
+            $('#tltDiv').append(newText);
+        }else{
+            $('#tltDiv').append(tlt);
+        }
+        $('.tlt').textillate();
+        isDefault=!isDefault;
+    }
+
 </script>
     </body>
 </html>
