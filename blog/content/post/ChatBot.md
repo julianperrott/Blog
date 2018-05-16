@@ -1,7 +1,7 @@
 +++
 date = "2018-04-29"
 title = "Phone your Customers and Talk to them using a Chat Bot"
-description = "This is relatively easy to do and I will show you how."
+description = "Using Twilio, Azure Functions and DialogFlow."
 slug = "Chat-Bot"
 draft = true
 
