@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="en-gb">
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A developer blog by Julian Perrott">
+<meta name="author" content="Codes in .NET">
+<meta name="generator" content="Hugo 0.16" />
+<title>Blog</title>
+<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/css/freelancer.css" rel="stylesheet">
+<link href="/css/animate.css" rel="stylesheet">
+<link href="/css/animatedtitles.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+    </head>
+	<body id="page-top">
+		
+		<div id="wrapper" class="animated fadeIn">
+			<section id="blog" class="subpage detail">
+			
+			 <!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.codesin.net/">Codes In .Net</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="/#portfolio">My Blog</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">About Me</a>
+                </li>
+				
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+				
+
+				<div>
+				<img  src="/img/bg_chain_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
+				</div>
+
+				<div class="container">
+					
+					<div class="row articles">
+
+						
+						<article class="col-xs-12 article" style="margin-top:10px">
+							<div class="row">
+								<div class="col-lg-2 visible-lg asideArticleInfo" style="margin-top:10px">
+									<div class="date">
+										<div class="badge">8 Jul 2014</div>
+									</div>
+									<div class="comments">
+										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="Chaining-promises-with-AngularJs-and-JQuery"></span>
+									</div>
+								</div>
+								<div class="col-lg-10">
+									<h2 class="title">Chaining promises with AngularJs and JQuery</h2> 
+									<div class="articleInfo clearfix">
+										<div class="i hidden-lg">Post date: <strong>Tue, Jul 8, 2014</strong></div>
+										
+										<br />
+										
+										
+
+									</div>
+									<p>Promises allow for consistent handling of the results of a task (Usually asynchronous). A promise is returned from a function call with a deferred result. <br>The promise result is either success (promise.resolve) or failure (promise.reject).</p> <p>The basic usage pattern looks like this: </p> <p><!-- HTML generated using hilite.me --></p> <div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff() <span style="color: #008000">// returns a promise</span>
+   .then(<span style="color: #0000ff">function</span>(data) { <span style="color: #008000">/* handle success */</span>  }, <span style="color: #0000ff">function</span>(data) { <span style="color: #008000">/* handle rejection */</span> }); 
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div><br>
+If you must have more than one step then promises can be chained. Each step in the chain should return another promise. If any of the steps get rejected then the next steps are skipped and the next rejection handler is called.
+<br>&nbsp;<br>
+<!-- HTML generated using hilite.me -->
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// should return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff2(); <span style="color: #008000">/* should return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff3(); <span style="color: #008000">/* should return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* all were resolved */</span> }, <span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* handle rejection from any of the above*/</span> }); 
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><strong><font size="4"></font></strong>&nbsp;</p>
+<p><strong><font size="4">AngularJs</font></strong><br>&nbsp;&nbsp;&nbsp; <br>Use 'catch' to make it more obvious when the failure handling is.<br>'finally' indicates a step which always runs.<br>&nbsp;&nbsp;&nbsp; <br></p><!-- HTML generated using hilite.me -->
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4
+5
+6</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// must return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff2(); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff3(); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* all steps were resolved */</span> });
+    .<span style="color: #0000ff">catch</span>(<span style="color: #0000ff">function</span> () { <span style="color: #008000">/* at least one step was rejected */</span> })
+    .<span style="color: #0000ff">finally</span>(<span style="color: #0000ff">function</span> () { <span style="color: #008000">/* I always run */</span> })
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><br><strong><font size="4">JQuery</font></strong></p>
+<p>Use 'done' to execute code when no rejections occur.<br>Use 'fail' to make it obvious when the failure handling is.<br>'always' indicates a step which always runs.</p>
+<p><!-- HTML generated using hilite.me --></p>
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4
+5
+6</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1()
+    .then(<span style="color: #0000ff">function</span> () { <span style="color: #0000ff">return</span> doStuff2(); })
+    .then(<span style="color: #0000ff">function</span> () { <span style="color: #0000ff">return</span> doStuff3(); })
+    .done(<span style="color: #0000ff">function</span> () { alert(<span style="color: #a31515">'all worked'</span>); })
+    .fail(<span style="color: #0000ff">function</span> () { alert(<span style="color: #a31515">'at least one failed'</span>); })
+    .always(<span style="color: #0000ff">function</span> () { alert(<span style="color: #a31515">'I always run'</span>); });
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><br>&nbsp;&nbsp;&nbsp; <br><strong><font size="4">Avoiding easy mistakes:</font></strong>&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp; <br><strong>1. Forgetting to include the return keyword.</strong> <!-- HTML generated using hilite.me --></p>
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// must return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { doStuff2(); <span style="color: #008000">/* must return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { doStuff3(); <span style="color: #008000">/* must return a promise */</span> })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* all were resolved */</span> }, <span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* handle rejection from any of the above*/</span> });
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>In this case when doStuff1() is resolved doStuff2() will be called. <br>Because it does not return a promise then doStuff3() will be called irrespective to the result of doStuff2() <br>unless it throws an exception.</p>
+<p>i.e. A step must return a promise or throw an exception otherwise the next 'resolved' step will be called.</p>
+<p>&nbsp;</p>
+<p><strong>2. In AngularJs handling failure on every chained step rather than once at the end.</strong></p>
+
+<p><!-- HTML generated using hilite.me --></p>
+<div style="overflow: auto; border-top: gray 0.1em solid; border-right: gray 0.1em solid; width: auto; background: #ffffff; border-bottom: gray 0.1em solid; padding-bottom: 0.2em; padding-top: 0.2em; padding-left: 0.6em; border-left: gray 0.8em solid; padding-right: 0.6em">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">1
+2
+3
+4</pre>
+                </td>
+                <td>
+                    <pre style="margin: 0px; line-height: 125%">doStuff1() <span style="color: #008000">// must return a promise</span>
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff2(); }, <span style="color: #0000ff">function</span>(data) { alert(<span style="color: #a31515">'step 1 was rejected'</span>); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #0000ff">return</span> doStuff3(); }, <span style="color: #0000ff">function</span> (data) { alert(<span style="color: #a31515">'step 2 was rejected'</span>); })
+    .then(<span style="color: #0000ff">function</span> (data) { <span style="color: #008000">/* handle resolved from dostuff3 */</span> }, <span style="color: #0000ff">function</span> (data) { alert(<span style="color: #a31515">'step 3 was rejected'</span>); });
+</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p><br>&nbsp;&nbsp;&nbsp; <br>If a step should only execute if the previous step was resolved then rejection should be handled after the last step.
+<br>The problem with handling it in each 'then' is that if the rejection function does not either return a promise which is rejected or throw an exception then the next chained resolved step will be executed. </p>
+<p>e.g. if doStuff1() is rejected then 'alert('step 1 was rejected');' will be executed. Because this does not return a promise the next 'then' statement resolved step will run and 'doStuff3()' will be called.
+<br>&nbsp;<br>Note: this is different to the way JQuery works. It will pass the rejected promise to the next '.then' causing each rejection handler to be called.</p>
+<p>JQuery Chained Promise Example: <a title="http://jsfiddle.net/2DQwx/" href="http://jsfiddle.net/2DQwx/">http://jsfiddle.net/2DQwx/</a>
+</p>
+
+								</div>
+								
+									
+							</div>
+						</article>
+						
+						
+						 <div class="row">
+						<div class="col-xs-12 articleComments">
+								<div id="disqus_thread"></div>
+								<script type="text/javascript">
+								    
+									var disqus_shortname = 'codesindotnet';
+									var disqus_identifier = 'Chaining-promises-with-AngularJs-and-JQuery';
+									(function () {
+										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+									})();
+								</script>
+								<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+								<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+							</div>
+						</div>
+
+						
+
+						
+						<br/>
+										<div style="font-style: italic" class="pull-right">
+											Image attribution:
+											<a style class="external text" href="https://www.flickr.com/photos/intherough/3253349104" rel="nofollow" target="_blank">
+												"Another Chain-keh"
+											</a> by
+											<a href="http://www.flickr.com/photos/intherough/" rel="nofollow" target="_blank">Wendell</a>
+											is licensed under <a href="http://creativecommons.org/licenses/by/2.0/" rel="nofollow" target="_blank"> CC BY 2.0</a>
+										</div>
+									
+					</div>
+				</div>
+			</section>
+
+
+
+		</div>
+	    <!-- jQuery -->
+<script src="http://www.codesin.net//js/jquery-1.11.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="http://www.codesin.net//js/bootstrap.js"></script>
+<!-- Plugin JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="http://www.codesin.net//js/classie.js"></script>
+<script src="http://www.codesin.net//js/cbpAnimatedHeader.js"></script>
+<!-- Contact Form JavaScript -->
+<script src="http://www.codesin.net//js/jqBootstrapValidation.js"></script>
+<script src="http://www.codesin.net//js/contact_me.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="http://www.codesin.net//js/freelancer.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
+<script>
+    $(function() {
+        $('.article').find('table').each(function(){ 
+        $(this).addClass('table table-bordered table-striped' );
+        });
+    });
+</script>
+
+		<link rel="stylesheet" href="/css/options.css">
+
+	   <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-59171735-1', 'auto');
+          ga('send', 'pageview');
+</script>
+	   
+	   <!-- About Section -->
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>About Me</h2>
+                <hr class="star-light">
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-2">
+            <p>My first computer was a Commodore VIC-20, I had great fun trying to code text adventures and side scrolling shoot &lsquo;em ups in BASIC. This helped me lead the way as the first in my school to pass a computer exam.</p>
+        </div>
+            <div class="col-lg-4">
+                <p>Currently I work as a Senior Software Engineer in Bedford for a FTSE 100 Company. Coding daily in C#, JavaScript and SQL. Outside of work I work on whatever is interesting me at that time.</p>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+	   <!-- Footer -->
+<footer class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-4">
+                    <h3>Location</h3>
+
+                    
+                        <p>
+                            
+                                
+                                Milton Keynes, United Kingdom
+                            
+                        </p>
+                    
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>Around the web</h3>
+                    <ul class="list-inline">
+                        
+                            <li>
+                                <a href="//github.com/julianperrott" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="//uk.linkedin.com/in/julianperrott1" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="//www.facebook.com/julianperrott" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                        
+                            <li>
+                                <a href="mailto:julian_perrott@hotmail.com" class="btn-social btn-outline"><i class="fa fa-fw fa-envelope"></i></a>
+                            </li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>About Freelancer Theme</h3>
+                    <p>Freelancer is a free to use, open source Bootstrap theme created by <a href="//startbootstrap.com">Start Bootstrap</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Published under the Apache License 2.0. Powered by <a href="//gohugo.io">Hugo</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-top page-scroll visible-xs visible-sm">
+    <a class="btn btn-primary" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
+
+		
+		<script type="text/javascript">
+		  
+		  
+		 (function () {
+		 var s = document.createElement('script'); s.async = true;
+		 s.type = 'text/javascript';
+		 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+		 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		 }());
+	 </script> 
+		
+	</body>
+</html>
