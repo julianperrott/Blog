@@ -1,7 +1,7 @@
 +++
 date = "2016-10-05"
 title = "SimCity BuildIt Buying and Selling Bot"
-description = "Next in my SimCity BuildIt bot I tackle buying and Selling crafted items to generate in game currency...."
+description = "Next in my SimCity BuildIt bot I tackle buying and Selling crafted items to generate in game currency."
 slug = "SimCity-BuildIt-Bot-Part-2"
 draft = true
 

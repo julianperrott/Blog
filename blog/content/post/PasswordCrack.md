@@ -14,7 +14,7 @@ bg_owner_name = "Christiaan Colen"
 
 Passwords are a pain. You have to remember them for a start and you are supposed to use different passwords on every site, and they ought to be complicated. It all seems like a lot of effort. Is it really worth it ? 
 
-Well, I have the hash killer list and on it there are a hell of alot of passwords. The list is not a secret; lots of people have it. The list is long and getting longer every day. Some example passwords on the list are:
+Well, I have the hash killer list and on it there are a hell of a lot of passwords. The list is not a secret; lots of people have it. The list is long and getting longer every day. Some example passwords on the list are:
 
 * DarkJediPrincess
 * RainbowJumper<3

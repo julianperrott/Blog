@@ -1,7 +1,7 @@
 +++
 date = "2016-08-14"
 title = "SimCity BuildIt Crafting Bot"
-description = "When a task is repetitive, why would we want to do it ourselves, if someone or something else could do it equally well or better..."
+description = "When a task is repetitive, why would we want to do it ourselves, if someone or something else could do it equally well or better."
 slug = "SimCity-BuildIt-Bot"
 draft = true
 

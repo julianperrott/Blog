@@ -1,7 +1,7 @@
 +++
 date = "2016-12-04"
 title = "Oracle Client on Windows 2016 Docker + DotNet 4.5 MVC"
-description = "This blog will show you how to setup your Docker images for ODAC and what exceptions you may get..."
+description = "This blog will show you how to setup your Docker images for ODAC and what exceptions you may get."
 slug = "Oracle_ODAC"
 draft = true
 
