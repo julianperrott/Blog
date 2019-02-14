@@ -72,7 +72,7 @@
 				
 
 				<div>
-				<img  src="/img/bg_simcitybot_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
+				<img  src="/img/bg_ionic_1920x500.jpg" style="max-width: 100%;height: auto;display: block;margin-left: auto;margin-right: auto;"/> 
 				</div>
 
 				<div class="container">
@@ -84,16 +84,16 @@
 							<div class="row">
 								<div class="col-lg-2 visible-lg asideArticleInfo" style="margin-top:10px">
 									<div class="date">
-										<div class="badge">5 Oct 2016</div>
+										<div class="badge">16 Dec 2018</div>
 									</div>
 									<div class="comments">
-										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="SimCity-BuildIt-Bot-Part-2"></span>
+										<i class="fa fa-comments"></i> <span class="disqus-comment-count" data-disqus-identifier="Ionic"></span>
 									</div>
 								</div>
 								<div class="col-lg-10">
-									<h2 class="title">SimCity BuildIt Buying and Selling Bot</h2> 
+									<h2 class="title">A Cross Platform App &#39;Web Word Cloud&#39; </h2> 
 									<div class="articleInfo clearfix">
-										<div class="i hidden-lg">Post date: <strong>Wed, Oct 5, 2016</strong></div>
+										<div class="i hidden-lg">Post date: <strong>Sun, Dec 16, 2018</strong></div>
 										
 										<br />
 										
@@ -102,114 +102,216 @@
 									</div>
 									
 
-<p>On my previous blog post I described how I had automated the crafting element of SimCity BuildIt. Next I tackle buying from &ldquo;Global Trade&rdquo; and Selling crafted items to generate in game currency.</p>
+<p>Previously I&rsquo;ve worked with AngularJs as the front end JS framework for single page applications. The world has moved on and React and Angular are popular now, so both are worth learning to understand what each offers. But for this application I focused on Angular. Ionic is a technology built on top of Angular which allows cross platform apps to be created which will run on Android or iOS, so I decided to learn it and how Angular works within it.</p>
 
-<p>The main new problem I had to solve was recognising images from the game screen. This was solved using perceptual hashing with a dictionary of categorised image hashes.</p>
+<h3 id="the-application">The Application</h3>
 
-<p><br/></p>
+<p>The application I wrote to learn Ionic is called WebWordCloud. It uses SVG to render word clouds like the example below and can be played with at: <a href="www.webwordcloud.com">www.webwordcloud.com</a>. The souce code is here: <a href="https://github.com/julianperrott/Ionic-WordCloud">Ionic-WordCloud</a></p>
 
-<h3 id="1-buying-items">1. Buying Items</h3>
+<p><img src="/post/img/WebWordCloud1.jpg" alt="" /></p>
 
-<p>Assuming we have a shopping list of items we need, then the goal is to buy those items.</p>
+<p>The words shown in the word cloud can be taken from any web page on the internet. Hence the name of the app &lsquo;Web Word Cloud&rsquo;.</p>
 
-<p>Clicking on the Global trade building brings up the trade window. The window contains a number of panels, each representing an item for sale. Dragging within the list from right to left reveals more items.</p>
-
-<p><img src="/post/img/SB2_1_Global Trade.png" alt="Global Trade HQ" /></p>
-
-<p>Usefully each panel is the same size, so If we can find where a panel starts, then the item will always be in the same place and all we need to do is to recognise the item in the panel. The way I solved this is described below:</p>
+<p>For example this page from BBC news &ldquo;Katowice: COP24 Climate change deal to bring pact to life&rdquo; <a href="https://www.bbc.co.uk/news/science-environment-46582025">www.bbc.co.uk/news</a> has been used to create the following image:
+<img src="/post/img/WebWordCloud2.jpg" alt="" /></p>
 
 <p><br/></p>
 
-<h4 id="finding-panels">Finding Panels</h4>
+<p>Many options are included in the application for choosing the font, shape and style of the text to be rendered:</p>
 
-<p>The tops of the panels are always the same distance from the top of the screen.
-Finding the tops of the panels required looking along this line for pixels close to the colour of the bounding line around the panels (See indicator red lines at the top of each panel below).</p>
+<p><img src="/post/img/WebWordCloud_options.png" alt="" /></p>
 
-<p>Each continuous block of matching pixels is one panel. The first pixel in each line represents the top left of the panel.</p>
+<h3 id="writing-the-application">Writing the application</h3>
 
-<p><img src="/post/img/SB2_2_Global Trade.png" alt="Panels" /></p>
+<p>There is always an element of learning that is required when doing pretty much any coding and when doing something new then this is especially so. Learning the basics from tutorials is a good way to get the ball rolling e.g. <a href="https://ionicframework.com/docs/intro/tutorial/">ionicframework.com/docs/intro/tutorial/</a></p>
 
-<p><br/></p>
-
-<h4 id="recognising-the-item-in-the-panel">Recognising the item in the panel</h4>
-
-<p>If we image capture a rectangle a fixed distance from the top left of the panel of a set size, we now have an image which can be processed and recognised using Image hashing.</p>
-
-<p><img src="/post/img/SB2_3_Panel.png" alt="Sale Item" /></p>
-
-<p>We recognise it using a library of pre-captured images. We create this library by storing unmatched images and then classify them by hand into named folders. Images which are almost the same (90%) can be automatically classified.</p>
-
-<p>As each image is processed  a hash is created e.g. 70088502915571468. The file is then renamed to the hash so that this never needs to be re-computed.</p>
-
-<p><img src="/post/img/SB2_4_Hashes.png" alt="Image Hashes" /></p>
-
-<p>Once we&rsquo;ve recognised an item that we want to buy, we then click on the panel and are transported to the trade depot of the city who is selling the item.</p>
-
-<p><br/></p>
-
-<h4 id="buying-the-item">Buying the item</h4>
-
-<p>Once you are at the city selling the item, you usually find many other items for sale.</p>
-
-<p>The trade depot is similar to the global trade except that it has boxes instead of panels. We can use the same approach we used earlier to find the contents of the boxes and click on the desired item to buy it</p>
-
-<p><img src="/post/img/SB2_5_TradeDepot.png" alt="Trade Depot" /></p>
-
-<p><br/></p>
-
-<h3 id="2-selling-items">2. Selling items</h3>
-
-<p>We have a trade depot where we can sell items. It contains a number of boxes each of which can contain a single item for sale. Once we click on an empty box a &ldquo;Create Sale&rdquo; dialog is shown.</p>
-
-<p><img src="/post/img/SB2_7_HomeDepot.png" alt="Trade Depot" /></p>
-
-<p>To sell an item, we need to:</p>
-
-<ol>
-<li>Open up our trade depot.</li>
-<li>Collect any sold items.</li>
-<li>Pick an empty box, we may need to scroll horizontally to see more boxes.</li>
-<li>Click on the box to open the &ldquo;Create Sale&rdquo; dialog.</li>
-<li>Pick an item to sell and click on it.</li>
-<li>Press the quantity increase button until it turns grey.</li>
-<li>Press the price increase button until it turns grey.</li>
-<li>Click the &lsquo;Put on sale&rsquo; button.</li>
-</ol>
-
-<p>Most of these steps simply require clicking at predetermined locations on the screen.</p>
-
-<p>Steps 2, 3 &amp; 5 use the same image matching technique used when buying items.</p>
-
-<p><br/></p>
-
-<h3 id="3-what-is-perceptual-hashing">3. What is Perceptual Hashing</h3>
+<p>Next, some examples more specific to what you want to do are helpful. Creating a word cloud and using SVG in Ionic was what I needed and these two sites helped me form the basis of the application:</p>
 
 <blockquote>
-<p>A perceptual hash is a fingerprint of a multimedia file derived from various features from its content. Unlike cryptographic hash functions which rely on the avalanche effect of small changes in input leading to drastic changes in output,
-perceptual hashes are &ldquo;close&rdquo; to one another if the features are similar.</p>
+<p><a href="https://github.com/proustibat/d3js-ionic">github.com/proustibat/d3js-ionic</a>. A tutorial app built with <a href="https://ionicframework.com/">Ionic Framework</a> to learn <a href="https://d3js.org/">D3.js</a> with Typescript.</p>
+
+<p><a href="https://github.com/jasondavies/d3-cloud">github.com/jasondavies/d3-cloud</a>. This is a <a href="http://www.wordle.net/">Wordle</a>-inspired word cloud layout written in JavaScript. It uses HTML5 canvas and sprite masks to achieve near-interactive speeds.</p>
 </blockquote>
 
-<p>The bot uses <a href="https://github.com/jforshee/ImageHashing">https://github.com/jforshee/ImageHashing</a> which is an implementation of the algorithm found here: <a href="http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html">http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html</a></p>
+<p>Once the basics were done I looked into what options I could give the user to take the application to the next level.</p>
 
-<p>A long number hash is created in the following steps:</p>
+<p>Adding the option of using different fonts was made possible via the fonts google have available at <a href="https://github.com/google/fonts">github.com/google/fonts</a>.</p>
 
-<ol>
-<li>Reduce the image to 8x8 pixels</li>
-<li>Reduce the color of each pixel from RGB (24 bits) to grayscale (6 bits).</li>
-<li>Compute the mean of all the 6-bit values</li>
-<li>Translate each pixel into a bit. 1 if the greyscale is &gt;= to the mean.</li>
-<li>Turn the binary number into a long decimal.</li>
-</ol>
+<p>Displaying the word cloud inside a shape was a customisation I made to Jason Davies code. The code he wrote uses a mask to determine where words have already been placed. My change was to simply render a font awesome icon outline on the mask so that words could only be placed in the shape of the icon.</p>
 
-<p>The following shows the processes as it took place on 2 similar images. The images turned out to be only 73% similar.</p>
+<p>Finally various SVG filters and effects were made available. For examples see some of the effects on this page: <a href="https://www.smashingmagazine.com/2015/05/why-the-svg-filter-is-awesome/">www.smashingmagazine.com</a></p>
 
-<p><img src="/post/img/SB2_6_Compared.png" alt="Hashing Examples" /></p>
+<p>Turning a web page into a list of words was made possible via unfluff &ldquo;An automatic web page content extractor for Node.js!&rdquo;  <a href="https://github.com/ageitgey/node-unfluff">github.com/ageitgey/node-unfluff</a></p>
 
-<hr />
+<p></br></p>
 
-<h3 id="bot-demo">Bot Demo</h3>
+<h3 id="the-architecture">The architecture</h3>
 
-<iframe allowfullscreen="" frameborder="0" height="270" src="https://www.youtube.com/embed/JFwONo9b-RE" width="480"></iframe>
+<p>I initially planned for the application to be downloadable from the Play and Apple stores as Ionic applications are cross platform. But the performance on devices was not acceptable so I have left it as a web only application.</p>
+
+<p>The problem initially was that the calculation of the word cloud took too long on a device. To resolve this I made this part of the application server side. The final nail in the cross platform coffin was the rendering time on the device which wan&rsquo;t awful, just a bit too sluggish.</p>
+
+<p>The application is made up of 3 parts:</p>
+
+<ul>
+<li>The files that make up the browser client (Ionic / Angular).</li>
+<li>The CORS proxy - needed to avoid cross origin errors (NodeJS).</li>
+<li>The server which turns a list of words into a word cloud (NodeJS).</li>
+</ul>
+
+<p><img src="/post/img/webwordcloud_architecture.jpg" alt="" /></p>
+
+<h3 id="hosting-the-application">Hosting the application</h3>
+
+<h4 id="client">Client</h4>
+
+<p>The files that make up the browser client (Ionic / Angular) are hosted by Google in a static web site stored in a Google Cloud Storage bucket. The performance is great with no wake-up time even if the files have not been requested for a while.</p>
+
+<p><a href="https://cloud.google.com/storage/docs/hosting-static-website">cloud.google.com/storage/docs/hosting-static-website</a></p>
+
+<p><br/></p>
+
+<h4 id="cors">CORS</h4>
+
+<p>The CORS anywhere NodeJS server is hosted in Azure as an App service. The hosting plan is F1 (Free) which give 60 minutes a day of compute time, which should be more than enough.</p>
+
+<p><a href="https://corsproxywebwordcloud.azurewebsites.net/">corsproxywebwordcloud.azurewebsites.net</a></p>
+
+<p><br/></p>
+
+<h4 id="layout-word-cloud">Layout Word Cloud</h4>
+
+<p>The server to turn a list of words into a word cloud uses NodeJS which has some C++ dependencies so I put this in a docker container to simplify deployment. Initially this container was hosted on Google, but I ran out of my free credit so I moved it to Azure as an app service running a container.</p>
+
+<p><a href="https://webwordcloudcontainer.azurewebsites.net/">webwordcloudcontainer.azurewebsites.net</a></p>
+
+<p>The performance vs cost for light usage can be seen below. My monthly azure credits cover it running under B1.</p>
+
+<table>
+<thead>
+<tr>
+<th>Dev/Test Tier- A-series compute</th>
+<th>Cost per month</th>
+<th>Render Time (seconds)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>B1 - 100 total ACU - 1.75 GB memory</td>
+<td>£29.09</td>
+<td>2.1 to 2.5</td>
+</tr>
+
+<tr>
+<td>B2 - 200 total ACU - 3.5 GB memory</td>
+<td>£58.18</td>
+<td>1.7 to 1.8</td>
+</tr>
+
+<tr>
+<td>B3 - 400 total ACU - 7 GB memory</td>
+<td>£116.44</td>
+<td>1.5 to 1.6</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Production Tier - Dv2-series compute</th>
+<th>Cost per month</th>
+<th>Render Time (seconds)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>P1V2 - 210 total ACU - 3.5 GB memory</td>
+<td>£96.27</td>
+<td>0.6 to 0.7</td>
+</tr>
+
+<tr>
+<td>P2V2 - 420 total ACU - 7 GB memory</td>
+<td>£192.62</td>
+<td>0.6 to 0.8</td>
+</tr>
+
+<tr>
+<td>P2V3 - 840 total ACU - 14 GB memory</td>
+<td>£385.32</td>
+<td>0.6 to 0.7</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Production Tier - A-series compute</th>
+<th>Cost per month</th>
+<th>Render Time (seconds)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>S1 - 100 total ACU - 1.75 GB memory</td>
+<td>£55.43</td>
+<td>1.6 to 2.2</td>
+</tr>
+
+<tr>
+<td>S2 - 200 total ACU - 3.5 GB memory</td>
+<td>£110.86</td>
+<td>1.6</td>
+</tr>
+
+<tr>
+<td>S3 - 400 total ACU - 7 GB memory</td>
+<td>£221.79</td>
+<td>1.6</td>
+</tr>
+</tbody>
+</table>
+
+<p><br/></p>
+
+<h3 id="conclusions">Conclusions</h3>
+
+<p>There is a learning curve, but Ionic is good option for cross platform apps if you have Angular/JavaScript and Web skills. It is limited by the computing power of the phones and tablet it runs on, so graphically intense applications may not be a good fit.</p>
+
+<p>Google storage buckets are a great place to host static web sites.</p>
+
+<p><br/></p>
+
+<h3 id="screenshots">Screenshots</h3>
+
+<p><img src="/post/img/Screenshot0.jpg" alt="Screenshot0" /></p>
+
+<p><br/></p>
+
+<p><img src="/post/img/Screenshot.jpg" alt="" /></p>
+
+<p><img src="/post/img/Screenshot1.jpg" alt="Screenshot1" /></p>
+
+<p><br/></p>
+
+<p><img src="/post/img/Screenshot2.jpg" alt="Screenshot2" /></p>
+
+<p><br/></p>
+
+<p><img src="/post/img/Screenshot3.jpg" alt="Screenshot3" /></p>
+
+<p><br/></p>
+
+<p><img src="/post/img/Screenshot4.jpg" alt="Screenshot4" /></p>
+
+<p><br/></p>
+
+<p><img src="/post/img/Screenshot5.jpg" alt="Screenshot5" /></p>
 
 								</div>
 								
@@ -224,7 +326,7 @@ perceptual hashes are &ldquo;close&rdquo; to one another if the features are sim
 								<script type="text/javascript">
 								    
 									var disqus_shortname = 'codesindotnet';
-									var disqus_identifier = 'SimCity-BuildIt-Bot-Part-2';
+									var disqus_identifier = 'Ionic';
 									(function () {
 										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
