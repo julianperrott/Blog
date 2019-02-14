@@ -1,0 +1,21 @@
+{{ "<!-- Header -->" | safeHTML }}
+
+<header>
+    <div class="container-fluid"  id = "canvasdiv">
+        <canvas class="matrixcanvas" id="c"></canvas>
+        <div class="row" style="position: relative">
+            <div class="col-lg-12">
+                <img class="img-fluid animated zoomIn2" src="img/{{ with .Site.Params.header.image }}{{ . }}{{ else }}profile.png{{ end }}" alt="">
+                <div class="intro-text">
+                    <div id="tltDiv">
+                        <span class="name tlt" data-in-effect="fadeInLeftBig2" style="text-shadow: 0px 0px 4px #18bc9c !important;">{{ with .Site.Params.header.name }}{{ . }}{{ end }}</span>
+                    </div>
+                    <hr class="star-light"/>
+                    <span class="skills tlt2"  data-in-effect="rollIn2" data-in-shuffle="true" style="text-shadow: 0px 0px 4px #18bc9c;">{{ with .Site.Params.header.subtitle }}{{ . }}{{ end }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="test" class="btn btn-primary hidden">Change</div>

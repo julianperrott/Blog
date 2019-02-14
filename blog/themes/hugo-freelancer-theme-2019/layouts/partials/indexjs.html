@@ -1,0 +1,34 @@
+
+<script src="{{ .Site.BaseURL }}/js/jquery.lettering.js"></script>
+<script src="{{ .Site.BaseURL }}/js/jquery.textillate.js"></script>
+<script src="{{ .Site.BaseURL }}/js/matrix.js"></script>
+
+<script>
+    var tlt;
+
+    var isDefault = true;
+
+    $(function () {
+        tlt = $('.tlt').clone();
+        $('.tlt').textillate();
+        $('.tlt2').textillate();
+        $('#test').click(switchMainMessage);
+
+        matrix();
+    });
+
+    function switchMainMessage(){
+        $('#tltDiv').html("");
+
+        if(isDefault){
+            var newText = $(tlt).clone();
+            $(newText).text("Hello");
+            $('#tltDiv').append(newText);
+        }else{
+            $('#tltDiv').append(tlt);
+        }
+        $('.tlt').textillate();
+        isDefault=!isDefault;
+    }
+
+</script>
