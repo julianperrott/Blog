@@ -1,42 +1,48 @@
 +++
 date = "2019-02-14"
-title = "Containerise Legacy Windows Apps"
-description = "How to create windows app Docker images and troubleshoot them."
+title = "How to Containerise Legacy Windows Apps"
+description = "Create windows app Docker images and troubleshoot any issues."
 slug = "Containerise-Legacy-Windows-Apps"
 draft = true
 
 background = "bg_legacy_container"
 +++
 
-After converting around 25 web applications and windows services into Docker container images, I thought I would document the process so it can be useful to others and for me when I forget.
+After converting around 25 web applications and windows services into Docker container images, I thought I would document the process so it can be useful to others, and me for when I forget how. Some of the information in this post may go out of date pretty quickly, but it should point you in the right direction.
+
+<a id="part-1"></a>
 
 ## Table of Contents
 
-- [Alpha 101](#alpha-101)
-- <span class="section-num">1</span> [Beta 102](#beta-102)
-    - <span class="section-num">1.1</span> [Gamma 102.1](#gamma-102-dot-1)
-        - <span class="section-num">1.1.1</span> [Delta 102.1.1](#delta-102-dot-1-dot-1)
-        - <span class="section-num">1.1.2</span> [Epsilon 102.1.2](#epsilon-102-dot-1-dot-2)
-- [Zeta 103](#zeta-103)
-    - [Links (no descriptions) to headings with section numbers](#links--no-descriptions--to-headings-with-section-numbers)
+- [Part 1 - Understanding the application](#part-1)
+- [Part 2 - Building the image ](#part-2)
+- [Part 3 - Running the container ](#part-3)
+- [Part 4 - Interacting with a running container ](#part-4)
+- [Part 5 - Further IIS configuration ](#part-5)
 
+<hr/>
+## Part 1 - Understanding the application
+You can compare containerising an application to installing via powershell on a freshly installed server. Some of the things to understand are as follows:
 
-## 1. Understanding the application {#alpha-101}
-You can compare containerising an application to installing it on a fresh machine...
-
-* What operation system and version can be used ?
+* What version of the windows operation system can be used ?
 * What dependencies does it have ?
 * How do I install it ?
 * How is it configured ?
 
-### What operation system and version can be used ?
+### What version of the windows operation system can be used ?
 Firstly, determine the version of Windows server your test/production environments use, so you know what the app currently works under. You can find out using powershell command: 
 
 <pre class="prettyprint" >
-    [System.Environment]::OSVersion.Version 
+> [System.Environment]::OSVersion.Version 
+
+Major  Minor  Build  Revision
+-----  -----  -----  --------
+10     0      16299  0
 </pre>
 
-If for example the test/production environment is 16299. From the following page you can see which version of the OS the build relates to, 16299 = version 1709, so I already know that it will work under an available container OS version. If the OS is not supported by containerisation, then you will need to investigate if it will work ‘as is’ or will require modification.
+If its not server 2016 or later, then the OS is not supported by containerisation and you will need to investigate if it will work 'as is' on a later OS or will require modification. Mainstream support for 2012 has already ended so hopefully you won't have this problem.
+
+The server that will host the container will need to be at the same build or later version as the container. For example the server can't be on the "2016 Long Term Service Channel - 14393" and the container on the "Semi-Annual Service Channel - 16299".
 
 ![](/post/img/CLWA_OSSupport.png) 
 https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility
@@ -67,12 +73,12 @@ So if my application is a web application which needs .NET framework 4 and my en
 docker pull microsoft/aspnet:4.7.2-windowsservercore-1709
 </pre>
 
-## 2) Dependencies
-Understanding what else the application needs besides .NET framework will need to be discovered by trial and error or read from the existing installation documentation / company wiki.
+### What dependencies does it have ?
+Understanding what else the application needs besides .NET framework will need to be discovered by trial and error or read from the existing installation documentation / company wiki / talking to the development team.
 As a first step getting it running locally on your development machine should make it easier to identify the dependencies. If your dev machine has a lot of pre-deployed applications then creating a VM in Hyper V or in Azure can give you a clean machine to work with, it may help if this VM has a UI so you can more easily investigate errors during installation or during first run.
 Running “Get-WindowsFeature | Where Installed” or “dism /online /get-features” will show you what features are installed / available on a test/production environment, which may help. 
 
-#### Some dependency examples:
+### Some dependency examples:
 
 Dependency | Description
  --- | ---
@@ -82,8 +88,23 @@ Oracle client | This can be installed using the xcopy ODAC version. It also requ
 Crystal Reports Runtime | Installed from CRRuntime msi. It also needs oledlg.dll copied into the windows system folder.
 Redis | An in-memory data structure store.
 
+### How do I install it ?
 
-## 3. Building the image
+What is most important to understand is whether it can be installed from the command line in a silent mode without any user input via a windows UI. If it can't then it will need to be modified to allow it to. You may need to invesigate the installer software to determine what command line switches enable silent mode.
+
+### How is it configured ?
+
+These are some questions you need to understand about configuration:
+
+<a id="part-2"></a>
+
+* Where are the configuration values are stored, Are they in a file or the registry ? 
+* Are they encrypted, and if so do you have a command line tool to do the encryption ?
+* Which values can be hardcoded at build time ?
+* Which values should be set at runtime ? e.g. Passwords.
+
+<hr/>
+## Part 2 - Building the image
 A dockerfile contains several steps used by docker to build your container image. In this example dockerfile below, files are copied into the container which are then installed or run during the build process. 
 
 <pre class="prettyprint" >
@@ -202,22 +223,23 @@ This blog may help you further understand the log: https://blogs.technet.microso
 
 
 ### Installation of the application using a Zip file
-Zip files can be extracted using powershell command ‘Expand-Archive’.The command below will extract a zip file into the IIS folder. The file in this case ‘MyWebSite.zip’ is copied into the container by a previous step 
+Zip files can be extracted using powershell command ‘Expand-Archive’.The command below will extract a zip file into the IIS folder. The file in this case ‘MyWebSite.zip’ is copied into the container by a previous step. 
 
 <pre class="prettyprint" >
 COPY . /setup/
 RUN powershell -Command "expand-archive -Path 'c:\Setup\MyWebSite.zip' -DestinationPath 'c:/inetpub/wwwroot/MyWebSite'"
 </pre>
 
-For a web application you will most likely also need to convert the virtual directory.
+For a web application you will most likely also need to convert the virtual directory into an application.
 <pre class="prettyprint" >
 import-module WebAdministration
 ConvertTo-WebApplication -PSPath "IIS:\Sites\Default Web Site\MyWebSite"
 </pre>
 
 ### Static Configuration 
-Quite often your application may need modifying from the initial installation state. The may involve adding features to IIS or copying additional configuration files into the web application folder or various other modifications. These can be done as steps in the docker file or could be wrapped up in a powershell script file.
-Some examples of configuration steps in a docker file.
+Quite often your application will need modifying from the initial installation state. The may involve adding features to IIS or copying additional configuration files into the web application folder or various other modifications. These can be done as steps in the docker file or could be wrapped up in a powershell script file.
+
+#### Some examples of configuration steps in a docker file:
 
 Description | Command
 --- | ---
@@ -231,8 +253,9 @@ Install using chocolaty | RUN ["choco", "install", "vcredist2013", "-y", "--allo
 Set environment path | RUN "[Environment]::SetEnvironmentVariable(\"Path\", $env:Path + \";C:\\oracle\\\", [EnvironmentVariableTarget]::Machine)"
 
 
-There are many things you may want to configure during the container build. These may be easier to do by placing them in a powershell file. Some examples are shown below:
-#### Running a powershell script to do configuration
+There are many things you may want to configure during the container build. These may be easier to do by placing them in a powershell file.
+
+#### Examples of running a powershell script to do configuration:
 
 <pre class="prettyprint" >
 RUN  "./config.ps1"
@@ -249,8 +272,20 @@ Stop App pool | Stop-WebAppPool -Name "DefaultAppPool"
 Windows Service |  Set service to manual start	Set-Service -Name “MyServiceName” -StartupType Manual
 
 
+### Tidying up
+Old containers and images can take up a lot of space, so tidying up frequently is required.
 
-## 4. Running the container
+<a id="part-3"></a>
+
+Description | Example
+--- | ---
+Stop all running containers	 | docker stop $(docker ps -q)
+Kill all running containers	 | docker kill $(docker ps -q)
+Delete all stopped containers | docker rm $(docker ps -a -q)
+Delete all dangling images | docker rmi $(docker images -f "dangling=true" -q)
+
+<hr/>
+## Part 3 - Running the container
 Once your container has been built you will want to run it. The run command turns our image into a container, below are some of the most useful switches.
 
 Switch | Example | Description
@@ -264,14 +299,16 @@ Switch | Example | Description
 https://docs.docker.com/engine/reference/run/
 
 ### Runtime Configuration
-It’s highly likely that not all configuration can be baked into your container and some will need to be done at runtime. For example usernames and passwords could be a security risk if stored in a container, also rebuilding a container because a password changed would be inefficient.
+It’s highly likely that not all configuration can be baked into your container at build time and some will need to be done at runtime. For example usernames and passwords could be a security risk if stored in a container, also rebuilding a container because a password changed would be inefficient.
 When your container starts you can push in configuration so that a generic container can become specific to your environment. Some examples of run time configuration:
+
 *	Database connection strings
 *	Location of services to communicate with
 *	Username / password
+
 Configuration can be pushed in as environment variables, secrets or configs.
 To use these values you need to set a powershell script to run when the container starts, this will need to be copied into the container from your setup folder during the container build.
-The default entypoint was probably ServiceMonitor.exe, we can change it as below to use config-runtime.ps1 as what runs when the container starts.
+The default entypoint was probably ServiceMonitor.exe, we can change it as below to use config-runtime.ps1 as what runs when the container starts. The last step of config-runtime.ps1 will need to call ServiceMonitor.exe so the container doesn't exit immediately.
 
 <pre class="prettyprint" >
 # Sets the file that will execute when the container starts
@@ -286,7 +323,10 @@ docker run -d -e MYVAR1=”http://somesite.com” -e MYVAR2=23 myimagename
 </pre>
 
 They can then be accessed in the config-runtime script by pre-fixing with $env:
+
+<pre class="prettyprint" >
 Set-WebConfigurationProperty -pspath "IIS:\Sites\Default Web Site\MyWebApp\" -filter 'appSettings/add[@key="AppServer"]' -Name "value" -Value $env:MYVAR1
+</pre>
 
 #### Docker Compose Secrets
 Secrets are the preferred way to push sensitive configuration into a container. They are pushed in via a docker compose file, which might look like the example below. Secrets end up as files in C:\ProgramData\Docker\secrets e.g. C:\ProgramData\Docker\secrets\my_database
@@ -314,22 +354,29 @@ secrets:
 
 
 They can be read into vars using Get-Content.
+
+<pre class="prettyprint" >
 $key="my_database"
 $path = "C:\programdata\docker\secrets\$key"
 if([System.IO.File]::Exists($path)){
     $val = Get-Content $path -First 1
     $val= $val.Trim();
 }
+</pre>
 
 https://docs.docker.com/engine/swarm/secrets/
 https://docs.docker.com/compose/compose-file/#long-syntax-2
 
+<a id="part-4"></a>
+
 #### Docker Configs
-swarm service configs, which allow you to store non-sensitive information, such as configuration files, outside a service’s image or running containers. This allows you to keep your images as generic as possible, without the need to bind-mount configuration files into the containers or use environment variables.
+Swarm service configs allow you to store non-sensitive information, such as configuration files, outside a service’s image or running containers. This allows you to keep your images as generic as possible, without the need to bind-mount configuration files into the containers or use environment variables.
+
 https://docs.docker.com/engine/swarm/configs/
 
+<hr/>
+## Part 4 - Interacting with a running container
 
-## 5. Interacting with a running container
 Quite often when testing your containers are working you will need to run commands on them or go in them.
 
 ### Container ID Shortcuts
@@ -365,9 +412,13 @@ docker exec -i containerid powershell .\config.ps1
 If you need to reset your web application then an app pool recycle should be done, rather than an IISRESET which will kill your container as the ServiceMonitor will think it has finished.
 <pre class="prettyprint">
 docker exec -i containerid powershell Restart-WebAppPool -Name "DefaultAppPool"
+
 </pre>
-Copying a file from a running container
+
+### Copying a file from a running container
+
 If you have a log or some other file you want to copy out it is pretty easy to get it out.
+
 <pre class="prettyprint">
 docker cp containerid:c:\setup\install.log c:\temp\install.log
 </pre>
@@ -379,9 +430,11 @@ docker cp myscript.ps1 containerid:"c:\setup"
 </pre>
 
 ### Viewing the event log
-Viewing the event log is useful when trying to get a container to work. Sometime helpful errors relating to web server crashes are logged there. This command gets the last 10 application messages:
+Viewing the event log is useful when trying to get a container to work. Sometime helpful errors relating to web server crashes are logged there. 
 
 #### wevtutil
+
+This command gets the last 10 application messages:
 
 <pre class="prettyprint">
 docker exec -i containerid powershell  “wevtutil qe Application /c:10 /rd:true /f:text”
@@ -409,7 +462,7 @@ Service cannot be started. System.Runtime.InteropServices.SEHException (0x800040
    at System.ServiceModel.ServiceHost..ctor(Type serviceType, Uri[] baseAddresses)
    at IntegrationServer.IntegrationServi...
 
-Event[1]: etc …
+Event[1]:  … etc, other 9 messages
 </pre>
 
 
@@ -456,7 +509,7 @@ Index   EntryType Message
 </pre>
 
 #### Backing the event log up
-The event log can also be backed up and extracted out of the container if necessary for viewing by the host event log viewer:
+The event log can also be backed up and extracted out of the container if necessary for viewing by the host UI event log viewer:
 <pre class="prettyprint">
 docker exec -i containerid powershell wevtutil epl Application C:\setup\AppLogBackup.evtx
 docker stop containerid
@@ -469,27 +522,21 @@ https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/
 #### Viewing a log file in a container
 Custom text logs can be viewed by using powershell command ‘Get-Content’, or its alias ‘cat’.
 
+
+<a id="part-5"></a>
+
 <pre class="prettyprint">
 docker exec -i EMAIL powershell  “get-content c:\email_services\log-file.txt”
 docker exec -i EMAIL powershell  “cat c:\inetpub\wwwroot\myweb\app_data\log.txt”
 </pre>
 
+<hr/>
 
-
-## Tidying up
-Old containers and images can take up a lot of space, so tidying up frequently is required.
-
-Description | Example
---- | ---
-Stop all running containers	 | docker stop $(docker ps -q)
-Kill all running containers	 | docker kill $(docker ps -q)
-Delete all stopped containers | docker rm $(docker ps -a -q)
-Delete all dangling images | docker rmi $(docker images -f "dangling=true" -q)
-
-## 6. Further IIS configuration
+## Part 5 - Further IIS configuration 
 
 ### Localisation
 If your web server is set to the wrong locale then it won’t format dates etc correctly. It appears that the configuration of this needs to be done at runtime with IIS Stopped. So changing this configuration can be part of your config-runtime.ps file.
+
 e.g.
 
 <pre class="prettyprint">
@@ -499,6 +546,7 @@ Set-WinSystemLocale -SystemLocale en-GB
 Set-WinHomeLocation -GeoId 242
 Set-WinUserLanguageList -LanguageList (New-WinUserLanguageList -Language en-GB) -Force
 Set-Culture en-GB
+
 c:\windows\system32\control.exe "intl.cpl,,/f:`"C:/setup/UKRegion.xml`""
 </pre>
 
@@ -530,7 +578,7 @@ c:\windows\system32\control.exe "intl.cpl,,/f:`"C:/setup/UKRegion.xml`""
 &lt;/gs:GlobalizationServices&gt;
 </pre>
 
-See https://www.lewisroberts.com/2017/03/01/set-language-culture-timezone-using-powershell/ 
+https://www.lewisroberts.com/2017/03/01/set-language-culture-timezone-using-powershell/ 
 
 ### Stopping / Starting IIS
 It is important that your web application is not running until it has been configured at run time.
@@ -564,7 +612,7 @@ Write-Host "IIS Idle Timeout=$timeout"
 https://stackoverflow.com/questions/19985710/iis-idle-timeout-vs-recycle
 
 ### Compression
-Compression helps performance as less data needs to be moved from the server to the client. You will need to work out what mime type your application uses and configure them as appropriate.
+Dynamic compression helps performance as less data needs to be moved from the server to the client. You will need to work out what mime type your application uses and configure them as appropriate.
 
 <pre class="prettyprint">
 Import-Module ServerManager
@@ -607,7 +655,7 @@ If your host IIS Manager does not allow you to connect to remote servers then yo
 ### Investigating 500 Internal Server Errors
 
 If when you run your container for the first time you get a 500 error and the event log 
-doesn’t shed any light on the issue then it may help to turn on “Failed Request Tracing”. 
+doesn’t shed any light on the issue then it may help to turn on “Failed Request Tracing”. You can also use this to trace other errors or slow performance.
 
  ![](/post/img/CLWA_Tracing3.png) 
 
@@ -641,6 +689,6 @@ https://blogs.msdn.microsoft.com/benjaminperkins/2016/06/15/lab-4-install-and-co
 https://docs.microsoft.com/en-us/iis/troubleshoot/using-failed-request-tracing/troubleshooting-failed-requests-using-tracing-in-iis-85
 
 ## Conclusion
-I hope that these notes are helpful for you to containerise your legacy apps, please add comments if they are.  Any corrections you have are also welcome.
+I hope that these notes are useful to help you to containerise your legacy apps, please add comments if they are. Also any corrections you have are also welcome.
 <br/>
 <br/>
