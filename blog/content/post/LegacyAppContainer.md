@@ -1,6 +1,6 @@
 +++
 date = "2019-02-14"
-title = "Windows Container Guide For Legacy Applications"
+title = "Docker Container Guide For Windows Legacy Applications"
 description = "How to create windows app Docker images and troubleshoot them."
 slug = "Containerise-Legacy-Windows-Apps"
 draft = true
@@ -35,9 +35,9 @@ Major  Minor  Build  Revision
 10     0      16299  0
 </pre>
 
-If its not server 2016 or later, then the OS is not supported by containerisation and you will need to investigate if it will work 'as is' on a later OS or will require modification. Mainstream support for 2012 has already ended so hopefully you won't have this problem.
+If it isn't server 2016 or later, then the OS is not supported by containerisation and you will need to investigate if it will work 'as is' on a later OS or will require modification. Mainstream support for 2012 has already ended so hopefully you won't have this problem.
 
-The server that will host the container will need to be at the same build or later version as the container. For example the server can't be on the "2016 Long Term Service Channel - 14393" and the container on the "Semi-Annual Service Channel - 16299".
+Once containerised a windows server will host the container and that server will need to be at the same build or later version as the container. For example the server can't be on the "2016 Long Term Service Channel - 14393" and the container on the "Semi-Annual Service Channel - 16299". So bear this in mind when deciding what your container base image will be.
 
 ![](/post/img/CLWA_OSSupport.png) 
 https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility
@@ -46,7 +46,7 @@ https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-contain
 
 There are two types of base images to choose from:
 
-* nanoserver – smaller, leaner. More suitable for non Microsoft applications.
+* Nanoserver – smaller, leaner. More suitable for non Microsoft applications.
 * Windowsservercore – For most legacy .NET applications
 
 ![](/post/img/CLWA_OSTarget.png) 
@@ -55,11 +55,13 @@ https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/net-
 
 Assuming that Windowsservercore is going to be used, it also has a number of derived images, one of which will be the base image for your legacy app’s container.
 
-*	microsoft/dotnet-framework – for windows services. 
-https://hub.docker.com/r/microsoft/dotnet-framework/
+*	microsoft/dotnet-framework – for windows services. https://hub.docker.com/r/microsoft/dotnet-framework/
+(e.g. mcr.microsoft.com/dotnet/framework/runtime:x.x)
 
-*	microsoft/aspnet – for web applications. 
-https://hub.docker.com/r/microsoft/aspnet/
+
+*	microsoft/aspnet – for web applications. https://hub.docker.com/r/microsoft/aspnet/ 
+(e.g. mcr.microsoft.com/dotnet/framework/aspnet:x.x)
+
 
 You also need to know what version of .NET your application needs. Hopefully it is .NET framework 4 although 3.5 is still supported.
 So if my application is a web application which needs .NET framework 4 and my environment supports windows server version 1709. The base image I will use is microsoft/aspnet and the tag is 4.7.2-windowsservercore-1709
@@ -67,19 +69,19 @@ So if my application is a web application which needs .NET framework 4 and my en
 <pre class="prettyprint" >
 docker pull microsoft/aspnet:4.7.2-windowsservercore-1709
 </pre>
-----
 
 ## Secondly, determine the  application's dependencies
 Understanding what else the application needs besides .NET framework will need to be discovered by trial and error or read from the existing installation documentation / company wiki / talking to the development team.
 
-As a first step getting it running locally on your development machine should make it easier to identify the dependencies. If your dev machine has a lot of pre-deployed applications then creating a VM in Hyper V or in Azure can give you a clean machine to work with, it may help if this VM has a UI so you can more easily investigate errors during installation or during first run.
+
+As a first step getting it running locally on your development machine should make it easier to identify the dependencies. If your dev machine has a lot of pre-deployed applications then creating a VM in Hyper V or in Azure can give you a clean machine to work with, it may help if this VM has a UI so you can more easily investigate errors during installation or during the initial run.
 Running “Get-WindowsFeature | Where Installed” or “dism /online /get-features” will show you what features are installed / available on a test/production environment, which may help. 
 
 ### Some dependency examples:
 
 Dependency | Description
  --- | ---
-Windows Feature Web-Metabase | The metabase is a structure for storing Internet Information Server (IIS) configuration settings
+Windows Feature Web-Metabase | The metabase is a structure for storing Internet Information Server (IIS) configuration settings.
 Windows Features NET-WCF-HTTP-Activation45 | Required for WCF .svc services.
 Oracle client | This can be installed using the xcopy ODAC version. It also requires the Microsoft Visual C++ 2013 Redistributable.
 Crystal Reports Runtime | Installed from CRRuntime msi. It also needs oledlg.dll copied into the windows system folder.
@@ -270,18 +272,6 @@ Stop IIS | NET STOP W3SVC
 Stop App pool | Stop-WebAppPool -Name "DefaultAppPool"
 Windows Service |  Set service to manual start	Set-Service -Name “MyServiceName” -StartupType Manual
 
-### Tidying up
-Old containers and images can take up a lot of space, so tidying up frequently is required.
-
-<a id="part-3"></a>
-
-Description | Example
---- | ---
-Stop all running containers	 | docker stop $(docker ps -q)
-Kill all running containers	 | docker kill $(docker ps -q)
-Delete all stopped containers | docker rm $(docker ps -a -q)
-Delete all dangling images | docker rmi $(docker images -f "dangling=true" -q)
-
 ----
 ## Finally, running the container
 
@@ -307,7 +297,7 @@ When your container starts you can push in configuration so that a generic conta
 
 Configuration can be pushed in as environment variables, secrets or configs.
 To use these values you need to set a powershell script to run when the container starts, this will need to be copied into the container from your setup folder during the container build.
-The default entypoint was probably ServiceMonitor.exe, we can change it as below to use config-runtime.ps1 as what runs when the container starts. The last step of config-runtime.ps1 will need to call ServiceMonitor.exe so the container doesn't exit immediately.
+The default entypoint was probably ServiceMonitor.exe, we can change it (See below) to use bootstrap.ps1 when the container starts. The last step of bootstrap.ps1 will need to call ServiceMonitor.exe, or tail a log file so the container doesn't exit immediately.
 
 <pre class="prettyprint" >
 # Sets the file that will execute when the container starts
@@ -709,7 +699,8 @@ Copy them out of the container after first stopping it.
 docker exec -i 4d powershell "dir C:\inetpub\logs\failedreqlogfiles\w3svc1"
 docker stop 4d
 docker cp 4d:C:\inetpub\logs\failedreqlogfiles\w3svc1\fr000001.xml .
-</pre>
+</pre> 
+
 Next open up the file in internet explorer, and click on compact view and hopefully find the smoking gun.
 
 ![](/post/img/CLWA_Tracing5.png) 
@@ -720,6 +711,6 @@ https://docs.microsoft.com/en-us/iis/troubleshoot/using-failed-request-tracing/t
 -------
 
 ## In Conclusion
-I hope that these notes are useful to help you to containerise your legacy apps, please add comments if they are. Also any corrections you have are also welcome.
+I hope that these notes are useful to help you to containerise your legacy apps, please add comments if they are. Also any comments/corrections you have are also welcome.
 <br/>
 <br/>
