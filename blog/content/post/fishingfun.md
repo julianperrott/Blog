@@ -8,7 +8,7 @@ draft = true
 background = "bg_fishingfun"
 +++
 
-In World of Warcraft, Fishing is a time consuming task which is simple and so lends itself to automation very well. There are many fishing bots out there. This post describes the bot that I wrote for fun and the problems I solved to make it work.
+In World of Warcraft, fishing is a time consuming task which is simple and so lends itself to automation very well. There are many fishing bots out there, this post describes the bot that I wrote for fun and the problems I solved to make it work.
 
 ### Why Fish ?
 
@@ -125,7 +125,7 @@ In the top right the amplitude of the bobber is shown in an animated graph ([lvc
 
 ##### Colour Configuration Screen
 
-A second configuration screen allows the investigation of different paramters for the 'Red' pixel detection.
+A second configuration screen allows the investigation of different settings for the 'Red' pixel detection.
 
 ![Screenshot3](/post/img/FishingFun_Screenshot3.jpg)
 
