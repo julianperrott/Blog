@@ -44,7 +44,7 @@ theme = "hugo-freelancer-theme"
         title = "About Me"
         # The about text is splitted into a left and right column
         left = "My first computer was a Commodore VIC-20, I had great fun trying to code text adventures and side scrolling shoot 'em ups in BASIC. This helped me lead the way as the first in my school to pass a computer exam."
-        right = "Currently I work as a Senior Software Engineer in Bedford for a FTSE 100 Company. Coding daily in C#, JavaScript and SQL. Outside of work I work on whatever is interesting me at that time."
+        right = "Currently I work as a Senior Software Engineer in Milton Keynes for a leading commercial vehicle manufacturer. Coding daily in C#, JavaScript and SQL. Outside of work I work on whatever is interesting me at that time."
 
         [params.about.button]
             text = "Download theme"
