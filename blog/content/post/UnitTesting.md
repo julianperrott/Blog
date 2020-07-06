@@ -1,7 +1,7 @@
 +++
 date = "2020-06-04"
 title = "What is Unit Testing?"
-description = "How does it help creating quality software ?"
+description = "How does it help to create quality software, and the trade off between the cost of writing a test and the value it gives."
 slug = "UnitTesting"
 draft = true
 

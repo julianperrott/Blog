@@ -1,7 +1,7 @@
 ﻿+++
 date = "2020-04-15"
 title = "An Introduction to Powershell"
-description = "A useful skill to have in your dev toolbox."
+description = "A useful skill to have in your dev toolbox to create scripts to do almost anything."
 slug = "Powershell"
 draft = true
 
