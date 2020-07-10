@@ -38,7 +38,7 @@ Tony Hoare invented the idea of a Null reference back in the 60's, this has sinc
 
 Objects in C# are referenced by pointers and those pointers may be null. So before using an object you either need to check it is not null or risk disaster.
 
-In this example foo can be null and also the object returned by Score could in theory also be null.
+In this example 'game' can be null and also the object returned by Score could in theory also be null.
 
 <pre class="prettyprint">
         Game game = null;
@@ -133,7 +133,7 @@ Within your team you can discuss each error as it comes up and build up an under
 
 ## Examples of rules to suppress
 
-Some rules you just won't agree with or perhaps are now out of date. e.g. CA1062 Some rules such as null checks have been supperceded by the Nullable compiler feature and can have their severity adjusted to 'None'.
+Some rules you just won't agree with or perhaps are now out of date. e.g. CA1062 Some rules such as null checks have been superceded by the Nullable compiler feature and can have their severity adjusted to 'None'.
 
 These are examples which give a flavour of what might be suppressed.
 
@@ -155,7 +155,21 @@ Sometimes a rule is mostly valid, but needs to be suppressed for that one place 
 
 ----
 
-# Codemaid
+# Conclusion
+
+Developers exist to add value and this usually involves developing functionality using code, but the benefit of code quality is not always obvious to non developers. Over time better designed code with fewer bugs, being more readable and therefore more maintainable is cheaper. Using free and built in Visual Studio functionality makes good sense to help achieve better code.
+
+----
+
+# Beyond Visual Studio
+
+If you want to take your code analyis to another level. Then further code analysis can be done during continuous integration, for example [SonarQube](https://www.sonarqube.org) is worth taking a look at.
+
+![SoanrQuve](/post/img/CodeQuality_SonarQube.png)
+
+----
+
+# Another usefull tool
 
 ![CodeMaid](/post/img/CodeQuality_codeMaid.png)
 
@@ -171,17 +185,3 @@ This free Visual Studio extennsion is great at tidying up code with no effort. I
 
     Comment Formatting
     Format comments to wrap at a specified column and arrange tags on separate lines. Run on demand or automatically during cleanup.
-
-----
-
-# Conclusion
-
-Developers exist to develop functionality and the benefit of code quality is not always obvious to non developers. Over time better designed code with fewer bugs, being more readable and therefore more maintainable is cheaper. Using free and built in Visual Studio functionality makes good sense to help achieve better code.
-
-----
-
-# Beyond Visual Studio
-
-If you want to take your code analyis to another level. Then further code analysis can be done during continuous integration, for example [SonarQube](https://www.sonarqube.org) is worth taking a look at.
-
-![SoanrQuve](/post/img/CodeQuality_SonarQube.png)
