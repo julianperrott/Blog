@@ -169,7 +169,7 @@ If you want to take your code analyis to another level. Then further code analys
 
 ----
 
-# Another usefull tool
+# Another useful tool
 
 ![CodeMaid](/post/img/CodeQuality_codeMaid.png)
 
