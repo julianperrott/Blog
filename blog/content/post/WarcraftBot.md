@@ -49,7 +49,7 @@ The first choice I made was the language to code the bot in, this was C# as it i
 
 The next choice was how to code the different states of functionality. I wondered if there was an AI approach that could work? After a little research I found something called ["Goal Orientated Action Planning"](https://gamedevelopment.tutsplus.com/tutorials/goal-oriented-action-planning-for-a-smarter-ai--cms-20793) which gives the ability to have multiple goals which are independent and can be switched between without needing to know about each other.
 
-The other major decision was the front end. To allow the bot to be visible remotely I decided to use [Blazor Server](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor). Because the bot is running on the server (my pc), it has access to all the bot's state and can render it as it changes, pushing down the new UI changes to the client using [SignalR](https://dotnet.microsoft.com/apps/aspnet/signalr). This choice also lets me gain experience with Blazor.
+The other major decision was the front end. To allow the bot to be visible remotely I decided to use [Blazor Server](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor). Because the bot is running on the server (my PC), it has access to all the bot's state and can render it as it changes, pushing down the new UI changes to the client using [SignalR](https://dotnet.microsoft.com/apps/aspnet/signalr). This choice also lets me gain experience with Blazor.
 
 To enable the current state of the game to be accessible without needing to read it each time, I decided that more than one thread would be required.
 
@@ -96,10 +96,10 @@ The main information the Addon allows the bot to access:
 
 ## Looting
 
-Once an NPC has died it has items which can be looted and perhaps skinned by right clicking on it. 
+Once an NPC has died it has items which can be looted and perhaps skinned by right clicking on. 
 The problem here is that we don't know exactly where the NPC died, it might be just in front of us, or could be slightly to the left or right, or perhaps we have killed
 more than one NPC and we want to loot them all, so we need to do a search for them. When the mouse is moved over an NPC it changes the icon that is shown, so if we move the
-move in a circle around our character and read the mouse icon we can see what icon it changes to and decide what action to take.
+mouse in a circle around our character and read the mouse icon we can see what icon it changes to and decide what action to take.
 
 ![gif example of mouse moving](/post/img/wowbot_Loot.gif)
 
@@ -112,7 +112,7 @@ To move the mouse I calculate x,y coordinates around a point and use native meth
 </pre>		
 
 
-To recognise which cursor is shown we can use perceptual mapping to reduce the image to a simplified binary number and from those binary digits work out how close (just in case it is not a perfect match) to the image is to the known images.
+To recognise which cursor is shown we can use perceptual hashing to reduce the image to a simplified binary number and from those binary digits work out how close (just in case it is not a perfect match) to the image is to the known images.
 
 Some examples of the WOW cursors and their hash:
 
@@ -159,9 +159,7 @@ The bot runs on the same PC as the WOW client. To expose the bot state via a bro
 
 ## Target aquisition
 
-When not in combat a player must select a target in the game either my clicking on it with the mouse or my using the tab key.
-
-Targeting using the Tab key doesn't always target the closest NPC, but the one closest to the centre line on the screen and this target must be in a narrow view cone in front of the player, roughly indicated by the yellow lines in the image below. Some targets are not close enough to the centre line and we need another mechanism to enable the bot to click on them. This limitation can be overcome by analysing a screenshot and looking for the red name plates of the NPCs, and using this to get an idea where to click on the screen to select one of them as your target.
+When not in combat a player must select a target in the game either my clicking on it with the mouse or my using the tab key. Targeting using the Tab key doesn't always target the closest NPC, but the one closest to the centre line on the screen and this target must be in a narrow view cone in front of the player, roughly indicated by the yellow lines in the image below. Some targets are not close enough to the view cone and we need another mechanism to enable the bot to target them. This limitation can be overcome by analysing a screenshot and looking for the red name plates of the NPCs (indicated by the white arrows in the image below), and using this to get an idea where to click on the screen to select one of them as your target.
 
 ![Targets](/post/img/wowbot_targets.jpg)
 
@@ -174,9 +172,9 @@ One of the first problems I tackled was how to move the character around, we wan
 
 ## Allowing the bot to be configurable
 
-There are a number of core things that a bot controlled player needs to be able to do: follow a path, find a target, pull the target, fight the target, loot the corpse and return to your corpse if you die. Then there are other less defined tasks such as pressing a key to eat when the character isn't well-fed, these kinds of actions are ones the user needs to define.
+There are a number of core things that a bot controlled player needs to be able to do: follow a path, find a target, pull the target, fight the target, loot the corpse and return to your corpse if you die. Then there are other less defined tasks such as pressing a key to eat when the character isn't well-fed, these other kinds of actions are ones the user needs to define.
 
-To allow for both types of tasks a Goal object was created, and each goal is made up of a sequence of one or more keys which can be pressed, these are the actions. The GOAP agent determines the highest priority goal and allows it to run until it completes or the goal decides to allow the agent to re-determine the highest priority goal.
+To allow for both types of tasks a Goal object was created, with each goal made up of a sequence of one or more keys which can be pressed, these are the actions. The GOAP agent determines the highest priority goal and allows it to run until it completes or the goal decides to allow the agent to re-determine the highest priority goal.
 
 Each goal has a priority and a predefined set of conditions which must be met for it to be allowed to run. For example the combat goal requires that the player is in combat and has a target, 
 this also has a list of "Key" objects which are also evaluated to determine which key to press and when. Each key object has a requirements list to determine if it can be pressed, a key definition to say what key to press and a cooldown in seconds.
